@@ -14,6 +14,15 @@
       "id": "@sap/generator-fiori:basic",
       "version": "1.30.0",
       "toolsId": "10ebbad5-3737-4c00-a731-48f51c09f550"
+    },
+    "dataSources": {
+      "ZAIS_LOGIN_SRV": {
+        "uri": "/sap/opu/odata/sap/ZAIS_LOGIN_SRV/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
     }
   },
   "sap.ui": {
@@ -51,12 +60,25 @@
         "settings": {
           "bundleName": "zais.scm.zais.i18n.i18n"
         }
+      },
+      "loginService": {
+        "dataSource": "ZAIS_LOGIN_SRV",
+        "preload": true,
+        "settings": {
+          "useBatch": false
+        }
       }
     },
     "resources": {
       "css": [
         {
           "uri": "css/style.css"
+        },
+        {
+          "uri": "css/login.css"
+        },
+        {
+          "uri": "css/signup.css"
         }
       ]
     },
@@ -74,17 +96,33 @@
       },
       "routes": [
         {
-          "name": "RouteMainScreen",
-          "pattern": ":?query:",
-          "target": [
-            "TargetMainScreen"
-          ]
+          "name": "RouteLogin",
+          "pattern": "",
+          "target": ["TargetLogin"]
+        },
+        {
+          "name": "RouteSignup",
+          "pattern": "signup",
+          "target": ["TargetSignup"]
+        },
+        {
+          "name": "RouteMain",
+          "pattern": "main",
+          "target": ["TargetMain"]
         }
       ],
       "targets": {
-        "TargetMainScreen": {
-          "id": "MainScreen",
-          "name": "MainScreen"
+        "TargetLogin": {
+          "id": "Login",
+          "name": "Login"
+        },
+        "TargetSignup": {
+          "id": "Signup",
+          "name": "Signup"
+        },
+        "TargetMain": {
+          "id": "Main",
+          "name": "Main"
         }
       }
     },

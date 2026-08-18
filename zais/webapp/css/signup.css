@@ -1,0 +1,30 @@
+/* ==========================================================================
+   AIS SCM 회원가입 페이지 스타일 (signup.css)
+   ========================================================================== */
+
+/* 1. 회원가입 하단 네비게이션 링크 */
+.signupBottomNav {
+    margin-top: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+}
+
+.hasAccountText {
+    font-size: 12.5px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+.navToLoginLink {
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    color: #0a2560 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.navToLoginLink:hover {
+    text-decoration: underline !important;
+}

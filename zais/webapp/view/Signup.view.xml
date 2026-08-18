@@ -1,0 +1,213 @@
+<mvc:View
+    id="signupView"
+    controllerName="zais.scm.zais.controller.Signup"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Page
+        id="signupPage"
+        showHeader="false"
+        enableScrolling="false"
+        class="signupPage loginPage">
+
+        <!-- 전체 화면 중앙 정렬 -->
+        <VBox
+            id="signupContainer"
+            width="100%"
+            height="100%"
+            alignItems="Center"
+            justifyContent="Center"
+            class="signupContainer loginContainer">
+
+            <!-- 회원가입 카드 모달 -->
+            <VBox
+                id="signupModal"
+                class="signupModal loginModal">
+
+                <!-- 우측 상단 AIS / SAP 로고 영역 -->
+                <HBox
+                    id="signupLogoContainer"
+                    width="100%"
+                    justifyContent="End"
+                    alignItems="Center"
+                    class="signupLogoContainer loginLogoContainer">
+
+                    <VBox
+                        id="signupAisLogo"
+                        alignItems="End"
+                        class="aisLogo">
+
+                        <HBox
+                            id="signupAisLogoTopRow"
+                            alignItems="Center"
+                            class="aisLogoTopRow">
+
+                            <Text
+                                id="signupAisLogoTitle"
+                                text="AIS"
+                                class="aisLogoTitle" />
+
+                            <Text
+                                id="signupSapLogo"
+                                text="SAP"
+                                class="sapLogo" />
+
+                        </HBox>
+
+                        <Text
+                            id="signupAisLogoDesc"
+                            text="AI Semiconductor Supply Chain"
+                            class="aisLogoDesc" />
+
+                    </VBox>
+
+                </HBox>
+
+                <!-- 회원가입 제목 -->
+                <VBox
+                    id="signupTitleContainer"
+                    width="100%"
+                    alignItems="Center"
+                    class="signupTitleContainer loginTitleContainer">
+
+                    <Title
+                        id="signupTitle"
+                        text="SIGN UP"
+                        level="H1"
+                        class="signupTitle loginTitle" />
+
+                    <Text
+                        id="signupSubtitle"
+                        text="회원 정보를 입력하세요"
+                        class="signupSubtitle loginSubtitle" />
+
+                </VBox>
+
+                <!-- 이름 영역 -->
+                <VBox
+                    id="nameContainer"
+                    width="100%"
+                    class="signupFormGroup loginFormGroup">
+
+                    <Label
+                        id="nameLabel"
+                        text="이름"
+                        labelFor="nameInput"
+                        class="signupLabel loginLabel" />
+
+                    <Input
+                        id="nameInput"
+                        value="{signup>/name}"
+                        placeholder="이름을 입력하세요"
+                        width="100%"
+                        submit=".onSignup"
+                        class="signupInput loginInput" />
+
+                </VBox>
+
+                <!-- ID 영역 -->
+                <VBox
+                    id="signupUserIdContainer"
+                    width="100%"
+                    class="signupFormGroup loginFormGroup">
+
+                    <Label
+                        id="signupUserIdLabel"
+                        text="ID"
+                        labelFor="signupUserIdInput"
+                        class="signupLabel loginLabel" />
+
+                    <Input
+                        id="signupUserIdInput"
+                        value="{signup>/userId}"
+                        placeholder="사용자 ID를 입력하세요"
+                        width="100%"
+                        submit=".onSignup"
+                        class="signupInput loginInput" />
+
+                </VBox>
+
+                <!-- Password 영역 -->
+                <VBox
+                    id="signupPasswordContainer"
+                    width="100%"
+                    class="signupFormGroup loginFormGroup">
+
+                    <Label
+                        id="signupPasswordLabel"
+                        text="Password"
+                        labelFor="signupPasswordInput"
+                        class="signupLabel loginLabel" />
+
+                    <HBox
+                        id="signupPasswordInputContainer"
+                        width="100%"
+                        alignItems="Center"
+                        class="passwordInputContainer">
+
+                        <Input
+                            id="signupPasswordInput"
+                            value="{signup>/password}"
+                            placeholder="비밀번호를 입력하세요"
+                            type="{= ${signup>/isPasswordVisible} ? 'Text' : 'Password' }"
+                            width="100%"
+                            submit=".onSignup"
+                            class="signupInput passwordInput" />
+
+                        <Button
+                            id="signupPasswordToggleButton"
+                            type="Transparent"
+                            icon="{= ${signup>/isPasswordVisible} ? 'sap-icon://show' : 'sap-icon://hide' }"
+                            tooltip="비밀번호 표시 전환"
+                            press=".onTogglePassword"
+                            class="passwordToggleButton" />
+
+                    </HBox>
+
+                </VBox>
+
+                <!-- 회원가입 버튼 -->
+                <Button
+                    id="signupButton"
+                    text="회원가입"
+                    width="100%"
+                    press=".onSignup"
+                    class="signupButton loginButton" />
+
+                <!-- 로그인 화면 이동 링크 -->
+                <HBox
+                    id="signupBottomNav"
+                    width="100%"
+                    justifyContent="Center"
+                    alignItems="Center"
+                    class="signupBottomNav">
+
+                    <Text
+                        id="hasAccountText"
+                        text="이미 계정이 있으신가요?"
+                        class="hasAccountText" />
+
+                    <Link
+                        id="navToLoginLink"
+                        text="로그인"
+                        press=".onNavToLogin"
+                        class="navToLoginLink" />
+
+                </HBox>
+
+                <!-- Footer -->
+                <Text
+                    id="signupFooter"
+                    text="© 2026 AIS SCM SYSTEM · v1.0.0"
+                    width="100%"
+                    textAlign="Center"
+                    class="signupFooter loginFooter" />
+
+            </VBox>
+
+        </VBox>
+
+    </Page>
+
+</mvc:View>
