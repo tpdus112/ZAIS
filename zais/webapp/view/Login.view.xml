@@ -1,0 +1,206 @@
+<mvc:View
+    id="lSView"
+    controllerName="zais.scm.zais.controller.Login"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true">
+
+    <Page
+        id="loginPage"
+        showHeader="false"
+        enableScrolling="false"
+        class="loginPage">
+
+        <!-- 전체 화면 중앙 정렬 -->
+        <VBox
+            id="lSContainer"
+            width="100%"
+            height="100%"
+            alignItems="Center"
+            justifyContent="Center"
+            class="loginContainer">
+
+            <!-- 로그인 카드 -->
+            <VBox
+                id="loginModal"
+                class="loginModal">
+
+                <!-- 우측 상단 AIS / SAP 영역 -->
+                <HBox
+                    id="loginLogoContainer"
+                    width="100%"
+                    justifyContent="End"
+                    alignItems="Center"
+                    class="loginLogoContainer">
+
+                    <VBox
+                        id="aisLogo"
+                        alignItems="End"
+                        class="aisLogo">
+
+                        <HBox
+                            id="aisLogoTopRow"
+                            alignItems="Center"
+                            class="aisLogoTopRow">
+
+                            <Text
+                                id="aisLogoTitle"
+                                text="AIS"
+                                class="aisLogoTitle" />
+
+                            <Text
+                                id="sapLogo"
+                                text="SAP"
+                                class="sapLogo" />
+
+                        </HBox>
+
+                        <Text
+                            id="aisLogoDesc"
+                            text="AI Semiconductor Supply Chain"
+                            class="aisLogoDesc" />
+
+                    </VBox>
+
+                </HBox>
+
+                <!-- 로그인 제목 -->
+                <VBox
+                    id="loginTitleContainer"
+                    width="100%"
+                    alignItems="Center"
+                    class="loginTitleContainer">
+
+                    <Title
+                        id="loginTitle"
+                        text="LOGIN"
+                        level="H1"
+                        class="loginTitle" />
+
+                    <Text
+                        id="loginSubtitle"
+                        text="관리자 정보를 입력하세요"
+                        class="loginSubtitle" />
+
+                </VBox>
+
+                <!-- ID 영역 -->
+                <VBox
+                    id="userIdContainer"
+                    width="100%"
+                    class="loginFormGroup">
+
+                    <Label
+                        id="userIdLabel"
+                        text="ID"
+                        labelFor="userIdInput"
+                        class="loginLabel" />
+
+                    <Input
+                        id="userIdInput"
+                        value="{login>/userId}"
+                        placeholder="사용자 ID를 입력하세요"
+                        width="100%"
+                        submit=".onLogin"
+                        class="loginInput" />
+
+                </VBox>
+
+                <!-- Password 영역 -->
+                <VBox
+                    id="passwordContainer"
+                    width="100%"
+                    class="loginFormGroup">
+
+                    <HBox
+                        id="passwordHeader"
+                        width="100%"
+                        justifyContent="SpaceBetween"
+                        alignItems="Center"
+                        class="passwordHeader">
+
+                        <Label
+                            id="passwordLabel"
+                            text="Password"
+                            labelFor="passwordInput"
+                            class="loginLabel" />
+
+                        <Link
+                            id="forgotPasswordLink"
+                            text="비밀번호 찾기"
+                            press=".onForgotPassword"
+                            class="forgotPasswordLink" />
+
+                    </HBox>
+
+                    <HBox
+                        id="passwordInputContainer"
+                        width="100%"
+                        alignItems="Center"
+                        class="passwordInputContainer">
+
+                        <Input
+                            id="passwordInput"
+                            value="{login>/password}"
+                            placeholder="비밀번호를 입력하세요"
+                            type="{= ${login>/isPasswordVisible} ? 'Text' : 'Password' }"
+                            width="100%"
+                            submit=".onLogin"
+                            class="passwordInput" />
+
+                        <Button
+                            id="passwordToggleButton"
+                            type="Transparent"
+                            icon="{= ${login>/isPasswordVisible} ? 'sap-icon://show' : 'sap-icon://hide' }"
+                            tooltip="비밀번호 표시 전환"
+                            press=".onTogglePassword"
+                            class="passwordToggleButton" />
+
+                    </HBox>
+
+                </VBox>
+
+                <!-- 로그인 버튼 -->
+                <Button
+                    id="loginButton"
+                    text="로그인"
+                    width="100%"
+                    press=".onLogin"
+                    class="loginButton" />
+
+                <!-- 회원가입 화면 이동 링크 -->
+                <HBox
+                    id="loginBottomNav"
+                    width="100%"
+                    justifyContent="Center"
+                    alignItems="Center"
+                    class="signupBottomNav">
+
+                    <Text
+                        id="noAccountText"
+                        text="계정이 없으신가요?"
+                        class="hasAccountText" />
+
+                    <Link
+                        id="navToSignupLink"
+                        text="회원가입"
+                        press=".onNavToSignup"
+                        class="navToLoginLink" />
+
+                </HBox>
+
+                <!-- Footer -->
+                <Text
+                    id="loginFooter"
+                    text="© 2026 AIS SCM SYSTEM · v1.0.0"
+                    width="100%"
+                    textAlign="Center"
+                    class="loginFooter" />
+
+            </VBox>
+
+        </VBox>
+
+    </Page>
+
+</mvc:View>

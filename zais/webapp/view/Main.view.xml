@@ -1,0 +1,20 @@
+<mvc:View
+    controllerName="zais.scm.zais.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page
+        id="mainPage"
+        title="{i18n>title}">
+        <headerContent>
+            <Button
+                id="logoutButton"
+                icon="sap-icon://log"
+                text="로그아웃"
+                type="Transparent"
+                tooltip="로그아웃"
+                press=".onLogout" />
+        </headerContent>
+        <content>
+        </content>
+    </Page>
+</mvc:View>

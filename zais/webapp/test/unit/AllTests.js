@@ -1,5 +1,5 @@
 sap.ui.define([
-	"zais/scm/zais/test/unit/controller/MainScreen.controller"
+	"zais/scm/zais/test/unit/controller/Main.controller"
 ], function () {
 	"use strict";
 });

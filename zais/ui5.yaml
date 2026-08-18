@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
-
 specVersion: "4.0"
 metadata:
   name: zais.scm.zais
@@ -15,6 +13,13 @@ server:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
+
+        # SAP Gateway Backend 연결
+        backend:
+          - path: /sap
+            url: http://saphspap.hansung.ac.kr:8001
+            client: "100"
+
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
