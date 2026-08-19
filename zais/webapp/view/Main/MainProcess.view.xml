@@ -1,0 +1,92 @@
+<mvc:View
+    controllerName="zais.scm.zais.controller.main.MainProcess"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <VBox class="mainProcessWrapper" width="100%">
+        <!-- 상단 헤더 & 범례 -->
+        <HBox
+            width="100%"
+            justifyContent="SpaceBetween"
+            alignItems="Center"
+            class="processHeaderRow">
+
+            <Text text="전체 프로세스 진행 현황" class="processSectionTitle" />
+
+            <!-- 범례 (Legend) -->
+            <HBox alignItems="Center" class="processLegendContainer">
+                <HBox alignItems="Center" class="legendItem">
+                    <VBox class="legendDot dotGreen" />
+                    <Text text="완료" class="legendText" />
+                </HBox>
+                <HBox alignItems="Center" class="legendItem">
+                    <VBox class="legendDot dotBlue" />
+                    <Text text="진행 중" class="legendText" />
+                </HBox>
+                <HBox alignItems="Center" class="legendItem">
+                    <VBox class="legendDot dotGray" />
+                    <Text text="대기" class="legendText" />
+                </HBox>
+                <HBox alignItems="Center" class="legendItem">
+                    <VBox class="legendDot dotRed" />
+                    <Text text="지연/차단" class="legendText" />
+                </HBox>
+            </HBox>
+        </HBox>
+
+        <!-- 3개 모듈 메인 프로세스 카드 (가로 한 줄: MainMM ➔ MainPP ➔ MainSD) -->
+        <HBox
+            width="100%"
+            justifyContent="SpaceBetween"
+            alignItems="Stretch"
+            class="processColumnsContainer">
+
+            <!-- 1. MM 조달 서브 뷰 -->
+            <mvc:XMLView
+                id="mainMmView"
+                viewName="zais.scm.zais.view.main.MainMM"
+                width="100%"
+                class="moduleColView">
+                <mvc:layoutData>
+                    <FlexItemData growFactor="1" baseSize="0" styleClass="moduleFlexItem" />
+                </mvc:layoutData>
+            </mvc:XMLView>
+
+            <!-- 프로세스 연결 화살표 1: MM ➔ PP -->
+            <VBox justifyContent="Center" alignItems="Center" class="columnArrowBox">
+                <core:Icon src="sap-icon://navigation-right-arrow" class="processBigArrow" />
+            </VBox>
+
+            <!-- 2. PP 생산 서브 뷰 -->
+            <mvc:XMLView
+                id="mainPpView"
+                viewName="zais.scm.zais.view.main.MainPP"
+                width="100%"
+                class="moduleColView">
+                <mvc:layoutData>
+                    <FlexItemData growFactor="1" baseSize="0" styleClass="moduleFlexItem" />
+                </mvc:layoutData>
+            </mvc:XMLView>
+
+            <!-- 프로세스 연결 화살표 2: PP ➔ SD -->
+            <VBox justifyContent="Center" alignItems="Center" class="columnArrowBox">
+                <core:Icon src="sap-icon://navigation-right-arrow" class="processBigArrow" />
+            </VBox>
+
+            <!-- 3. SD 판매/출하 서브 뷰 -->
+            <mvc:XMLView
+                id="mainSdView"
+                viewName="zais.scm.zais.view.main.MainSD"
+                width="100%"
+                class="moduleColView">
+                <mvc:layoutData>
+                    <FlexItemData growFactor="1" baseSize="0" styleClass="moduleFlexItem" />
+                </mvc:layoutData>
+            </mvc:XMLView>
+
+        </HBox>
+
+    </VBox>
+
+</mvc:View>

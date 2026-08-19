@@ -1,15 +1,11 @@
-/* ==========================================================================
-   AIS SCM 로그인 페이지 스타일 (login.css)
-   ========================================================================== */
-
-/* ==================== 1. Fiori Launchpad Shell 제어 (로그인 활성화 시) ==================== */
-body.login-active #shell-header,
-body.login-active .sapUshellShellHead,
-body.login-active .sapUshellShellHeader,
-body.login-active header.sapUshellShellHeader,
-body.login-active #shellHeader,
-body.login-active #shell-header-hdr,
-body.login-active #shellAppTitle {
+/* ==================== 1. Fiori Launchpad Shell 제어 (로그인 화면에 있을 때만 숨김) ==================== */
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) #shell-header,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) .sapUshellShellHead,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) .sapUshellShellHeader,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) header.sapUshellShellHeader,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) #shellHeader,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) #shell-header-hdr,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) #shellAppTitle {
     display: none !important;
     visibility: hidden !important;
     height: 0 !important;
@@ -20,11 +16,11 @@ body.login-active #shellAppTitle {
     border: none !important;
 }
 
-body.login-active #shell-cntnt,
-body.login-active .sapUshellContainer,
-body.login-active #canvas,
-body.login-active #viewPortContainer,
-body.login-active .sapUshellShellCanvas {
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) #shell-cntnt,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) .sapUshellContainer,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) #canvas,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) #viewPortContainer,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) .sapUshellShellCanvas {
     top: 0 !important;
     padding-top: 0 !important;
     margin-top: 0 !important;
@@ -32,11 +28,11 @@ body.login-active .sapUshellShellCanvas {
     min-height: 100vh !important;
 }
 
-/* ==================== 2. 전체 화면 100% 해상도 회색 배경 (로그인 활성화 시) ==================== */
-body.login-active,
-body.login-active html,
-body.login-active #content,
-body.login-active .sapUiBody {
+/* ==================== 2. 전체 화면 100% 해상도 회색 배경 (로그인 화면에 있을 때만) ==================== */
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)),
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) html,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) #content,
+body.login-active:has(.loginPage):not(:has(.mainDashboardPage)) .sapUiBody {
     background-color: #f0f2f5 !important;
     height: 100vh !important;
     min-height: 100vh !important;
@@ -94,7 +90,7 @@ body.login-active .loginPage {
     padding: 44px 44px 36px 44px !important;
     background-color: #ffffff !important;
     border-radius: 24px !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.02) !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
@@ -116,7 +112,7 @@ body.login-active .loginPage {
     display: flex !important;
     align-items: flex-start !important;
     justify-content: flex-end !important;
-    margin-bottom: 48px !important;
+    margin-bottom: 40px !important;
 }
 
 .aisLogo {
@@ -174,7 +170,7 @@ body.login-active .loginPage {
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    margin-bottom: 34px !important;
+    margin-bottom: 30px !important;
     text-align: center !important;
 }
 
@@ -196,9 +192,10 @@ body.login-active .loginPage {
 }
 
 /* ==================== 7. 입력 폼 공통 ==================== */
-.loginFormGroup {
+.loginFormGroup,
+.signupFormGroup {
     width: 100% !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 22px !important;
 }
 
 .loginLabel {
@@ -209,24 +206,42 @@ body.login-active .loginPage {
     margin-bottom: 8px !important;
 }
 
-/* ==================== 8. ID Input ==================== */
-.loginInput {
+/* ==================== 8. 입력창 공통 ==================== */
+.loginInput,
+.signupInput {
     width: 100% !important;
     display: block !important;
 }
 
-.loginInput .sapMInputBaseContentWrapper {
+.loginInput .sapMInputBaseContentWrapper,
+.signupInput .sapMInputBaseContentWrapper,
+.passwordInput .sapMInputBaseContentWrapper {
     width: 100% !important;
     height: 48px !important;
     background-color: #ffffff !important;
     border: 1px solid #dfe3e8 !important;
-    border-radius: 8px !important;
-    box-shadow: none !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
     box-sizing: border-box !important;
     transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
 }
 
-.loginInput .sapMInputBaseInner {
+/* SAP 기본 하단 밑줄 가상요소 제거 */
+.loginInput .sapMInputBaseContentWrapper::after,
+.loginInput .sapMInputBaseContentWrapper::before,
+.signupInput .sapMInputBaseContentWrapper::after,
+.signupInput .sapMInputBaseContentWrapper::before,
+.passwordInput .sapMInputBaseContentWrapper::after,
+.passwordInput .sapMInputBaseContentWrapper::before {
+    display: none !important;
+    border: none !important;
+}
+
+.loginInput .sapMInputBaseInner,
+.signupInput .sapMInputBaseInner,
+.passwordInput .sapMInputBaseInner {
     height: 46px !important;
     line-height: 46px !important;
     padding: 0 16px !important;
@@ -234,15 +249,28 @@ body.login-active .loginPage {
     font-style: normal !important;
     color: #1e293b !important;
     background: transparent !important;
+    border: none !important;
     box-sizing: border-box !important;
+    display: inline-block !important;
+    width: 100% !important;
+    pointer-events: auto !important;
+    outline: none !important;
 }
 
-/* 플레이스홀더 이탤릭 제거 및 정자체 설정 */
+.passwordInput .sapMInputBaseInner {
+    padding-right: 48px !important;
+}
+
+/* 플레이스홀더 */
 .loginInput .sapMInputBasePlaceholder,
+.signupInput .sapMInputBasePlaceholder,
+.passwordInput .sapMInputBasePlaceholder,
 .loginInput .sapMInputBaseInner::placeholder,
+.signupInput .sapMInputBaseInner::placeholder,
+.passwordInput .sapMInputBaseInner::placeholder,
 .loginInput .sapMInputBaseInner::-webkit-input-placeholder,
-.loginInput .sapMInputBaseInner::-moz-placeholder,
-.loginInput .sapMInputBaseInner:-ms-input-placeholder {
+.signupInput .sapMInputBaseInner::-webkit-input-placeholder,
+.passwordInput .sapMInputBaseInner::-webkit-input-placeholder {
     font-size: 13.5px !important;
     font-style: normal !important;
     color: #94a3b8 !important;
@@ -250,9 +278,73 @@ body.login-active .loginPage {
     line-height: 46px !important;
 }
 
-.loginInput.sapMFocus .sapMInputBaseContentWrapper {
+/* 호버 상태 */
+.loginInput:hover .sapMInputBaseContentWrapper,
+.signupInput:hover .sapMInputBaseContentWrapper,
+.passwordInput:hover .sapMInputBaseContentWrapper {
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* ID 입력창 전용 포커스 상태 (이전 포커스 효과 복원) */
+#userIdInput.sapMFocus .sapMInputBaseContentWrapper,
+#userIdInput .sapMInputBaseContentWrapper.sapMFocus,
+#userIdContainer .sapMFocus .sapMInputBaseContentWrapper,
+#userIdContainer .loginInput.sapMFocus .sapMInputBaseContentWrapper {
     border-color: #0a2560 !important;
-    box-shadow: 0 0 0 1px #0a2560 !important;
+    box-shadow: 0 0 0 2px rgba(10, 37, 96, 0.12), 0 4px 14px rgba(10, 37, 96, 0.08) !important;
+}
+
+/* Password 및 기타 입력창 포커스 상태 (포커스 효과 없음: 기본 회색 테두리 유지) */
+.passwordInput.sapMFocus .sapMInputBaseContentWrapper,
+.passwordInput .sapMInputBaseContentWrapper.sapMFocus,
+#passwordContainer .sapMFocus .sapMInputBaseContentWrapper,
+.signupInput.sapMFocus .sapMInputBaseContentWrapper {
+    border: 1px solid #dfe3e8 !important;
+    border-color: #dfe3e8 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+    outline: none !important;
+}
+
+/* ==================== 8-1. 에러(ValueState="Error") 시 하단 직선 밑줄 제거 & 4면 균일 1px 레드 테두리 ==================== */
+.loginModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState,
+.loginModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperError,
+.loginModal .sapMInputBaseContentWrapperError,
+.signupModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState,
+.signupModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperError,
+.signupModal .sapMInputBaseContentWrapperError,
+.loginInput .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState,
+.signupInput .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState,
+.passwordInput .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState {
+    border: 1px solid #e11d48 !important;
+    border-top: 1px solid #e11d48 !important;
+    border-right: 1px solid #e11d48 !important;
+    border-bottom: 1px solid #e11d48 !important;
+    border-left: 1px solid #e11d48 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 0 0 2px rgba(225, 29, 72, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    outline: none !important;
+}
+
+/* UI5 기본 하단 밑줄 가상요소(::after, ::before) 완벽 제거 */
+.loginModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState::after,
+.loginModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState::before,
+.signupModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState::after,
+.signupModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState::before,
+.loginModal .sapMInputBaseContentWrapperError::after,
+.loginModal .sapMInputBaseContentWrapperError::before,
+.signupModal .sapMInputBaseContentWrapperError::after,
+.signupModal .sapMInputBaseContentWrapperError::before,
+.loginModal .sapMInputBase::after,
+.loginModal .sapMInputBase::before,
+.signupModal .sapMInputBase::after,
+.signupModal .sapMInputBase::before {
+    display: none !important;
+    content: none !important;
+    border: none !important;
+    border-bottom: none !important;
+    height: 0 !important;
+    background: transparent !important;
 }
 
 /* ==================== 9. Password Header & Input ==================== */
@@ -280,60 +372,23 @@ body.login-active .loginPage {
     text-decoration: underline !important;
 }
 
-/* Password Input Container (전체 너비 유지 및 아이콘 절대 위치) */
+/* Password Input Container (세로 정중앙 정렬) */
 .passwordInputContainer {
     position: relative !important;
     width: 100% !important;
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
 }
 
 .passwordInputContainer > .sapMFlexItem:first-child,
 .passwordInputContainer .passwordInput {
     width: 100% !important;
     display: block !important;
+    flex: 1 1 100% !important;
 }
 
-.passwordInput .sapMInputBaseContentWrapper {
-    width: 100% !important;
-    height: 48px !important;
-    background-color: #ffffff !important;
-    border: 1px solid #dfe3e8 !important;
-    border-radius: 8px !important;
-    box-shadow: none !important;
-    box-sizing: border-box !important;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
-}
-
-.passwordInput .sapMInputBaseInner {
-    height: 46px !important;
-    line-height: 46px !important;
-    padding: 0 46px 0 16px !important;
-    font-size: 13.5px !important;
-    font-style: normal !important;
-    color: #1e293b !important;
-    background: transparent !important;
-    box-sizing: border-box !important;
-}
-
-/* 플레이스홀더 이탤릭 제거 및 정자체 설정 */
-.passwordInput .sapMInputBasePlaceholder,
-.passwordInput .sapMInputBaseInner::placeholder,
-.passwordInput .sapMInputBaseInner::-webkit-input-placeholder,
-.passwordInput .sapMInputBaseInner::-moz-placeholder,
-.passwordInput .sapMInputBaseInner:-ms-input-placeholder {
-    font-size: 13.5px !important;
-    font-style: normal !important;
-    color: #94a3b8 !important;
-    padding: 0 16px !important;
-    line-height: 46px !important;
-}
-
-.passwordInput.sapMFocus .sapMInputBaseContentWrapper {
-    border-color: #0a2560 !important;
-    box-shadow: 0 0 0 1px #0a2560 !important;
-}
-
-/* ==================== 10. 비밀번호 눈 토글 버튼 ==================== */
+/* ==================== 10. 비밀번호 눈 토글 버튼 (입력칸 세로 정중앙 위치) ==================== */
 .passwordInputContainer > .sapMFlexItem:last-child,
 .passwordInputContainer .passwordToggleButton {
     position: absolute !important;
@@ -341,11 +396,15 @@ body.login-active .loginPage {
     top: 50% !important;
     transform: translateY(-50%) !important;
     z-index: 10 !important;
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
     padding: 0 !important;
     margin: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .passwordToggleButton .sapMBtnInner {
@@ -355,6 +414,7 @@ body.login-active .loginPage {
     width: 100% !important;
     height: 100% !important;
     padding: 0 !important;
+    margin: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -363,54 +423,98 @@ body.login-active .loginPage {
 .passwordToggleButton .sapUiIcon {
     font-size: 16px !important;
     color: #94a3b8 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .passwordToggleButton:hover .sapUiIcon {
     color: #475569 !important;
 }
 
-/* ==================== 11. 로그인 버튼 ==================== */
-.loginButton {
+/* ==================== 11. 로그인 및 회원가입 버튼 ==================== */
+.loginButton,
+.signupButton {
     width: 100% !important;
-    margin-top: 26px !important;
+    margin-top: 10px !important;
+    margin-bottom: 22px !important;
     display: block !important;
 }
 
-.loginButton .sapMBtnInner {
+.loginButton .sapMBtnInner,
+.signupButton .sapMBtnInner {
     height: 48px !important;
     min-height: 48px !important;
     background-color: #0a2560 !important;
     border: 1px solid #0a2560 !important;
-    border-radius: 8px !important;
+    border-radius: 10px !important;
     color: #ffffff !important;
-    box-shadow: none !important;
-    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(10, 37, 96, 0.18) !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
 }
 
-.loginButton .sapMBtnContent {
+.loginButton .sapMBtnContent,
+.signupButton .sapMBtnContent {
     color: #ffffff !important;
     font-size: 15px !important;
     font-weight: 700 !important;
     line-height: 48px !important;
 }
 
-.loginButton:hover .sapMBtnInner {
+.loginButton:hover .sapMBtnInner,
+.signupButton:hover .sapMBtnInner {
     background-color: #071d4d !important;
     border-color: #071d4d !important;
+    box-shadow: 0 6px 18px rgba(10, 37, 96, 0.28) !important;
+    transform: translateY(-1px) !important;
 }
 
-.loginButton:active .sapMBtnInner {
+.loginButton:active .sapMBtnInner,
+.signupButton:active .sapMBtnInner {
     background-color: #051538 !important;
     border-color: #051538 !important;
+    box-shadow: 0 2px 6px rgba(10, 37, 96, 0.2) !important;
+    transform: translateY(0) !important;
 }
 
-/* ==================== 12. 푸터 ==================== */
-.loginFooter {
+/* ==================== 12. 하단 네비게이션 & 푸터 ==================== */
+.signupBottomNav {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    margin-top: 0 !important;
+}
+
+.hasAccountText {
+    font-size: 12.5px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+.navToLoginLink {
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    color: #0a2560 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.navToLoginLink:hover {
+    text-decoration: underline !important;
+}
+
+.loginFooter,
+.signupFooter {
     display: block !important;
-    margin-top: 44px !important;
+    margin-top: 36px !important;
     font-size: 11.5px !important;
     font-weight: 500 !important;
     color: #b0b8c1 !important;
@@ -422,19 +526,30 @@ body.login-active .loginPage {
 @media (max-width: 600px) {
     .loginModal {
         width: calc(100% - 32px) !important;
-        padding: 32px 24px 28px 24px !important;
+        padding: 36px 24px 30px 24px !important;
         border-radius: 20px !important;
     }
 
     .loginLogoContainer {
-        margin-bottom: 36px !important;
+        margin-bottom: 30px !important;
     }
 
     .loginTitleContainer {
-        margin-bottom: 26px !important;
+        margin-bottom: 24px !important;
     }
 
-    .loginFooter {
-        margin-top: 32px !important;
+    .loginFormGroup,
+    .signupFormGroup {
+        margin-bottom: 18px !important;
+    }
+
+    .loginButton,
+    .signupButton {
+        margin-bottom: 18px !important;
+    }
+
+    .loginFooter,
+    .signupFooter {
+        margin-top: 28px !important;
     }
 }

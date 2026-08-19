@@ -45,15 +45,7 @@ sap.ui.define([
         },
 
         _onRouteMatched() {
-            // 1. 이미 로그인된 세션이 있는 경우 -> 로그인 화면을 건너뛰고 바로 Main 화면으로 이동
-            if (sessionStorage.getItem("zaisLoggedIn") === "true") {
-                this.getOwnerComponent()
-                    .getRouter()
-                    .navTo("RouteMain", {}, true);
-                return;
-            }
-
-            // 2. 로그인이 안 된 경우 -> 폼 입력 필드 및 에러 상태 초기화
+            // 폼 입력 필드 및 에러 상태 초기화
             const oLoginModel = this.getView().getModel("login");
             if (oLoginModel) {
                 oLoginModel.setProperty("/password", "");
@@ -92,6 +84,14 @@ sap.ui.define([
                 .navTo("RouteSignup");
         },
 
+        onInputChange(oEvent) {
+            const oInput = oEvent.getSource();
+            if (oInput && oInput.getValueState() !== "None") {
+                oInput.setValueState("None");
+                oInput.setValueStateText("");
+            }
+        },
+
         /* 
            onLogin()
             1. 로그인 버튼 클릭
@@ -99,33 +99,43 @@ sap.ui.define([
            test / test 계정으로 Mock 로그인.
         */
         onLogin() {
-            const oLoginModel = this.getView().getModel("login");
-
-            const sUserId = (oLoginModel.getProperty("/userId") || "").trim();
-            const sPassword = oLoginModel.getProperty("/password") || "";
-
             const oUserIdInput = this.byId("userIdInput");
             const oPasswordInput = this.byId("passwordInput");
+            const oLoginModel = this.getView().getModel("login");
 
-            // 이전 로그인 시도 에러 상태 초기화
-            oUserIdInput.setValueState("None");
-            oPasswordInput.setValueState("None");
+            const sUserId = (oUserIdInput ? oUserIdInput.getValue() : (oLoginModel.getProperty("/userId") || "")).trim();
+            const sPassword = oPasswordInput ? oPasswordInput.getValue() : (oLoginModel.getProperty("/password") || "");
+
+            // 모델 값 동기화
+            if (oLoginModel) {
+                oLoginModel.setProperty("/userId", sUserId);
+                oLoginModel.setProperty("/password", sPassword);
+            }
+
+            // 이전 에러 상태 초기화
+            if (oUserIdInput) oUserIdInput.setValueState("None");
+            if (oPasswordInput) oPasswordInput.setValueState("None");
 
             let bValid = true;
 
             if (!sUserId) {
-                oUserIdInput.setValueState("Error");
-                oUserIdInput.setValueStateText("사용자 ID를 입력하세요.");
+                if (oUserIdInput) {
+                    oUserIdInput.setValueState("Error");
+                    oUserIdInput.setValueStateText("사용자 ID를 입력하세요.");
+                }
                 bValid = false;
             }
 
             if (!sPassword) {
-                oPasswordInput.setValueState("Error");
-                oPasswordInput.setValueStateText("비밀번호를 입력하세요.");
+                if (oPasswordInput) {
+                    oPasswordInput.setValueState("Error");
+                    oPasswordInput.setValueStateText("비밀번호를 입력하세요.");
+                }
                 bValid = false;
             }
 
             if (!bValid) {
+                MessageToast.show("ID와 비밀번호를 모두 입력하세요.");
                 return;
             }
 
@@ -136,15 +146,23 @@ sap.ui.define([
                 // 1. 세션에 로그인 상태 저장
                 sessionStorage.setItem("zaisLoggedIn", "true");
 
-                // 2. Fiori Launchpad Home(#Shell-home)으로 이동
+                // 2. 런치패드 헤더 즉시 복구 및 login-active 제거
+                document.body.classList.remove("login-active");
                 if (window.sap && sap.ushell && sap.ushell.Container) {
-                    window.location.hash = "#Shell-home";
-                } else {
-                    // 런치패드 환경이 아닐 경우 Main 화면으로 이동
-                    this.getOwnerComponent()
-                        .getRouter()
-                        .navTo("RouteMain");
+                    try {
+                        const oRenderer = sap.ushell.Container.getRenderer("fiori2");
+                        if (oRenderer && oRenderer.setHeaderVisibility) {
+                            oRenderer.setHeaderVisibility(true, false, ["app"]);
+                        }
+                    } catch (e) {
+                        // ignore
+                    }
                 }
+
+                // Main 대시보드 화면으로 이동
+                this.getOwnerComponent()
+                    .getRouter()
+                    .navTo("RouteMain", {}, true);
                 return;
             }
 

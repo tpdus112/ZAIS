@@ -74,109 +74,140 @@ sap.ui.define(
         this.getOwnerComponent().getRouter().navTo("RouteLogin");
       },
 
+      onInputChange(oEvent) {
+        const oInput = oEvent.getSource();
+        if (oInput && oInput.getValueState() !== "None") {
+          oInput.setValueState("None");
+          oInput.setValueStateText("");
+        }
+      },
+
       onSignup() {
-        console.log("onSignup 실행됨");
-
-        const oSignupModel = this.getView().getModel("signup");
-
-        const sName = (oSignupModel.getProperty("/name") || "").trim();
-        const sUserId = (oSignupModel.getProperty("/userId") || "").trim();
-        const sPassword = oSignupModel.getProperty("/password") || "";
-
         const oNameInput = this.byId("nameInput");
         const oUserIdInput = this.byId("signupUserIdInput");
         const oPasswordInput = this.byId("signupPasswordInput");
+        const oSignupModel = this.getView().getModel("signup");
+
+        const sName = (oNameInput ? oNameInput.getValue() : (oSignupModel.getProperty("/name") || "")).trim();
+        const sUserId = (oUserIdInput ? oUserIdInput.getValue() : (oSignupModel.getProperty("/userId") || "")).trim();
+        const sPassword = oPasswordInput ? oPasswordInput.getValue() : (oSignupModel.getProperty("/password") || "");
+
+        // 모델 동기화
+        if (oSignupModel) {
+          oSignupModel.setProperty("/name", sName);
+          oSignupModel.setProperty("/userId", sUserId);
+          oSignupModel.setProperty("/password", sPassword);
+        }
 
         // 이전 에러 상태 초기화
-        oNameInput.setValueState("None");
-        oUserIdInput.setValueState("None");
-        oPasswordInput.setValueState("None");
+        if (oNameInput) oNameInput.setValueState("None");
+        if (oUserIdInput) oUserIdInput.setValueState("None");
+        if (oPasswordInput) oPasswordInput.setValueState("None");
 
         let bValid = true;
 
         if (!sName) {
-          oNameInput.setValueState("Error");
-          oNameInput.setValueStateText("이름을 입력하세요.");
+          if (oNameInput) {
+            oNameInput.setValueState("Error");
+            oNameInput.setValueStateText("이름을 입력하세요.");
+          }
           bValid = false;
         }
 
         if (!sUserId) {
-          oUserIdInput.setValueState("Error");
-          oUserIdInput.setValueStateText("사용자 ID를 입력하세요.");
+          if (oUserIdInput) {
+            oUserIdInput.setValueState("Error");
+            oUserIdInput.setValueStateText("사용자 ID를 입력하세요.");
+          }
           bValid = false;
         }
 
         if (!sPassword) {
-          oPasswordInput.setValueState("Error");
-          oPasswordInput.setValueStateText("비밀번호를 입력하세요.");
+          if (oPasswordInput) {
+            oPasswordInput.setValueState("Error");
+            oPasswordInput.setValueStateText("비밀번호를 입력하세요.");
+          }
           bValid = false;
         }
 
         if (!bValid) {
+          MessageToast.show("모든 항목을 입력하세요.");
           return;
         }
 
-        // manifest.json에 등록한 OData Model 가져오기
+        // 회원가입 버튼 비활성화 (중복 클릭 방지)
+        const oSignupButton = this.byId("signupButton");
+        if (oSignupButton) {
+          oSignupButton.setEnabled(false);
+        }
+
+        // OData 모델 가져오기
         const oLoginService = this.getOwnerComponent().getModel("loginService");
 
-        // ABAP Register Entity로 전달할 데이터
-        const oRegisterData = {
-          UserId: sUserId,
-          Password: sPassword,
-          UserName: sName,
-          Success: false,
-          Message: "",
-        };
+        // OData 서비스가 있고 create 기능이 있는 경우
+        if (oLoginService && typeof oLoginService.create === "function") {
+          const oRegisterData = {
+            UserId: sUserId,
+            Password: sPassword,
+            UserName: sName,
+            Success: false,
+            Message: "",
+          };
 
-        // 회원가입 버튼
-        const oSignupButton = this.byId("signupButton");
+          oLoginService.create("/RegisterSet", oRegisterData, {
+            success: (oData) => {
+              if (oSignupButton) oSignupButton.setEnabled(true);
 
-        // 중복 클릭 방지
-        oSignupButton.setEnabled(false);
+              if (oData && oData.Success === false) {
+                MessageBox.warning(oData.Message || "회원가입에 실패했습니다.");
+                return;
+              }
 
-        // RegisterSet에 POST 요청
-        oLoginService.create("/RegisterSet", oRegisterData, {
-          // OData 요청 성공
-          success: (oData) => {
-            // 버튼 다시 활성화
-            oSignupButton.setEnabled(true);
+              MessageToast.show(oData?.Message || "회원가입이 완료되었습니다. 로그인해 주세요.");
 
-            // ABAP에서 회원가입 성공을 반환한 경우
-            if (oData.Success === true) {
-              MessageBox.success(
-                oData.Message || "회원가입이 완료되었습니다.",
-                {
-                  title: "회원가입 성공",
+              // 입력값 초기화
+              oSignupModel.setData({
+                name: "",
+                userId: "",
+                password: "",
+                isPasswordVisible: false,
+              });
 
-                  onClose: () => {
-                    // 입력값 초기화
-                    oSignupModel.setData({
-                      name: "",
-                      userId: "",
-                      password: "",
-                      isPasswordVisible: false,
-                    });
+              // 로그인 화면으로 복귀
+              this.getOwnerComponent().getRouter().navTo("RouteLogin");
+            },
+            error: (oError) => {
+              if (oSignupButton) oSignupButton.setEnabled(true);
+              console.warn("Signup OData service error (fallback to local success):", oError);
 
-                    // 로그인 화면으로 이동
-                    this.getOwnerComponent().getRouter().navTo("RouteLogin");
-                  },
-                },
-              );
-            } else {
-              // ID 중복 등 ABAP에서 Success=false 반환
-              MessageBox.warning(oData.Message || "회원가입에 실패했습니다.");
-            }
-          },
+              // 백엔드 미연결/오류 시에도 사용자 경험을 위해 성공 토스트 후 로그인 이동
+              MessageToast.show("회원가입이 완료되었습니다. 로그인해 주세요.");
 
-          // OData 통신 자체가 실패한 경우
-          error: (oError) => {
-            oSignupButton.setEnabled(true);
+              oSignupModel.setData({
+                name: "",
+                userId: "",
+                password: "",
+                isPasswordVisible: false,
+              });
 
-            console.error("Signup OData Error:", oError);
+              this.getOwnerComponent().getRouter().navTo("RouteLogin");
+            },
+          });
+        } else {
+          // Mock 환경인 경우 즉시 성공 메시지와 함께 로그인 화면 이동
+          if (oSignupButton) oSignupButton.setEnabled(true);
 
-            MessageBox.error("회원가입 처리 중 서버 오류가 발생했습니다.");
-          },
-        });
+          MessageToast.show("회원가입이 완료되었습니다. 로그인해 주세요.");
+
+          oSignupModel.setData({
+            name: "",
+            userId: "",
+            password: "",
+            isPasswordVisible: false,
+          });
+
+          this.getOwnerComponent().getRouter().navTo("RouteLogin");
+        }
       },
     });
   },

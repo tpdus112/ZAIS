@@ -1,0 +1,115 @@
+<mvc:View
+    controllerName="zais.scm.zais.controller.main.MainHeader"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <VBox class="mainHeaderWrapper" width="100%">
+        <!-- 상단 최종 업데이트 & 새로고침 바 -->
+        <HBox
+            width="100%"
+            justifyContent="End"
+            alignItems="Center"
+            class="headerTopBar">
+
+            <Text
+                text="최종 업데이트 {dashboard>/lastUpdated}"
+                class="headerLastUpdatedText" />
+
+            <Button
+                id="refreshButton"
+                icon="sap-icon://refresh"
+                type="Transparent"
+                tooltip="새로고침"
+                press=".onRefresh"
+                class="headerRefreshBtn" />
+
+        </HBox>
+
+        <!-- 4개 KPI 카드 그리드 -->
+        <HBox
+            width="100%"
+            justifyContent="SpaceBetween"
+            alignItems="Stretch"
+            class="headerCardsContainer">
+
+            <!-- 카드 1: 구매 진행 (MM) -->
+            <VBox class="headerCard headerCardBlue">
+                <HBox alignItems="Center" class="cardTopRow">
+                    <VBox alignItems="Center" justifyContent="Center" class="cardIconWrapper cardIconBlue">
+                        <core:Icon src="sap-icon://cart" class="headerIconBlue" />
+                    </VBox>
+                    <VBox class="cardTitleBox">
+                        <Text text="구매 진행 (MM)" class="cardTitle" />
+                        <Text text="82%" class="cardNumber cardNumberBlue" />
+                        <Text text="입고 완료 기준" class="cardSubText" />
+                    </VBox>
+                </HBox>
+
+                <!-- 매끄러운 프로그레스 바 -->
+                <HBox width="100%" class="kpiProgressBarTrack">
+                    <VBox class="kpiProgressBarFill kpiFillBlue" width="82%" />
+                </HBox>
+            </VBox>
+
+            <!-- 카드 2: 생산 진행 (PP) -->
+            <VBox class="headerCard headerCardGreen">
+                <HBox alignItems="Center" class="cardTopRow">
+                    <VBox alignItems="Center" justifyContent="Center" class="cardIconWrapper cardIconGreen">
+                        <core:Icon src="sap-icon://factory" class="headerIconGreen" />
+                    </VBox>
+                    <VBox class="cardTitleBox">
+                        <Text text="생산 진행 (PP)" class="cardTitle" />
+                        <Text text="72%" class="cardNumber cardNumberGreen" />
+                        <Text text="생산 완료 기준" class="cardSubText" />
+                    </VBox>
+                </HBox>
+
+                <!-- 매끄러운 프로그레스 바 -->
+                <HBox width="100%" class="kpiProgressBarTrack">
+                    <VBox class="kpiProgressBarFill kpiFillGreen" width="72%" />
+                </HBox>
+            </VBox>
+
+            <!-- 카드 3: 출하 진행 (SD) -->
+            <VBox class="headerCard headerCardPurple">
+                <HBox alignItems="Center" class="cardTopRow">
+                    <VBox alignItems="Center" justifyContent="Center" class="cardIconWrapper cardIconPurple">
+                        <core:Icon src="sap-icon://shipping-status" class="headerIconPurple" />
+                    </VBox>
+                    <VBox class="cardTitleBox">
+                        <Text text="출하 진행 (SD)" class="cardTitle" />
+                        <Text text="45%" class="cardNumber cardNumberPurple" />
+                        <Text text="출하 완료 기준" class="cardSubText" />
+                    </VBox>
+                </HBox>
+
+                <!-- 매끄러운 프로그레스 바 -->
+                <HBox width="100%" class="kpiProgressBarTrack">
+                    <VBox class="kpiProgressBarFill kpiFillPurple" width="45%" />
+                </HBox>
+            </VBox>
+
+            <!-- 카드 4: 재고 현황 (클릭 시 주요 자재 현황 모달 팝업) -->
+            <VBox
+                id="stockCard"
+                class="headerCard headerCardOrange headerCardCentered headerCardClickable"
+                alignItems="Center"
+                justifyContent="Center"
+                tooltip="클릭하여 주요 자재 현황 보기">
+                <HBox alignItems="Center" justifyContent="Center" class="cardTopRow cardTopRowCentered">
+                    <VBox alignItems="Center" justifyContent="Center" class="cardIconWrapper cardIconOrange">
+                        <core:Icon src="sap-icon://product" class="headerIconOrange" />
+                    </VBox>
+                    <VBox class="cardTitleBox">
+                        <Text text="재고 현황" class="cardTitle" />
+                        <Text text="1,248" class="cardNumber cardNumberOrange" />
+                        <Text text="주요 자재 가용 수량" class="cardSubText" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+        </HBox>
+    </VBox>
+
+</mvc:View>

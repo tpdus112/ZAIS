@@ -42,6 +42,9 @@
     }
   },
   "sap.ui5": {
+    "config": {
+      "fullWidth": true
+    },
     "flexEnabled": true,
     "dependencies": {
       "minUI5Version": "1.151.0",
@@ -79,6 +82,24 @@
         },
         {
           "uri": "css/signup.css"
+        },
+        {
+          "uri": "css/main/main.css"
+        },
+        {
+          "uri": "css/main/mainHeader.css"
+        },
+        {
+          "uri": "css/main/mainProcess.css"
+        },
+        {
+          "uri": "css/main/mainMM.css"
+        },
+        {
+          "uri": "css/main/mainPP.css"
+        },
+        {
+          "uri": "css/main/mainSD.css"
         }
       ]
     },
@@ -101,17 +122,21 @@
           "target": ["TargetLogin"]
         },
         {
-          "name": "RouteSignup",
-          "pattern": "signup",
-          "target": ["TargetSignup"]
-        },
-        {
           "name": "RouteMain",
           "pattern": "main",
           "target": ["TargetMain"]
+        },
+        {
+          "name": "RouteSignup",
+          "pattern": "signup",
+          "target": ["TargetSignup"]
         }
       ],
       "targets": {
+        "TargetMain": {
+          "id": "Main",
+          "name": "main.Main"
+        },
         "TargetLogin": {
           "id": "Login",
           "name": "Login"
@@ -119,10 +144,6 @@
         "TargetSignup": {
           "id": "Signup",
           "name": "Signup"
-        },
-        "TargetMain": {
-          "id": "Main",
-          "name": "Main"
         }
       }
     },

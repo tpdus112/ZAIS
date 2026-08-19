@@ -1,0 +1,89 @@
+<mvc:View
+    controllerName="zais.scm.zais.controller.main.MainMM"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <VBox class="moduleProcessCard mmProcessCard" width="100%">
+        <!-- 모듈 헤더 바 -->
+        <HBox alignItems="Center" justifyContent="Center" class="moduleHeaderBar mmHeaderBar">
+            <core:Icon src="sap-icon://cart" class="moduleIcon mmIcon" />
+            <Text text="MM 조달" class="moduleTitle mmTitleText" />
+        </HBox>
+
+        <!-- 프로세스 단계 플로우 -->
+        <HBox alignItems="Center" justifyContent="SpaceAround" class="flowStepsContainer">
+            <VBox alignItems="Center" class="stepItem">
+                <VBox alignItems="Center" justifyContent="Center" class="stepCircle mmStepCircle stepDone">
+                    <core:Icon src="sap-icon://request" class="stepIconDone" />
+                </VBox>
+                <Text text="구매요청" class="stepName" />
+                <Text text="12 / 12" class="stepCount" />
+                <VBox class="stepStatusDot dotBlue" />
+            </VBox>
+
+            <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
+
+            <VBox alignItems="Center" class="stepItem">
+                <VBox alignItems="Center" justifyContent="Center" class="stepCircle mmStepCircle stepDone">
+                    <core:Icon src="sap-icon://cart" class="stepIconDone" />
+                </VBox>
+                <Text text="구매오더" class="stepName" />
+                <Text text="12 / 12" class="stepCount" />
+                <VBox class="stepStatusDot dotBlue" />
+            </VBox>
+
+            <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
+
+            <VBox alignItems="Center" class="stepItem">
+                <VBox alignItems="Center" justifyContent="Center" class="stepCircle mmStepCircle stepActive">
+                    <core:Icon src="sap-icon://inventory" class="stepIconActive" />
+                </VBox>
+                <Text text="자재 입고" class="stepName" />
+                <Text text="9 / 12" class="stepCount" />
+                <VBox class="stepStatusRing ringBlue" />
+            </VBox>
+
+            <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
+
+            <VBox alignItems="Center" class="stepItem">
+                <VBox alignItems="Center" justifyContent="Center" class="stepCircle mmStepCircle stepActive">
+                    <core:Icon src="sap-icon://building" class="stepIconActive" />
+                </VBox>
+                <Text text="입고 완료" class="stepName" />
+                <Text text="9 / 12" class="stepCount" />
+                <VBox class="stepStatusRing ringBlue" />
+            </VBox>
+        </HBox>
+
+        <!-- 하단 상세 테이블 (모든 열 가운데 정렬) -->
+        <Table
+            items="{dashboard>/process/mm/materials}"
+            class="processMiniTable"
+            inset="false"
+            showNoData="false">
+            <columns>
+                <Column width="30%" hAlign="Center"><Text text="주요 자재" class="tableColHeader" /></Column>
+                <Column width="18%" hAlign="Center"><Text text="PO 수량" class="tableColHeader" /></Column>
+                <Column width="18%" hAlign="Center"><Text text="입고 수량" class="tableColHeader" /></Column>
+                <Column width="18%" hAlign="Center"><Text text="진행률" class="tableColHeader" /></Column>
+                <Column width="16%" hAlign="Center"><Text text="상태" class="tableColHeader" /></Column>
+            </columns>
+            <items>
+                <ColumnListItem class="tableRowItem">
+                    <cells>
+                        <Text text="{dashboard>name}" class="cellTextPrimary" />
+                        <Text text="{dashboard>poQty}" class="cellTextMuted" />
+                        <Text text="{dashboard>grQty}" class="cellTextMuted" />
+                        <Text text="{dashboard>rate}" class="cellTextBold" />
+                        <ObjectStatus
+                            text="{dashboard>status}"
+                            state="{dashboard>statusState}"
+                            class="statusBadge" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </VBox>
+
+</mvc:View>

@@ -100,6 +100,8 @@
                         id="nameInput"
                         value="{signup>/name}"
                         placeholder="이름을 입력하세요"
+                        valueLiveUpdate="true"
+                        liveChange=".onInputChange"
                         width="100%"
                         submit=".onSignup"
                         class="signupInput loginInput" />
@@ -122,6 +124,8 @@
                         id="signupUserIdInput"
                         value="{signup>/userId}"
                         placeholder="사용자 ID를 입력하세요"
+                        valueLiveUpdate="true"
+                        liveChange=".onInputChange"
                         width="100%"
                         submit=".onSignup"
                         class="signupInput loginInput" />
@@ -151,9 +155,11 @@
                             value="{signup>/password}"
                             placeholder="비밀번호를 입력하세요"
                             type="{= ${signup>/isPasswordVisible} ? 'Text' : 'Password' }"
+                            valueLiveUpdate="true"
+                            liveChange=".onInputChange"
                             width="100%"
                             submit=".onSignup"
-                            class="signupInput passwordInput" />
+                            class="signupInput loginInput passwordInput" />
 
                         <Button
                             id="signupPasswordToggleButton"

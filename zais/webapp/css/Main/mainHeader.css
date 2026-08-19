@@ -1,0 +1,234 @@
+
+.mainHeaderWrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 20px !important;
+}
+
+/* 상단 우측 업데이트 & 새로고침 바 */
+.headerTopBar {
+    width: 100% !important;
+    margin-bottom: 8px;
+    gap: 4px;
+}
+
+.headerLastUpdatedText {
+    font-size: 11.5px !important;
+    color: #64748b !important;
+    font-weight: 500 !important;
+}
+
+.headerRefreshBtn .sapUiIcon {
+    font-size: 13px !important;
+    color: #475569 !important;
+}
+
+/* 4개 카드 컨테이너 */
+.headerCardsContainer {
+    width: 100% !important;
+    gap: 16px !important;
+    display: flex !important;
+}
+
+/* 공통 KPI 카드 */
+.headerCard {
+    flex: 1 1 0 !important;
+    width: calc(25% - 12px) !important;
+    background-color: #ffffff !important;
+    border-radius: 14px !important;
+    padding: 20px 22px 18px 22px !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+    border: 1px solid #edf2f7 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+/* 재고 현황 전용 중앙 정렬 카드 */
+.headerCardCentered {
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* 클릭 가능한 재고 현황 카드 */
+.headerCardClickable {
+    cursor: pointer !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+
+.headerCardClickable:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(249, 115, 22, 0.15), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+    border-color: #fdba74 !important;
+}
+
+.headerCardClickable:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.1) !important;
+}
+
+.cardTopRow {
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.cardTopRowCentered {
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+}
+
+/* 아이콘 래퍼 원형 배경 (완벽한 정가운데 정렬) */
+.cardIconWrapper {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+}
+
+.cardIconWrapper .sapUiIcon {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* MM, PP, SD, 재고 테마 컬러 매칭 */
+.cardIconBlue {
+    background-color: #eff6ff !important;
+    border: 1px solid #dbeafe !important;
+}
+
+.cardIconGreen {
+    background-color: #f0fdf4 !important;
+    border: 1px solid #dcfce7 !important;
+}
+
+.cardIconPurple {
+    background-color: #faf5ff !important;
+    border: 1px solid #f3e8ff !important;
+}
+
+.cardIconOrange {
+    background-color: #fff7ed !important;
+    border: 1px solid #ffedd5 !important;
+}
+
+.headerIconBlue {
+    font-size: 22px !important;
+    color: #1d4ed8 !important;
+}
+
+.headerIconGreen {
+    font-size: 22px !important;
+    color: #15803d !important;
+}
+
+.headerIconPurple {
+    font-size: 22px !important;
+    color: #7e22ce !important;
+}
+
+.headerIconOrange {
+    font-size: 22px !important;
+    color: #ea580c !important;
+}
+
+/* 텍스트 박스 */
+.cardTitleBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardTitle {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #334155 !important;
+    margin-bottom: 2px !important;
+}
+
+.cardNumber {
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    line-height: 1.1 !important;
+    margin-bottom: 2px !important;
+}
+
+.cardNumberBlue {
+    color: #0284c7 !important;
+}
+
+.cardNumberGreen {
+    color: #10b981 !important;
+}
+
+.cardNumberPurple {
+    color: #6366f1 !important;
+}
+
+.cardNumberOrange {
+    color: #f97316 !important;
+}
+
+.cardSubText {
+    font-size: 11px !important;
+    color: #94a3b8 !important;
+    font-weight: 500 !important;
+}
+
+/* ==================== 매끄러운 프로그레스 바 ==================== */
+.kpiProgressBarTrack {
+    width: 100% !important;
+    height: 6px !important;
+    min-height: 6px !important;
+    max-height: 6px !important;
+    background-color: #f1f5f9 !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    margin-top: 4px !important;
+    margin-bottom: 2px !important;
+    padding: 0 !important;
+}
+
+.kpiProgressBarFill {
+    height: 100% !important;
+    min-height: 6px !important;
+    max-height: 6px !important;
+    border-radius: 4px !important;
+    transition: width 0.4s ease !important;
+}
+
+.kpiFillBlue {
+    background: linear-gradient(90deg, #38bdf8, #0284c7) !important;
+}
+
+.kpiFillGreen {
+    background: linear-gradient(90deg, #34d399, #10b981) !important;
+}
+
+.kpiFillPurple {
+    background: linear-gradient(90deg, #a78bfa, #6366f1) !important;
+}
+
+@media (max-width: 1024px) {
+    .headerCardsContainer {
+        flex-wrap: wrap !important;
+    }
+
+    .headerCard {
+        width: calc(50% - 8px) !important;
+        flex: 1 1 calc(50% - 8px) !important;
+        margin-bottom: 12px !important;
+    }
+}

@@ -1,10 +1,17 @@
 /* ==========================================================================
-   AIS SCM 회원가입 페이지 스타일 (signup.css)
+   signup.css - 회원가입 전용 스타일 (login.css 기반 공통 스타일 상속)
    ========================================================================== */
 
-/* 1. 회원가입 하단 네비게이션 링크 */
+/* 회원가입 카드 내부 간격 및 레이아웃 */
+.signupModal {
+    width: 440px !important;
+    max-width: 90vw !important;
+    padding: 44px 44px 36px 44px !important;
+}
+
+/* 회원가입 하단 네비게이션 링크 */
 .signupBottomNav {
-    margin-top: 16px !important;
+    margin-top: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
