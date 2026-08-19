@@ -88,9 +88,19 @@ sap.ui.define(
         const oPasswordInput = this.byId("signupPasswordInput");
         const oSignupModel = this.getView().getModel("signup");
 
-        const sName = (oNameInput ? oNameInput.getValue() : (oSignupModel.getProperty("/name") || "")).trim();
-        const sUserId = (oUserIdInput ? oUserIdInput.getValue() : (oSignupModel.getProperty("/userId") || "")).trim();
-        const sPassword = oPasswordInput ? oPasswordInput.getValue() : (oSignupModel.getProperty("/password") || "");
+        const sName = (
+          oNameInput
+            ? oNameInput.getValue()
+            : oSignupModel.getProperty("/name") || ""
+        ).trim();
+        const sUserId = (
+          oUserIdInput
+            ? oUserIdInput.getValue()
+            : oSignupModel.getProperty("/userId") || ""
+        ).trim();
+        const sPassword = oPasswordInput
+          ? oPasswordInput.getValue()
+          : oSignupModel.getProperty("/password") || "";
 
         // 모델 동기화
         if (oSignupModel) {
@@ -163,7 +173,9 @@ sap.ui.define(
                 return;
               }
 
-              MessageToast.show(oData?.Message || "회원가입이 완료되었습니다. 로그인해 주세요.");
+              MessageToast.show(
+                oData?.Message || "회원가입이 완료되었습니다. 로그인해 주세요.",
+              );
 
               // 입력값 초기화
               oSignupModel.setData({
@@ -178,7 +190,10 @@ sap.ui.define(
             },
             error: (oError) => {
               if (oSignupButton) oSignupButton.setEnabled(true);
-              console.warn("Signup OData service error (fallback to local success):", oError);
+              console.warn(
+                "Signup OData service error (fallback to local success):",
+                oError,
+              );
 
               // 백엔드 미연결/오류 시에도 사용자 경험을 위해 성공 토스트 후 로그인 이동
               MessageToast.show("회원가입이 완료되었습니다. 로그인해 주세요.");

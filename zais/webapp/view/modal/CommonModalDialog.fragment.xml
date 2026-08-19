@@ -1,0 +1,59 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Dialog
+        id="processStepCommonDialog"
+        contentWidth="1280px"
+        contentHeight="auto"
+        resizable="false"
+        draggable="true"
+        showHeader="false"
+        class="sapUiNoContentPadding processStepModalDialog">
+
+        <!-- 일체형 컨텐츠 (헤더 + 본문 결합으로 갭 0 제어) -->
+        <content>
+            <VBox width="100%" class="modalRootWrapper">
+                <!-- 1. 상단 일체형 헤더 (정중앙 타이틀 + 우측 SAP GUI 열기 버튼) -->
+                <HBox
+                    alignItems="Center"
+                    justifyContent="SpaceBetween"
+                    class="modalInlineHeader">
+                    
+                    <!-- 정중앙 절대 정렬 타이틀 -->
+                    <Title
+                        id="modalDialogTitle"
+                        text="{dashboard>/currentModal/title}"
+                        class="modalHeaderTitle" />
+
+                    <!-- 우측 SAP GUI 열기 버튼 -->
+                    <HBox alignItems="Center" class="modalHeaderActions">
+                        <Button
+                            id="btnSapGui"
+                            text="{dashboard>/currentModal/sapGuiName}"
+                            icon="sap-icon://action"
+                            class="sapGuiOpenBtn"
+                            press=".onOpenSapGui" />
+                    </HBox>
+                </HBox>
+
+                <!-- 2. 동적 뷰 삽입 슬롯 (검색 필터 + 테이블) -->
+                <VBox
+                    id="modalViewSlot"
+                    width="100%"
+                    class="modalBodyContainer" />
+            </VBox>
+        </content>
+
+        <!-- 모달 하단 닫기 버튼 -->
+        <endButton>
+            <Button
+                text="닫기"
+                type="Emphasized"
+                class="modalCloseBtn"
+                press=".onCloseModalDialog" />
+        </endButton>
+
+    </Dialog>
+
+</core:FragmentDefinition>

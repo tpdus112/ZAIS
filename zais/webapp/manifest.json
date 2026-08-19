@@ -62,7 +62,7 @@
         "dataSource": "ZAIS_LOGIN_SRV",
         "preload": true,
         "settings": {
-            "defaultBindingMode": "TwoWay"
+          "defaultBindingMode": "TwoWay"
         }
       },
       "i18n": {
@@ -107,6 +107,9 @@
         },
         {
           "uri": "css/main/mainSD.css"
+        },
+        {
+          "uri": "css/modal/modal.css"
         }
       ]
     },

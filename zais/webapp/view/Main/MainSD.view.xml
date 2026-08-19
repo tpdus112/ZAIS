@@ -13,7 +13,7 @@
 
         <!-- 프로세스 단계 플로우 -->
         <HBox alignItems="Center" justifyContent="SpaceAround" class="flowStepsContainer">
-            <VBox alignItems="Center" class="stepItem">
+            <VBox id="stepSO" alignItems="Center" class="stepItem">
                 <VBox alignItems="Center" justifyContent="Center" class="stepCircle sdStepCircle stepDone">
                     <core:Icon src="sap-icon://sales-order" class="stepIconDone" />
                 </VBox>
@@ -24,7 +24,7 @@
 
             <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox alignItems="Center" class="stepItem">
+            <VBox id="stepDelivery" alignItems="Center" class="stepItem">
                 <VBox alignItems="Center" justifyContent="Center" class="stepCircle sdStepCircle stepActive">
                     <core:Icon src="sap-icon://shipping-status" class="stepIconActive" />
                 </VBox>
@@ -35,7 +35,7 @@
 
             <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox alignItems="Center" class="stepItem">
+            <VBox id="stepPGI" alignItems="Center" class="stepItem">
                 <VBox alignItems="Center" justifyContent="Center" class="stepCircle sdStepCircle stepActive">
                     <core:Icon src="sap-icon://receipt" class="stepIconActive" />
                 </VBox>
@@ -46,7 +46,7 @@
 
             <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox alignItems="Center" class="stepItem">
+            <VBox id="stepDeliveryComplete" alignItems="Center" class="stepItem">
                 <VBox alignItems="Center" justifyContent="Center" class="stepCircle sdStepCircle stepWaiting">
                     <core:Icon src="sap-icon://collaborate" class="stepIconWaiting" />
                 </VBox>

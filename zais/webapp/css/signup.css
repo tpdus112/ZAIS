@@ -4,34 +4,34 @@
 
 /* 회원가입 카드 내부 간격 및 레이아웃 */
 .signupModal {
-    width: 440px !important;
-    max-width: 90vw !important;
-    padding: 44px 44px 36px 44px !important;
+  width: 440px !important;
+  max-width: 90vw !important;
+  padding: 44px 44px 36px 44px !important;
 }
 
 /* 회원가입 하단 네비게이션 링크 */
 .signupBottomNav {
-    margin-top: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
+  margin-top: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
 }
 
 .hasAccountText {
-    font-size: 12.5px !important;
-    color: #64748b !important;
-    font-weight: 500 !important;
+  font-size: 12.5px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
 }
 
 .navToLoginLink {
-    font-size: 12.5px !important;
-    font-weight: 700 !important;
-    color: #0a2560 !important;
-    text-decoration: none !important;
-    cursor: pointer !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: #0a2560 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
 }
 
 .navToLoginLink:hover {
-    text-decoration: underline !important;
+  text-decoration: underline !important;
 }
