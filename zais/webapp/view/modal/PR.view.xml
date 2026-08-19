@@ -12,24 +12,12 @@
             class="modalFilterBar">
 
             <HBox alignItems="Center">
-                <!-- 구매요청 번호 -->
-                <Input
-                    id="searchPrNo"
-                    placeholder="구매요청 번호"
-                    showValueHelp="true"
-                    valueHelpRequest=".onValueHelpPrNo"
-                    width="155px"
-                    class="filterFieldItem filterInput" />
-
-                <!-- 자재코드 -->
-                <Input
-                    id="searchMatCode"
-                    placeholder="자재코드"
-                    showValueHelp="true"
-                    valueHelpRequest=".onValueHelpMatCode"
-                    width="145px"
-                    class="filterFieldItem filterInput" />
-
+                <!-- 통합 검색 -->
+<Input
+    id="searchKeyword"
+    placeholder="구매요청 번호 / 자재코드 / 자재명"
+    width="280px"
+    class="filterFieldItem filterInput" />
                 <!-- 상태 Select -->
                 <Select
                     id="searchStatus"
@@ -90,8 +78,7 @@
                 <Column width="7%" hAlign="Center"><Text text="품목" class="tableColHeader" /></Column>
                 <Column width="13%" hAlign="Center"><Text text="자재코드" class="tableColHeader" /></Column>
                 <Column width="11%" hAlign="Center"><Text text="자재명" class="tableColHeader" /></Column>
-                <Column width="10%" hAlign="Center"><Text text="요청수량" class="tableColHeader" /></Column>
-                <Column width="7%" hAlign="Center"><Text text="단위" class="tableColHeader" /></Column>
+                <Column width="12%" hAlign="Center"><Text text="요청수량" class="tableColHeader" /></Column>
                 <Column width="8%" hAlign="Center"><Text text="플랜트" class="tableColHeader" /></Column>
                 <Column width="12%" hAlign="Center"><Text text="요청일" class="tableColHeader" /></Column>
                 <Column width="11%" hAlign="Center"><Text text="연결된 PO" class="tableColHeader" /></Column>
@@ -104,8 +91,9 @@
                         <Text text="{dashboard>itemNo}" class="modalCellText" />
                         <Text text="{dashboard>matCode}" class="modalCellTextBold" />
                         <Text text="{dashboard>matName}" class="modalCellText" />
-                        <Text text="{dashboard>reqQty}" class="modalCellText" />
-                        <Text text="{dashboard>unit}" class="modalCellText" />
+                        <Text
+    text="{= ${dashboard>reqQty} + ' ' + ${dashboard>unit} }"
+    class="modalCellText" />
                         <Text text="{dashboard>plant}" class="modalCellText" />
                         <Text text="{dashboard>reqDate}" class="modalCellText" />
                         <Text text="{dashboard>poNo}" class="modalCellText" />
@@ -124,8 +112,8 @@
             justifyContent="End"
             class="modalPaginationBar">
             <Text
-                text="{= '전체 ' + (${pagination>/totalCount} !== undefined ? ${pagination>/totalCount} : 5) + ' 건' }"
-                class="paginationTotalText sapUiSmallMarginEnd" />
+    text="{= '전체 ' + ${dashboard>/currentModal/totalCount} + ' 건' }"
+    class="paginationTotalText sapUiSmallMarginEnd" />
             <Button
                 icon="sap-icon://media-rewind"
                 type="Transparent"

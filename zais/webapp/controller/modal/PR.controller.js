@@ -44,73 +44,134 @@ sap.ui.define(
       },
 
       onSearch() {
-        const oPrInput = this.byId("searchPrNo");
-        const oMatInput = this.byId("searchMatCode");
-        const oStatusSelect = this.byId("searchStatus");
-        const oDateFromPicker = this.byId("searchDateFrom");
-        const oDateToPicker = this.byId("searchDateTo");
+    const oKeywordInput = this.byId("searchKeyword");
+    const oStatusSelect = this.byId("searchStatus");
+    const oDateFromPicker = this.byId("searchDateFrom");
+    const oDateToPicker = this.byId("searchDateTo");
 
-        const sPrNo = oPrInput ? (oPrInput.getValue() || "").trim() : "";
-        const sMatCode = oMatInput ? (oMatInput.getValue() || "").trim() : "";
-        const sStatusKey = oStatusSelect
-          ? oStatusSelect.getSelectedKey()
-          : "ALL";
-        const sDateFrom = oDateFromPicker ? oDateFromPicker.getValue() : "";
-        const sDateTo = oDateToPicker ? oDateToPicker.getValue() : "";
+    const sKeyword = oKeywordInput
+        ? (oKeywordInput.getValue() || "").trim()
+        : "";
 
-        const aFilters = [];
+    const sStatusKey = oStatusSelect
+        ? oStatusSelect.getSelectedKey()
+        : "ALL";
 
-        if (sPrNo) {
-          aFilters.push(new Filter("prNo", FilterOperator.Contains, sPrNo));
-        }
-        if (sMatCode) {
-          aFilters.push(
-            new Filter("matCode", FilterOperator.Contains, sMatCode),
-          );
-        }
-        if (sStatusKey === "PO_CREATED") {
-          aFilters.push(new Filter("status", FilterOperator.EQ, "PO 생성"));
-        } else if (sStatusKey === "PR_REQUESTED") {
-          aFilters.push(new Filter("status", FilterOperator.EQ, "구매요청"));
-        } else if (sStatusKey === "DELETED") {
-          aFilters.push(new Filter("status", FilterOperator.EQ, "삭제"));
-        }
+    const sDateFrom = oDateFromPicker
+        ? oDateFromPicker.getValue()
+        : "";
 
-        if (sDateFrom && sDateTo) {
-          aFilters.push(
-            new Filter("reqDate", FilterOperator.BT, sDateFrom, sDateTo),
-          );
-        } else if (sDateFrom) {
-          aFilters.push(new Filter("reqDate", FilterOperator.GE, sDateFrom));
-        } else if (sDateTo) {
-          aFilters.push(new Filter("reqDate", FilterOperator.LE, sDateTo));
-        }
+    const sDateTo = oDateToPicker
+        ? oDateToPicker.getValue()
+        : "";
 
-        const oTable = this.byId("prTable");
-        if (oTable) {
-          const oBinding = oTable.getBinding("items");
-          if (oBinding) {
+    const aFilters = [];
+
+    // 통합 검색
+    if (sKeyword) {
+        aFilters.push(
+            new Filter({
+                filters: [
+                    new Filter(
+                        "prNo",
+                        FilterOperator.Contains,
+                        sKeyword
+                    ),
+                    new Filter(
+                        "matCode",
+                        FilterOperator.Contains,
+                        sKeyword
+                    ),
+                    new Filter(
+                        "matName",
+                        FilterOperator.Contains,
+                        sKeyword
+                    )
+                ],
+                and: false
+            })
+        );
+    }
+
+    // 상태 검색
+    if (sStatusKey === "PO_CREATED") {
+        aFilters.push(
+            new Filter(
+                "status",
+                FilterOperator.EQ,
+                "PO 생성"
+            )
+        );
+    } else if (sStatusKey === "PR_REQUESTED") {
+        aFilters.push(
+            new Filter(
+                "status",
+                FilterOperator.EQ,
+                "구매요청"
+            )
+        );
+    } else if (sStatusKey === "DELETED") {
+        aFilters.push(
+            new Filter(
+                "status",
+                FilterOperator.EQ,
+                "삭제"
+            )
+        );
+    }
+
+    // 날짜 검색
+    if (sDateFrom && sDateTo) {
+        aFilters.push(
+            new Filter(
+                "reqDate",
+                FilterOperator.BT,
+                sDateFrom,
+                sDateTo
+            )
+        );
+    } else if (sDateFrom) {
+        aFilters.push(
+            new Filter(
+                "reqDate",
+                FilterOperator.GE,
+                sDateFrom
+            )
+        );
+    } else if (sDateTo) {
+        aFilters.push(
+            new Filter(
+                "reqDate",
+                FilterOperator.LE,
+                sDateTo
+            )
+        );
+    }
+
+    const oTable = this.byId("prTable");
+
+    if (oTable) {
+        const oBinding = oTable.getBinding("items");
+
+        if (oBinding) {
             oBinding.filter(aFilters);
-          }
         }
+    }
 
-        this._updatePagination();
-        MessageToast.show("검색이 완료되었습니다.");
-      },
+    this._updatePagination();
+
+    MessageToast.show("검색이 완료되었습니다.");
+},
 
       onReset() {
-        const oPrInput = this.byId("searchPrNo");
-        const oMatInput = this.byId("searchMatCode");
+        const oKeywordInput = this.byId("searchKeyword");
         const oStatusSelect = this.byId("searchStatus");
         const oDateFromPicker = this.byId("searchDateFrom");
         const oDateToPicker = this.byId("searchDateTo");
 
-        if (oPrInput) {
-          oPrInput.setValue("");
-        }
-        if (oMatInput) {
-          oMatInput.setValue("");
-        }
+        if (oKeywordInput) {
+    oKeywordInput.setValue("");
+}
         if (oStatusSelect) {
           oStatusSelect.setSelectedKey("ALL");
         }

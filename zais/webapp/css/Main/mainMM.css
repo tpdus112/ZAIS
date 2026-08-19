@@ -1,4 +1,10 @@
+/* ==========================================================================
+   mainMM.css - MM 조달 모듈 전용 스타일
+   ========================================================================== */
+
+
 /* MM 모듈 헤더 바 */
+
 .mmHeaderBar {
   background-color: #eff6ff !important;
   border-bottom: 1px solid #dbeafe !important;
@@ -15,33 +21,202 @@
   color: #1d4ed8 !important;
 }
 
-/* MM 단계별 원형 아이콘 스타일 (블루 테마) */
-.mmStepCircle.stepDone {
+
+/* ==========================================================================
+   MM 단계별 원형 아이콘
+   ========================================================================== */
+
+.mmStepCircle {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+
+/* ==========================================================================
+   진행 완료
+   ========================================================================== */
+
+.mmProcessCard
+.stepItem[data-status="completed"]
+.mmStepCircle {
   background-color: #eff6ff !important;
   border: 1.5px solid #2563eb !important;
+  box-shadow: none !important;
 }
-.mmStepCircle.stepDone .sapUiIcon {
+
+.mmProcessCard
+.stepItem[data-status="completed"]
+.mmStepCircle
+.sapUiIcon {
   color: #1d4ed8 !important;
 }
 
-.mmStepCircle.stepActive {
-  background-color: #eff6ff !important;
-  border: 1.5px solid #2563eb !important;
-}
-.mmStepCircle.stepActive .sapUiIcon {
+.mmProcessCard
+.stepItem[data-status="completed"]
+.stepDynamicIcon {
   color: #1d4ed8 !important;
 }
-.mmStepCircle.stepActive::before {
+
+/* 완료 상태에서는 바깥 회전 링 없음 */
+.mmProcessCard
+.stepItem[data-status="completed"]
+.mmStepCircle::before {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   진행 중
+   ========================================================================== */
+
+/* 안쪽 원 */
+.mmProcessCard
+.stepItem[data-status="inProgress"]
+.mmStepCircle {
+  background-color: #eff6ff !important;
+  border: 1.5px solid #2563eb !important;
+  box-shadow: none !important;
+}
+
+/* 아이콘 */
+.mmProcessCard
+.stepItem[data-status="inProgress"]
+.mmStepCircle
+.sapUiIcon {
+  color: #1d4ed8 !important;
+}
+
+.mmProcessCard
+.stepItem[data-status="inProgress"]
+.stepDynamicIcon {
+  color: #1d4ed8 !important;
+}
+
+
+/* 진행 중 바깥 회전 링 */
+.mmProcessCard
+.stepItem[data-status="inProgress"]
+.mmStepCircle::before {
+  content: "" !important;
+
+  position: absolute !important;
+
+  top: -7px !important;
+  right: -7px !important;
+  bottom: -7px !important;
+  left: -7px !important;
+
+  border-radius: 50% !important;
+
+  border-width: 2px !important;
+  border-style: solid !important;
+
+  /* mainPP.css와 동일한 구조 + MM 블루 컬러 */
   border-top-color: #1d4ed8 !important;
   border-right-color: #60a5fa !important;
   border-bottom-color: transparent !important;
   border-left-color: #93c5fd !important;
+
+  box-sizing: border-box !important;
+
+  animation:
+    mmStepActiveRotate 1.4s linear infinite !important;
+
+  pointer-events: none !important;
 }
 
-.mmStepCircle.stepWaiting {
+
+/* ==========================================================================
+   진행 예정
+   ========================================================================== */
+
+.mmProcessCard
+.stepItem[data-status="planned"]
+.mmStepCircle {
   background-color: #f1f5f9 !important;
   border: 1.5px solid #cbd5e1 !important;
+  box-shadow: none !important;
 }
-.mmStepCircle.stepWaiting .sapUiIcon {
+
+.mmProcessCard
+.stepItem[data-status="planned"]
+.mmStepCircle
+.sapUiIcon {
   color: #94a3b8 !important;
+}
+
+.mmProcessCard
+.stepItem[data-status="planned"]
+.stepDynamicIcon {
+  color: #94a3b8 !important;
+}
+
+.mmProcessCard
+.stepItem[data-status="planned"]
+.mmStepCircle::before {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   상태별 텍스트
+   ========================================================================== */
+
+.mmProcessCard .stepProcessStatus {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  margin-top: 3px !important;
+}
+
+
+/* 진행 완료 */
+
+.mmProcessCard
+.stepItem[data-status="completed"]
+.stepProcessStatus {
+  color: #2563eb !important;
+}
+
+
+/* 진행 중 */
+
+.mmProcessCard
+.stepItem[data-status="inProgress"]
+.stepProcessStatus {
+  color: #2563eb !important;
+}
+
+
+/* 진행 예정 */
+
+.mmProcessCard
+.stepItem[data-status="planned"]
+.stepName {
+  color: #64748b !important;
+}
+
+.mmProcessCard
+.stepItem[data-status="planned"]
+.stepCount {
+  color: #94a3b8 !important;
+}
+
+.mmProcessCard
+.stepItem[data-status="planned"]
+.stepProcessStatus {
+  color: #94a3b8 !important;
+}
+
+
+/* ==========================================================================
+   진행 중 회전 애니메이션
+   ========================================================================== */
+
+@keyframes mmStepActiveRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

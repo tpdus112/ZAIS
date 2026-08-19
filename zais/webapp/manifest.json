@@ -22,7 +22,14 @@
         "settings": {
           "odataVersion": "2.0"
         }
-      }
+      },
+      "ZAIS_SCM_SRV": {
+        "uri": "/sap/opu/odata/sap/ZAIS_SCM_SRV/",
+        "type": "OData",
+        "settings": {
+            "odataVersion": "2.0"
+        }
+    }
     }
   },
   "sap.ui": {
@@ -77,7 +84,14 @@
         "settings": {
           "useBatch": false
         }
-      }
+      },
+      "scmService": {
+    "dataSource": "ZAIS_SCM_SRV",
+    "preload": true,
+    "settings": {
+        "useBatch": false
+    }
+}
     },
     "resources": {
       "css": [

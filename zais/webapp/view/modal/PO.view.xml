@@ -1,12 +1,294 @@
 <mvc:View
+    controllerName="zais.scm.zais.controller.modal.PO"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
 
-    <VBox width="100%" class="emptyModalPlaceholder" alignItems="Center" justifyContent="Center">
-        <core:Icon src="sap-icon://cart" class="emptyModalIcon" />
-        <Text text="구매 오더 목록" class="emptyModalTitle" />
-        <Text text="상세 데이터 조회 화면 준비 중입니다." class="emptyModalSubtext" />
+    <VBox width="100%">
+
+        <!-- 1. 상단 검색 필터 바 -->
+        <HBox
+            alignItems="Center"
+            justifyContent="SpaceBetween"
+            class="modalFilterBar">
+
+            <HBox alignItems="Center">
+
+                <!-- 통합 검색 -->
+                <Input
+                    id="searchKeyword"
+                    placeholder="구매오더 번호 / 자재코드 / 자재명"
+                    width="280px"
+                    class="filterFieldItem filterInput" />
+
+                <!-- 상태 Select -->
+                <Select
+                    id="searchStatus"
+                    selectedKey="ALL"
+                    width="115px"
+                    class="filterFieldItem filterSelect">
+
+                    <items>
+                        <core:Item
+                            key="ALL"
+                            text="상태 전체" />
+
+                        <core:Item
+                            key="PO_CREATED"
+                            text="구매오더" />
+
+                        <core:Item
+                            key="GR_COMPLETED"
+                            text="입고 완료" />
+
+                        <core:Item
+                            key="DELETED"
+                            text="삭제" />
+                    </items>
+                </Select>
+
+                <!-- 발주일 범위 -->
+                <DatePicker
+                    id="searchDateFrom"
+                    placeholder="발주일 (From)"
+                    displayFormat="yyyy-MM-dd"
+                    valueFormat="yyyy-MM-dd"
+                    width="140px"
+                    class="filterDatePicker" />
+
+                <Text
+                    text="~"
+                    class="filterTildeText" />
+
+                <DatePicker
+                    id="searchDateTo"
+                    placeholder="발주일 (To)"
+                    displayFormat="yyyy-MM-dd"
+                    valueFormat="yyyy-MM-dd"
+                    width="140px"
+                    class="filterFieldItem filterDatePicker" />
+
+                <Button
+                    text="검색"
+                    type="Emphasized"
+                    class="filterSearchBtn"
+                    press=".onSearch" />
+
+                <Button
+                    text="초기화"
+                    type="Transparent"
+                    class="filterResetBtn"
+                    press=".onReset" />
+
+            </HBox>
+
+        </HBox>
+
+
+        <!-- 2. 구매오더 목록 테이블 -->
+        <Table
+            id="poTable"
+            items="{dashboard>/poList}"
+            class="modalDetailTable"
+            inset="false"
+            showNoData="true"
+            noDataText="조회된 구매오더 내역이 없습니다.">
+
+            <columns>
+
+                <Column
+                    width="10%"
+                    hAlign="Center">
+                    <Text
+                        text="구매오더 번호"
+                        class="tableColHeader" />
+                </Column>
+
+                <Column
+                    width="6%"
+                    hAlign="Center">
+                    <Text
+                        text="품목"
+                        class="tableColHeader" />
+                </Column>
+
+                <Column
+                    width="11%"
+                    hAlign="Center">
+                    <Text
+                        text="자재코드"
+                        class="tableColHeader" />
+                </Column>
+
+                <Column
+                    width="13%"
+                    hAlign="Center">
+                    <Text
+                        text="자재명"
+                        class="tableColHeader" />
+                </Column>
+
+                <Column
+                    width="10%"
+                    hAlign="Center">
+                    <Text
+                        text="주문수량"
+                        class="tableColHeader" />
+                </Column>
+
+                <Column
+                    width="7%"
+                    hAlign="Center">
+                    <Text
+                        text="플랜트"
+                        class="tableColHeader" />
+                </Column>
+
+                <Column
+                    width="10%"
+                    hAlign="Center">
+                    <Text
+                        text="공급업체"
+                        class="tableColHeader" />
+                </Column>
+
+                <Column
+                    width="11%"
+                    hAlign="Center">
+                    <Text
+                        text="발주일"
+                        class="tableColHeader" />
+                </Column>
+
+                <Column
+                    width="11%"
+                    hAlign="Center">
+                    <Text
+                        text="연결된 PR"
+                        class="tableColHeader" />
+                </Column>
+
+                <Column
+                    width="10%"
+                    hAlign="Center">
+                    <Text
+                        text="상태"
+                        class="tableColHeader" />
+                </Column>
+
+            </columns>
+
+
+            <items>
+
+                <ColumnListItem class="tableRowItem">
+
+                    <cells>
+
+                        <!-- 구매오더 번호 -->
+                        <Text
+                            text="{dashboard>poNo}"
+                            class="modalCellTextBold" />
+
+                        <!-- 품목 -->
+                        <Text
+                            text="{dashboard>itemNo}"
+                            class="modalCellText" />
+
+                        <!-- 자재코드 -->
+                        <Text
+                            text="{dashboard>matCode}"
+                            class="modalCellTextBold" />
+
+                        <!-- 자재명 -->
+                        <Text
+                            text="{dashboard>matName}"
+                            class="modalCellText" />
+
+                        <!-- 주문수량 -->
+                        <Text
+                            text="{= ${dashboard>orderQty} + ' ' + ${dashboard>unit} }"
+                            class="modalCellText" />
+
+                        <!-- 플랜트 -->
+                        <Text
+                            text="{dashboard>plant}"
+                            class="modalCellText" />
+
+                        <!-- 공급업체 -->
+                        <Text
+                            text="{dashboard>vendor}"
+                            class="modalCellText" />
+
+                        <!-- 발주일 -->
+                        <Text
+                            text="{dashboard>orderDate}"
+                            class="modalCellText" />
+
+                        <!-- 연결된 구매요청 -->
+                        <Text
+                            text="{dashboard>prNo}"
+                            class="modalCellText" />
+
+                        <!-- 상태 -->
+                        <ObjectStatus
+                            text="{dashboard>status}"
+                            state="{dashboard>statusState}"
+                            class="statusBadge" />
+
+                    </cells>
+
+                </ColumnListItem>
+
+            </items>
+
+        </Table>
+
+
+        <!-- 3. 페이지네이션 바 -->
+        <HBox
+            alignItems="Center"
+            justifyContent="End"
+            class="modalPaginationBar">
+
+            <Text
+    text="{= '전체 ' + ${dashboard>/currentModal/totalCount} + ' 건' }"
+    class="paginationTotalText sapUiSmallMarginEnd" />
+
+            <Button
+                icon="sap-icon://media-rewind"
+                type="Transparent"
+                class="paginationBtn"
+                tooltip="첫 페이지"
+                press=".onPaginationFirst" />
+
+            <Button
+                icon="sap-icon://navigation-left-arrow"
+                type="Transparent"
+                class="paginationBtn"
+                tooltip="이전 페이지"
+                press=".onPaginationPrev" />
+
+            <Text
+                text="{= (${pagination>/currentPage} || 1) + '  /  ' + (${pagination>/totalPages} || 1) }"
+                class="paginationPageText" />
+
+            <Button
+                icon="sap-icon://navigation-right-arrow"
+                type="Transparent"
+                class="paginationBtn"
+                tooltip="다음 페이지"
+                press=".onPaginationNext" />
+
+            <Button
+                icon="sap-icon://media-forward"
+                type="Transparent"
+                class="paginationBtn"
+                tooltip="마지막 페이지"
+                press=".onPaginationLast" />
+
+        </HBox>
+
     </VBox>
 
 </mvc:View>
