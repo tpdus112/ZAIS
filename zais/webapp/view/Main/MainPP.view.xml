@@ -13,7 +13,7 @@
 
         <!-- 프로세스 단계 플로우 -->
         <HBox alignItems="Center" justifyContent="SpaceAround" class="flowStepsContainer">
-            <VBox alignItems="Center" class="stepItem">
+            <VBox id="stepDram" alignItems="Center" class="stepItem">
                 <VBox alignItems="Center" justifyContent="Center" class="stepCircle ppStepCircle stepDone">
                     <core:Icon src="sap-icon://developer-settings" class="stepIconDone" />
                 </VBox>
@@ -24,7 +24,7 @@
 
             <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox alignItems="Center" class="stepItem">
+            <VBox id="stepHBM" alignItems="Center" class="stepItem">
                 <VBox alignItems="Center" justifyContent="Center" class="stepCircle ppStepCircle stepActive">
                     <core:Icon src="sap-icon://database" class="stepIconActive" />
                 </VBox>
@@ -35,7 +35,7 @@
 
             <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox alignItems="Center" class="stepItem">
+            <VBox id="stepBGP" alignItems="Center" class="stepItem">
                 <VBox alignItems="Center" justifyContent="Center" class="stepCircle ppStepCircle stepActive">
                     <core:Icon src="sap-icon://grid" class="stepIconActive" />
                 </VBox>
@@ -46,7 +46,7 @@
 
             <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox alignItems="Center" class="stepItem">
+            <VBox id="stepGPU" alignItems="Center" class="stepItem">
                 <VBox alignItems="Center" justifyContent="Center" class="stepCircle ppStepCircle stepWaiting">
                     <core:Icon src="sap-icon://it-instance" class="stepIconWaiting" />
                 </VBox>
@@ -57,7 +57,7 @@
 
             <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox alignItems="Center" class="stepItem">
+            <VBox id="stepAIS" alignItems="Center" class="stepItem">
                 <VBox alignItems="Center" justifyContent="Center" class="stepCircle ppStepCircle stepActive">
                     <core:HTML content="&lt;svg class='brainSvgIcon' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'&gt;&lt;path d='M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04Z'/&gt;&lt;path d='M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-2.04Z'/&gt;&lt;/svg&gt;" />
                 </VBox>

@@ -1,16 +1,16 @@
 /*global QUnit*/
 
-sap.ui.define([
-	"zais/scm/zais/controller/Main.controller"
-], function (Controller) {
-	"use strict";
+sap.ui.define(
+  ["zais/scm/zais/controller/Main.controller"],
+  function (Controller) {
+    "use strict";
 
-	QUnit.module("Main Controller");
+    QUnit.module("Main Controller");
 
-	QUnit.test("I should test the Main controller", function (assert) {
-		var oAppController = new Controller();
-		oAppController.onInit();
-		assert.ok(oAppController);
-	});
-
-});
+    QUnit.test("I should test the Main controller", function (assert) {
+      var oAppController = new Controller();
+      oAppController.onInit();
+      assert.ok(oAppController);
+    });
+  },
+);

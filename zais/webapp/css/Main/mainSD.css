@@ -1,47 +1,47 @@
 /* SD 모듈 헤더 바 */
 .sdHeaderBar {
-    background-color: #faf5ff !important;
-    border-bottom: 1px solid #f3e8ff !important;
+  background-color: #faf5ff !important;
+  border-bottom: 1px solid #f3e8ff !important;
 }
 
 .sdIcon {
-    font-size: 14px !important;
-    color: #7e22ce !important;
+  font-size: 14px !important;
+  color: #7e22ce !important;
 }
 
 .sdTitleText {
-    font-size: 13px !important;
-    font-weight: 700 !important;
-    color: #7e22ce !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #7e22ce !important;
 }
 
 /* SD 단계별 원형 아이콘 스타일 (퍼플 테마) */
 .sdStepCircle.stepDone {
-    background-color: #faf5ff !important;
-    border: 1.5px solid #9333ea !important;
+  background-color: #faf5ff !important;
+  border: 1.5px solid #9333ea !important;
 }
 .sdStepCircle.stepDone .sapUiIcon {
-    color: #7e22ce !important;
+  color: #7e22ce !important;
 }
 
 .sdStepCircle.stepActive {
-    background-color: #faf5ff !important;
-    border: 1.5px solid #9333ea !important;
+  background-color: #faf5ff !important;
+  border: 1.5px solid #9333ea !important;
 }
 .sdStepCircle.stepActive .sapUiIcon {
-    color: #7e22ce !important;
+  color: #7e22ce !important;
 }
 .sdStepCircle.stepActive::before {
-    border-top-color: #7e22ce !important;
-    border-right-color: #c084fc !important;
-    border-bottom-color: transparent !important;
-    border-left-color: #e9d5ff !important;
+  border-top-color: #7e22ce !important;
+  border-right-color: #c084fc !important;
+  border-bottom-color: transparent !important;
+  border-left-color: #e9d5ff !important;
 }
 
 .sdStepCircle.stepWaiting {
-    background-color: #f1f5f9 !important;
-    border: 1.5px solid #cbd5e1 !important;
+  background-color: #f1f5f9 !important;
+  border: 1.5px solid #cbd5e1 !important;
 }
 .sdStepCircle.stepWaiting .sapUiIcon {
-    color: #94a3b8 !important;
+  color: #94a3b8 !important;
 }

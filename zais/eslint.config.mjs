@@ -1,5 +1,3 @@
-import fioriTools from '@sap-ux/eslint-plugin-fiori-tools';
+import fioriTools from "@sap-ux/eslint-plugin-fiori-tools";
 
-export default [
-    ...fioriTools.configs.recommended
-];
+export default [...fioriTools.configs.recommended];
