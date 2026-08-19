@@ -1,0 +1,49 @@
+<mvc:View
+    controllerName="zais.scm.zais.controller.main.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Page
+        id="mainDashboardPage"
+        showHeader="false"
+        enableScrolling="true"
+        class="mainDashboardPage">
+
+        <VBox class="mainDashboardContainer" width="100%">
+
+            <!-- 1. 상단 KPI 카드 영역 (구매 진행, 생산 진행, 출하 진행, 재고 현황) -->
+            <mvc:XMLView
+                id="mainHeaderView"
+                viewName="zais.scm.zais.view.main.MainHeader"
+                width="100%" />
+
+            <!-- 2. 전체 프로세스 진행 현황 (MainMM ➔ MainPP ➔ MainSD) -->
+            <mvc:XMLView
+                id="mainProcessView"
+                viewName="zais.scm.zais.view.main.MainProcess"
+                width="100%" />
+
+            <!-- 3. 메인 하단 작고 연한 회색 로그아웃 -->
+            <HBox
+                width="100%"
+                justifyContent="Center"
+                alignItems="Center"
+                class="mainBottomLogoutContainer">
+
+                <HBox alignItems="Center" class="mainLogoutWrapper">
+                    <core:Icon src="sap-icon://log-out" class="mainLogoutIcon" />
+                    <Link
+                        text="로그아웃"
+                        press=".onLogout"
+                        class="mainLogoutLink"
+                        tooltip="로그아웃하고 로그인 화면으로 이동" />
+                </HBox>
+
+            </HBox>
+
+        </VBox>
+
+    </Page>
+
+</mvc:View>

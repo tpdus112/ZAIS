@@ -1,1 +1,106 @@
-/* 공통 스타일 */
+/* ==========================================================================
+   style.css - 공통 스타일 & 모달 다이얼로그 & FLP 런치패드 헤더 보호
+   ========================================================================== */
+
+/* SAP Fiori Launchpad 상단 헤더 타이틀 글자 짤림 방지 */
+#shellAppTitle,
+.sapUshellAppTitle,
+.sapUshellHeadTitle,
+.sapUshellShellHeadTitle,
+.sapUshellShellHeadAppTitle {
+    width: auto !important;
+    max-width: none !important;
+    min-width: max-content !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+#shellAppTitle-button,
+#shellAppTitle .sapMBtnContent,
+.sapUshellAppTitle .sapMBtnContent,
+.sapUshellShellHeadAppTitle .sapMBtnContent {
+    overflow: visible !important;
+    white-space: nowrap !important;
+    text-overflow: clip !important;
+}
+
+.sapUshellShellHeadItm {
+    width: auto !important;
+    max-width: none !important;
+}
+
+/* 주요 자재 현황 모달 다이얼로그 */
+.materialModalDialog .sapMDialogHeader {
+    background-color: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.materialModalDialog .sapMTitle {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+}
+
+.materialModalDialog .sapUiIcon {
+    color: #ea580c !important;
+}
+
+.materialModalDialog .modalTable {
+    width: 100% !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+.materialModalDialog .sapMListTblHeader {
+    background-color: #f8fafc !important;
+}
+
+.materialModalDialog .sapMListTblCell {
+    text-align: center !important;
+}
+
+.materialModalDialog .cellTextBold,
+.materialModalDialog .cellTextPrimary,
+.materialModalDialog .cellTextMuted {
+    width: 100% !important;
+    text-align: center !important;
+}
+
+/* 상태 뱃지 공통 */
+.statusBadge .sapMObjStatusText {
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 3px 10px !important;
+    border-radius: 6px !important;
+    display: inline-block !important;
+    letter-spacing: 0.2px !important;
+    text-align: center !important;
+}
+
+.statusBadge.sapMObjStatusSuccess .sapMObjStatusText {
+    background-color: #ecfdf5 !important;
+    color: #059669 !important;
+}
+
+.statusBadge.sapMObjStatusInformation .sapMObjStatusText {
+    background-color: #eff6ff !important;
+    color: #2563eb !important;
+}
+
+.statusBadge.sapMObjStatusNone .sapMObjStatusText {
+    background-color: #f1f5f9 !important;
+    color: #475569 !important;
+}
+
+.statusBadge.sapMObjStatusWarning .sapMObjStatusText {
+    background-color: #fff7ed !important;
+    color: #ea580c !important;
+}
+
+.statusBadge.sapMObjStatusError .sapMObjStatusText {
+    background-color: #fff1f2 !important;
+    color: #e11d48 !important;
+}

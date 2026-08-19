@@ -1,0 +1,62 @@
+/* ==========================================================================
+   mainPP.css - PP 생산 모듈 전용 스타일
+   ========================================================================== */
+
+/* PP 모듈 헤더 바 */
+.ppHeaderBar {
+    background-color: #f0fdf4 !important;
+    border-bottom: 1px solid #dcfce7 !important;
+}
+
+.ppIcon {
+    font-size: 14px !important;
+    color: #15803d !important;
+}
+
+.ppTitleText {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    color: #15803d !important;
+}
+
+/* PP 단계별 원형 아이콘 스타일 (그린 테마) */
+.ppStepCircle.stepDone {
+    background-color: #f0fdf4 !important;
+    border: 1.5px solid #16a34a !important;
+}
+.ppStepCircle.stepDone .sapUiIcon {
+    color: #15803d !important;
+}
+
+.ppStepCircle.stepActive {
+    background-color: #f0fdf4 !important;
+    border: 1.5px solid #16a34a !important;
+}
+.ppStepCircle.stepActive .sapUiIcon,
+.ppStepCircle.stepActive .brainSvgIcon {
+    color: #15803d !important;
+    stroke: #15803d !important;
+}
+.ppStepCircle.stepActive::before {
+    border-top-color: #15803d !important;
+    border-right-color: #4ade80 !important;
+    border-bottom-color: transparent !important;
+    border-left-color: #86efac !important;
+}
+
+.ppStepCircle.stepWaiting {
+    background-color: #f1f5f9 !important;
+    border: 1.5px solid #cbd5e1 !important;
+}
+.ppStepCircle.stepWaiting .sapUiIcon {
+    color: #94a3b8 !important;
+}
+
+/* 뇌 SVG 벡터 아이콘 */
+.brainSvgIcon {
+    display: block !important;
+    margin: 0 auto !important;
+    vertical-align: middle !important;
+    position: relative !important;
+    z-index: 2 !important;
+}

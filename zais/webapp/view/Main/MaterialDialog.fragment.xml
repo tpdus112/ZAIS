@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Dialog
+        id="materialDialog"
+        title="주요 자재 현황"
+        icon="sap-icon://product"
+        contentWidth="680px"
+        class="sapUiResponsiveContentPadding materialModalDialog">
+
+        <content>
+            <Table
+                id="modalMaterialTable"
+                items="{dashboard>/materials}"
+                class="processMiniTable modalTable"
+                inset="false"
+                showNoData="false">
+                <columns>
+                    <Column width="22%" hAlign="Center"><Text text="자재 코드" class="tableColHeader" /></Column>
+                    <Column width="38%" hAlign="Center"><Text text="자재명" class="tableColHeader" /></Column>
+                    <Column width="12%" hAlign="Center"><Text text="단위" class="tableColHeader" /></Column>
+                    <Column width="14%" hAlign="Center"><Text text="가용 수량" class="tableColHeader" /></Column>
+                    <Column width="14%" hAlign="Center"><Text text="상태" class="tableColHeader" /></Column>
+                </columns>
+                <items>
+                    <ColumnListItem class="tableRowItem">
+                        <cells>
+                            <Text text="{dashboard>code}" class="cellTextBold" />
+                            <Text text="{dashboard>name}" class="cellTextPrimary" />
+                            <Text text="{dashboard>unit}" class="cellTextMuted" />
+                            <Text text="{dashboard>stock}" class="cellTextBold" />
+                            <ObjectStatus
+                                text="{dashboard>status}"
+                                state="{dashboard>statusState}"
+                                class="statusBadge" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+
+        <endButton>
+            <Button
+                text="닫기"
+                type="Emphasized"
+                press=".onCloseMaterialDialog" />
+        </endButton>
+
+    </Dialog>
+
+</core:FragmentDefinition>
