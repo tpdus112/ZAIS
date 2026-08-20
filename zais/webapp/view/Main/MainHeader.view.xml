@@ -41,14 +41,14 @@
                     </VBox>
                     <VBox class="cardTitleBox">
                         <Text text="구매 진행 (MM)" class="cardTitle" />
-                        <Text text="82%" class="cardNumber cardNumberBlue" />
-                        <Text text="입고 완료 기준" class="cardSubText" />
+                        <Text text="{dashboard>/header/mm/rateText}" class="cardNumber cardNumberBlue" />
+                        <Text text="{dashboard>/header/mm/subText}" class="cardSubText" />
                     </VBox>
                 </HBox>
 
                 <!-- 매끄러운 프로그레스 바 -->
                 <HBox width="100%" class="kpiProgressBarTrack">
-                    <VBox class="kpiProgressBarFill kpiFillBlue" width="82%" />
+                    <VBox class="kpiProgressBarFill kpiFillBlue" width="{dashboard>/header/mm/rateText}" />
                 </HBox>
             </VBox>
 
@@ -60,14 +60,14 @@
                     </VBox>
                     <VBox class="cardTitleBox">
                         <Text text="생산 진행 (PP)" class="cardTitle" />
-                        <Text text="72%" class="cardNumber cardNumberGreen" />
-                        <Text text="생산 완료 기준" class="cardSubText" />
+                        <Text text="{dashboard>/header/pp/rateText}" class="cardNumber cardNumberGreen" />
+                        <Text text="{dashboard>/header/pp/subText}" class="cardSubText" />
                     </VBox>
                 </HBox>
 
                 <!-- 매끄러운 프로그레스 바 -->
                 <HBox width="100%" class="kpiProgressBarTrack">
-                    <VBox class="kpiProgressBarFill kpiFillGreen" width="72%" />
+                    <VBox class="kpiProgressBarFill kpiFillGreen" width="{dashboard>/header/pp/rateText}" />
                 </HBox>
             </VBox>
 
@@ -79,14 +79,14 @@
                     </VBox>
                     <VBox class="cardTitleBox">
                         <Text text="출하 진행 (SD)" class="cardTitle" />
-                        <Text text="45%" class="cardNumber cardNumberPurple" />
-                        <Text text="출하 완료 기준" class="cardSubText" />
+                        <Text text="{dashboard>/header/sd/rateText}" class="cardNumber cardNumberPurple" />
+                        <Text text="{dashboard>/header/sd/subText}" class="cardSubText" />
                     </VBox>
                 </HBox>
 
                 <!-- 매끄러운 프로그레스 바 -->
                 <HBox width="100%" class="kpiProgressBarTrack">
-                    <VBox class="kpiProgressBarFill kpiFillPurple" width="45%" />
+                    <VBox class="kpiProgressBarFill kpiFillPurple" width="{dashboard>/header/sd/rateText}" />
                 </HBox>
             </VBox>
 
@@ -103,8 +103,8 @@
                     </VBox>
                     <VBox class="cardTitleBox">
                         <Text text="재고 현황" class="cardTitle" />
-                        <Text text="1,248" class="cardNumber cardNumberOrange" />
-                        <Text text="주요 자재 가용 수량" class="cardSubText" />
+                        <Text text="{dashboard>/header/stock/amount}" class="cardNumber cardNumberOrange" />
+                        <Text text="{dashboard>/header/stock/subText}" class="cardSubText" />
                     </VBox>
                 </HBox>
             </VBox>

@@ -2,12 +2,12 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "zais/scm/zais/controller/modal/ModalManager",
-    "zais/scm/zais/controller/modal/MMDataService",
+    "zais/scm/zais/controller/modal/MM/MMDataService"
   ],
   (
     Controller,
     ModalManager,
-    MMDataService,
+    MMDataService
   ) => {
     "use strict";
 
@@ -21,19 +21,19 @@ sap.ui.define(
           // dashboard 모델 가져오기
           let oDashboardModel =
             this.getView().getModel(
-              "dashboard",
+              "dashboard"
             );
 
           if (!oDashboardModel) {
             oDashboardModel =
               oComponent.getModel(
-                "dashboard",
+                "dashboard"
               );
 
             if (oDashboardModel) {
               this.getView().setModel(
                 oDashboardModel,
-                "dashboard",
+                "dashboard"
               );
             }
           }
@@ -44,7 +44,7 @@ sap.ui.define(
             MMDataService
               .loadMaterialReceiptProgress(
                 oComponent,
-                oDashboardModel,
+                oDashboardModel
               );
           }
 
@@ -62,16 +62,16 @@ sap.ui.define(
           const aSteps = [
             {
               id: "stepPR",
-              key: "PR",
+              key: "PR"
             },
             {
               id: "stepPO",
-              key: "PO",
+              key: "PO"
             },
             {
               id: "stepGR",
-              key: "GR",
-            },
+              key: "GR"
+            }
 
             // 입고 완료는 별도 모달 없음
             // stepGRComplete 제외
@@ -88,13 +88,13 @@ sap.ui.define(
                 .on("click", () => {
                   ModalManager.openModal(
                     this,
-                    oStep.key,
+                    oStep.key
                   );
                 });
             }
           });
-        },
-      },
+        }
+      }
     );
-  },
+  }
 );

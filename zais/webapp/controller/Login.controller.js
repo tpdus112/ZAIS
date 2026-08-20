@@ -37,6 +37,15 @@ sap.ui.define(
       },
 
       _onRouteMatched() {
+        const bIsLoggedIn =
+          sessionStorage.getItem("zaisLoggedIn") === "true" ||
+          localStorage.getItem("zaisLoggedIn") === "true";
+
+        if (bIsLoggedIn) {
+          this.getOwnerComponent().getRouter().navTo("RouteMain", {}, true);
+          return;
+        }
+
         // 폼 입력 필드 및 에러 상태 초기화
         const oLoginModel = this.getView().getModel("login");
         if (oLoginModel) {
@@ -151,12 +160,14 @@ sap.ui.define(
                 `${oData.UserName || sUserId}님 로그인되었습니다.`,
               );
 
-              // 세션 저장
+              // 세션 및 로컬 저장소에 로그인 상태 저장
               sessionStorage.setItem("zaisLoggedIn", "true");
-
               sessionStorage.setItem("zaisUserId", sUserId);
-
               sessionStorage.setItem("zaisUserName", oData.UserName || "");
+
+              localStorage.setItem("zaisLoggedIn", "true");
+              localStorage.setItem("zaisUserId", sUserId);
+              localStorage.setItem("zaisUserName", oData.UserName || "");
 
               // 비밀번호 초기화
               oLoginModel.setProperty("/password", "");

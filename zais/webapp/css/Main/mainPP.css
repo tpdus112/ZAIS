@@ -1,4 +1,8 @@
 
+/* ==========================================================================
+   mainPP.css - PP 생산 모듈 전용 스타일
+   ========================================================================== */
+
 /* PP 모듈 헤더 바 */
 .ppHeaderBar {
   background-color: #f0fdf4 !important;
@@ -16,40 +20,189 @@
   color: #15803d !important;
 }
 
-/* PP 단계별 원형 아이콘 스타일 (그린 테마) */
-.ppStepCircle.stepDone {
+/* ==========================================================================
+   PP 단계별 원형 아이콘
+   ========================================================================== */
+
+.ppStepCircle {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* ==========================================================================
+   진행 완료
+   ========================================================================== */
+
+.ppProcessCard
+.stepItem[data-status="completed"]
+.ppStepCircle {
   background-color: #f0fdf4 !important;
   border: 1.5px solid #16a34a !important;
+  box-shadow: none !important;
 }
-.ppStepCircle.stepDone .sapUiIcon {
+
+.ppProcessCard
+.stepItem[data-status="completed"]
+.ppStepCircle
+.sapUiIcon {
   color: #15803d !important;
 }
 
+.ppProcessCard
+.stepItem[data-status="completed"]
+.stepDynamicIcon {
+  color: #15803d !important;
+  stroke: #15803d !important;
+}
+
+.ppProcessCard
+.stepItem[data-status="completed"]
+.ppStepCircle::before {
+  display: none !important;
+}
+
+/* ==========================================================================
+   진행 중
+   ========================================================================== */
+
+.ppProcessCard
+.stepItem[data-status="inProgress"]
+.ppStepCircle,
 .ppStepCircle.stepActive {
   background-color: #f0fdf4 !important;
   border: 1.5px solid #16a34a !important;
+  box-shadow: none !important;
 }
-.ppStepCircle.stepActive .sapUiIcon,
+
+.ppProcessCard
+.stepItem[data-status="inProgress"]
+.ppStepCircle
+.sapUiIcon,
+.ppStepCircle.stepActive .sapUiIcon {
+  color: #15803d !important;
+}
+
+.ppProcessCard
+.stepItem[data-status="inProgress"]
+.stepDynamicIcon,
 .ppStepCircle.stepActive .brainSvgIcon {
   color: #15803d !important;
   stroke: #15803d !important;
 }
+
+.ppProcessCard
+.stepItem[data-status="inProgress"]
+.ppStepCircle::before,
 .ppStepCircle.stepActive::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -5px !important;
+  right: -5px !important;
+  bottom: -5px !important;
+  left: -5px !important;
+  border-radius: 50% !important;
+  border: 2px dashed transparent !important;
   border-top-color: #15803d !important;
   border-right-color: #4ade80 !important;
   border-bottom-color: transparent !important;
   border-left-color: #86efac !important;
+  box-sizing: border-box !important;
+  animation: spinRing 2.4s linear infinite !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
 }
 
-.ppStepCircle.stepWaiting {
+/* ==========================================================================
+   진행 예정 / 대기
+   ========================================================================== */
+
+.ppProcessCard
+.stepItem[data-status="planned"]
+.ppStepCircle,
+.ppProcessCard
+.stepItem[data-status="waiting"]
+.ppStepCircle {
   background-color: #f1f5f9 !important;
   border: 1.5px solid #cbd5e1 !important;
+  box-shadow: none !important;
 }
-.ppStepCircle.stepWaiting .sapUiIcon {
+
+.ppProcessCard
+.stepItem[data-status="planned"]
+.stepDynamicIcon,
+.ppProcessCard
+.stepItem[data-status="waiting"]
+.stepDynamicIcon {
+  color: #94a3b8 !important;
+  stroke: #94a3b8 !important;
+}
+
+.ppProcessCard
+.stepItem[data-status="planned"]
+.ppStepCircle::before,
+.ppProcessCard
+.stepItem[data-status="waiting"]
+.ppStepCircle::before {
+  display: none !important;
+}
+
+/* ==========================================================================
+   상태별 텍스트 (초록 글씨)
+   ========================================================================== */
+
+.ppProcessCard .stepProcessStatus {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  margin-top: 3px !important;
+  color: #16a34a !important; /* 기본 초록 글씨 */
+}
+
+/* 진행 완료 - 초록 글씨 */
+.ppProcessCard
+.stepItem[data-status="completed"]
+.stepProcessStatus {
+  color: #16a34a !important;
+}
+
+/* 진행 중 - 초록 글씨 */
+.ppProcessCard
+.stepItem[data-status="inProgress"]
+.stepProcessStatus {
+  color: #16a34a !important;
+}
+
+/* 진행 예정 / 대기 */
+.ppProcessCard
+.stepItem[data-status="planned"]
+.stepName,
+.ppProcessCard
+.stepItem[data-status="waiting"]
+.stepName {
+  color: #64748b !important;
+}
+
+.ppProcessCard
+.stepItem[data-status="planned"]
+.stepCount,
+.ppProcessCard
+.stepItem[data-status="waiting"]
+.stepCount {
   color: #94a3b8 !important;
 }
 
-/* 뇌 SVG 벡터 아이콘 */
+.ppProcessCard
+.stepItem[data-status="planned"]
+.stepProcessStatus,
+.ppProcessCard
+.stepItem[data-status="waiting"]
+.stepProcessStatus {
+  color: #94a3b8 !important;
+}
+
+/* ==========================================================================
+   뇌 SVG 벡터 아이콘
+   ========================================================================== */
+
 .brainSvgIcon {
   display: block !important;
   margin: 0 auto !important;
@@ -57,3 +210,13 @@
   position: relative !important;
   z-index: 2 !important;
 }
+
+@keyframes ppStepActiveRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

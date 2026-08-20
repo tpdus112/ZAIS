@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="zais.scm.zais.controller.modal.PR"
+    controllerName="zais.scm.zais.controller.modal.MM.PR"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
@@ -68,7 +68,7 @@
         <!-- 2. 구매요청 목록 테이블 -->
         <Table
             id="prTable"
-            items="{dashboard>/prList}"
+            items="{pagination>/displayList}"
             class="modalDetailTable"
             inset="false"
             showNoData="true"
@@ -87,19 +87,19 @@
             <items>
                 <ColumnListItem class="tableRowItem">
                     <cells>
-                        <Text text="{dashboard>prNo}" class="modalCellTextBold" />
-                        <Text text="{dashboard>itemNo}" class="modalCellText" />
-                        <Text text="{dashboard>matCode}" class="modalCellTextBold" />
-                        <Text text="{dashboard>matName}" class="modalCellText" />
+                        <Text text="{pagination>prNo}" class="modalCellTextBold" />
+                        <Text text="{pagination>itemNo}" class="modalCellText" />
+                        <Text text="{pagination>matCode}" class="modalCellTextBold" />
+                        <Text text="{pagination>matName}" class="modalCellText" />
                         <Text
-    text="{= ${dashboard>reqQty} + ' ' + ${dashboard>unit} }"
-    class="modalCellText" />
-                        <Text text="{dashboard>plant}" class="modalCellText" />
-                        <Text text="{dashboard>reqDate}" class="modalCellText" />
-                        <Text text="{dashboard>poNo}" class="modalCellText" />
+                            text="{= ${pagination>reqQty} + ' ' + ${pagination>unit} }"
+                            class="modalCellText" />
+                        <Text text="{pagination>plant}" class="modalCellText" />
+                        <Text text="{pagination>reqDate}" class="modalCellText" />
+                        <Text text="{pagination>poNo}" class="modalCellText" />
                         <ObjectStatus
-                            text="{dashboard>status}"
-                            state="{dashboard>statusState}"
+                            text="{pagination>status}"
+                            state="{pagination>statusState}"
                             class="statusBadge" />
                     </cells>
                 </ColumnListItem>
@@ -112,8 +112,8 @@
             justifyContent="End"
             class="modalPaginationBar">
             <Text
-    text="{= '전체 ' + ${dashboard>/currentModal/totalCount} + ' 건' }"
-    class="paginationTotalText sapUiSmallMarginEnd" />
+                text="{= '전체 ' + (${pagination>/totalCount} !== undefined ? ${pagination>/totalCount} : ${dashboard>/currentModal/totalCount}) + ' 건' }"
+                class="paginationTotalText sapUiSmallMarginEnd" />
             <Button
                 icon="sap-icon://media-rewind"
                 type="Transparent"

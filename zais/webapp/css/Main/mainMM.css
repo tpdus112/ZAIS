@@ -72,7 +72,8 @@
 /* 안쪽 원 */
 .mmProcessCard
 .stepItem[data-status="inProgress"]
-.mmStepCircle {
+.mmStepCircle,
+.mmStepCircle.stepActive {
   background-color: #eff6ff !important;
   border: 1.5px solid #2563eb !important;
   box-shadow: none !important;
@@ -82,7 +83,8 @@
 .mmProcessCard
 .stepItem[data-status="inProgress"]
 .mmStepCircle
-.sapUiIcon {
+.sapUiIcon,
+.mmStepCircle.stepActive .sapUiIcon {
   color: #1d4ed8 !important;
 }
 
@@ -96,33 +98,24 @@
 /* 진행 중 바깥 회전 링 */
 .mmProcessCard
 .stepItem[data-status="inProgress"]
-.mmStepCircle::before {
+.mmStepCircle::before,
+.mmStepCircle.stepActive::before {
   content: "" !important;
-
   position: absolute !important;
-
-  top: -7px !important;
-  right: -7px !important;
-  bottom: -7px !important;
-  left: -7px !important;
-
+  top: -5px !important;
+  right: -5px !important;
+  bottom: -5px !important;
+  left: -5px !important;
   border-radius: 50% !important;
-
-  border-width: 2px !important;
-  border-style: solid !important;
-
-  /* mainPP.css와 동일한 구조 + MM 블루 컬러 */
+  border: 2px dashed transparent !important;
   border-top-color: #1d4ed8 !important;
   border-right-color: #60a5fa !important;
   border-bottom-color: transparent !important;
   border-left-color: #93c5fd !important;
-
   box-sizing: border-box !important;
-
-  animation:
-    mmStepActiveRotate 1.4s linear infinite !important;
-
+  animation: spinRing 2.4s linear infinite !important;
   pointer-events: none !important;
+  z-index: 1 !important;
 }
 
 

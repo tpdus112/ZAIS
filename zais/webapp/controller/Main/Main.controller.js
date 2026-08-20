@@ -2,12 +2,12 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageToast",
-    "zais/scm/zais/controller/modal/MMDataService",
+    "zais/scm/zais/controller/modal/MM/MMDataService"
   ],
   (
     Controller,
     MessageToast,
-    MMDataService,
+    MMDataService
   ) => {
     "use strict";
 
@@ -21,19 +21,19 @@ sap.ui.define(
 
           let oDashboardModel =
             this.getView().getModel(
-              "dashboard",
+              "dashboard"
             );
 
           if (!oDashboardModel) {
             oDashboardModel =
               oComponent.getModel(
-                "dashboard",
+                "dashboard"
               );
 
             if (oDashboardModel) {
               this.getView().setModel(
                 oDashboardModel,
-                "dashboard",
+                "dashboard"
               );
             }
           }
@@ -44,7 +44,7 @@ sap.ui.define(
             MMDataService
               .loadMaterialReceiptProgress(
                 oComponent,
-                oDashboardModel,
+                oDashboardModel
               );
           }
 
@@ -58,7 +58,7 @@ sap.ui.define(
         _restoreLaunchpadHeader() {
           // 1. body 클래스 복구
           document.body.classList.remove(
-            "login-active",
+            "login-active"
           );
 
           // 2. Fiori Launchpad 표준 렌더러 헤더 및 쉘 강제 복구
@@ -70,7 +70,7 @@ sap.ui.define(
             try {
               const oRenderer =
                 sap.ushell.Container.getRenderer(
-                  "fiori2",
+                  "fiori2"
                 );
 
               if (oRenderer) {
@@ -80,7 +80,7 @@ sap.ui.define(
                 ) {
                   oRenderer.setHeaderVisibility(
                     true,
-                    false,
+                    false
                   );
                 }
 
@@ -89,7 +89,7 @@ sap.ui.define(
                   "function"
                 ) {
                   oRenderer.showShellHeader(
-                    true,
+                    true
                   );
                 }
 
@@ -98,34 +98,36 @@ sap.ui.define(
                   "function"
                 ) {
                   oRenderer.setLetterboxMode(
-                    false,
+                    false
                   );
                 }
               }
             } catch (e) {
               console.log(
                 "FLP Renderer restore in Main:",
-                e,
+                e
               );
             }
           }
         },
 
         onLogout() {
-          sessionStorage.removeItem(
-            "zaisLoggedIn",
-          );
+          sessionStorage.removeItem("zaisLoggedIn");
+          sessionStorage.removeItem("zaisUserId");
+          sessionStorage.removeItem("zaisUserName");
+          sessionStorage.removeItem("zaisUser");
 
-          sessionStorage.removeItem(
-            "zaisUser",
-          );
+          localStorage.removeItem("zaisLoggedIn");
+          localStorage.removeItem("zaisUserId");
+          localStorage.removeItem("zaisUserName");
+          localStorage.removeItem("zaisUser");
 
           document.body.classList.add(
-            "login-active",
+            "login-active"
           );
 
           MessageToast.show(
-            "로그아웃되었습니다.",
+            "로그아웃되었습니다."
           );
 
           this.getOwnerComponent()
@@ -133,10 +135,10 @@ sap.ui.define(
             .navTo(
               "RouteLogin",
               {},
-              true,
+              true
             );
-        },
-      },
+        }
+      }
     );
-  },
+  }
 );

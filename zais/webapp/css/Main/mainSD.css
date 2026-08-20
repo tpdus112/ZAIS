@@ -1,3 +1,7 @@
+/* ==========================================================================
+   mainSD.css - SD 판매/출하 모듈 전용 스타일
+   ========================================================================== */
+
 /* SD 모듈 헤더 바 */
 .sdHeaderBar {
   background-color: #faf5ff !important;
@@ -15,33 +19,211 @@
   color: #7e22ce !important;
 }
 
-/* SD 단계별 원형 아이콘 스타일 (퍼플 테마) */
+/* ==========================================================================
+   SD 단계별 원형 아이콘
+   ========================================================================== */
+
+.sdStepCircle {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+/* ==========================================================================
+   진행 완료 (보라색 테마)
+   ========================================================================== */
+
+.sdProcessCard
+.stepItem[data-status="completed"]
+.sdStepCircle,
 .sdStepCircle.stepDone {
   background-color: #faf5ff !important;
   border: 1.5px solid #9333ea !important;
+  box-shadow: none !important;
 }
+
+.sdProcessCard
+.stepItem[data-status="completed"]
+.sdStepCircle
+.sapUiIcon,
 .sdStepCircle.stepDone .sapUiIcon {
   color: #7e22ce !important;
 }
 
+.sdProcessCard
+.stepItem[data-status="completed"]
+.stepDynamicIcon {
+  color: #7e22ce !important;
+}
+
+/* 완료 상태에서는 바깥 회전 링 없음 */
+.sdProcessCard
+.stepItem[data-status="completed"]
+.sdStepCircle::before,
+.sdStepCircle.stepDone::before {
+  display: none !important;
+}
+
+/* ==========================================================================
+   진행 중 (보라색 테마 + 회전 링)
+   ========================================================================== */
+
+/* 안쪽 원 */
+.sdProcessCard
+.stepItem[data-status="inProgress"]
+.sdStepCircle,
 .sdStepCircle.stepActive {
   background-color: #faf5ff !important;
   border: 1.5px solid #9333ea !important;
+  box-shadow: none !important;
 }
+
+/* 아이콘 */
+.sdProcessCard
+.stepItem[data-status="inProgress"]
+.sdStepCircle
+.sapUiIcon,
 .sdStepCircle.stepActive .sapUiIcon {
   color: #7e22ce !important;
 }
+
+.sdProcessCard
+.stepItem[data-status="inProgress"]
+.stepDynamicIcon {
+  color: #7e22ce !important;
+}
+
+/* 진행 중 바깥 회전 링 */
+.sdProcessCard
+.stepItem[data-status="inProgress"]
+.sdStepCircle::before,
 .sdStepCircle.stepActive::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -5px !important;
+  right: -5px !important;
+  bottom: -5px !important;
+  left: -5px !important;
+  border-radius: 50% !important;
+  border: 2px dashed transparent !important;
   border-top-color: #7e22ce !important;
   border-right-color: #c084fc !important;
   border-bottom-color: transparent !important;
   border-left-color: #e9d5ff !important;
+  box-sizing: border-box !important;
+  animation: spinRing 2.4s linear infinite !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
 }
 
+/* ==========================================================================
+   진행 예정 / 대기
+   ========================================================================== */
+
+.sdProcessCard
+.stepItem[data-status="planned"]
+.sdStepCircle,
+.sdProcessCard
+.stepItem[data-status="waiting"]
+.sdStepCircle,
 .sdStepCircle.stepWaiting {
   background-color: #f1f5f9 !important;
   border: 1.5px solid #cbd5e1 !important;
+  box-shadow: none !important;
 }
+
+.sdProcessCard
+.stepItem[data-status="planned"]
+.sdStepCircle
+.sapUiIcon,
+.sdProcessCard
+.stepItem[data-status="waiting"]
+.sdStepCircle
+.sapUiIcon,
 .sdStepCircle.stepWaiting .sapUiIcon {
   color: #94a3b8 !important;
+}
+
+.sdProcessCard
+.stepItem[data-status="planned"]
+.stepDynamicIcon,
+.sdProcessCard
+.stepItem[data-status="waiting"]
+.stepDynamicIcon {
+  color: #94a3b8 !important;
+}
+
+.sdProcessCard
+.stepItem[data-status="planned"]
+.sdStepCircle::before,
+.sdProcessCard
+.stepItem[data-status="waiting"]
+.sdStepCircle::before,
+.sdStepCircle.stepWaiting::before {
+  display: none !important;
+}
+
+/* ==========================================================================
+   상태별 텍스트 (보라색 글씨)
+   ========================================================================== */
+
+.sdProcessCard .stepProcessStatus {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  margin-top: 3px !important;
+  color: #7e22ce !important; /* 기본 보라색 글씨 */
+}
+
+/* 진행 완료 - 보라색 글씨 */
+.sdProcessCard
+.stepItem[data-status="completed"]
+.stepProcessStatus {
+  color: #7e22ce !important;
+}
+
+/* 진행 중 - 보라색 글씨 */
+.sdProcessCard
+.stepItem[data-status="inProgress"]
+.stepProcessStatus {
+  color: #7e22ce !important;
+}
+
+/* 진행 예정 / 대기 */
+.sdProcessCard
+.stepItem[data-status="planned"]
+.stepName,
+.sdProcessCard
+.stepItem[data-status="waiting"]
+.stepName {
+  color: #64748b !important;
+}
+
+.sdProcessCard
+.stepItem[data-status="planned"]
+.stepCount,
+.sdProcessCard
+.stepItem[data-status="waiting"]
+.stepCount {
+  color: #94a3b8 !important;
+}
+
+.sdProcessCard
+.stepItem[data-status="planned"]
+.stepProcessStatus,
+.sdProcessCard
+.stepItem[data-status="waiting"]
+.stepProcessStatus {
+  color: #94a3b8 !important;
+}
+
+/* ==========================================================================
+   진행 중 회전 애니메이션
+   ========================================================================== */
+
+@keyframes sdStepActiveRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

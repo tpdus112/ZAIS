@@ -37,7 +37,10 @@
 .processStepModalDialog .sapMBtnInner:focus,
 .processStepModalDialog .sapMFocus .sapMBtnInner,
 .processStepModalDialog .sapMInputBaseInner:focus,
-.processStepModalDialog .sapMInputBaseContentWrapper:focus {
+.processStepModalDialog .sapMInputBaseContentWrapper:focus,
+.processStepModalDialog .sapMSlt:focus,
+.processStepModalDialog .sapMSlt.sapMFocus,
+.processStepModalDialog .sapMSltLabel:focus {
   outline: none !important;
   outline-color: transparent !important;
   outline-style: none !important;
@@ -253,7 +256,6 @@
 }
 
 .filterInput .sapMInputBaseContentWrapper,
-.filterSelect .sapMSlt,
 .filterDatePicker .sapMInputBaseContentWrapper {
   height: 36px !important;
   border-radius: 6px !important;
@@ -268,9 +270,72 @@
 }
 
 .filterInput .sapMInputBaseContentWrapper:hover,
-.filterSelect .sapMSlt:hover,
 .filterDatePicker .sapMInputBaseContentWrapper:hover {
   border-color: #cbd5e1 !important;
+}
+
+/* ==================== Select (상태 전체) 하단 검은 밑줄 바 완전 제거 및 1px 단일 테두리 ==================== */
+.filterSelect,
+.filterSelect.sapMSlt,
+.filterSelect.sapMSltDefault,
+.filterSelect.sapMSltHoverable,
+.filterSelect.sapMSltFocused,
+.filterSelect.sapMSltPressed,
+.filterSelect.sapMSltWithArrow,
+.filterSelect.sapMFocus,
+.modalFilterBar .sapMSlt,
+.modalFilterBar .sapMSltDefault,
+.modalFilterBar .sapMSltHoverable,
+.modalFilterBar .sapMSltFocused,
+.modalFilterBar .sapMSltPressed {
+  height: 36px !important;
+  border-radius: 6px !important;
+  border: 1px solid #dfe3e8 !important;
+  border-top: 1px solid #dfe3e8 !important;
+  border-bottom: 1px solid #dfe3e8 !important;
+  border-left: 1px solid #dfe3e8 !important;
+  border-right: 1px solid #dfe3e8 !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  outline: none !important;
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+}
+
+.filterSelect:hover,
+.filterSelect.sapMSlt:hover,
+.filterSelect.sapMSltHoverable:hover,
+.modalFilterBar .sapMSlt:hover {
+  border: 1px solid #cbd5e1 !important;
+  border-top: 1px solid #cbd5e1 !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+  border-left: 1px solid #cbd5e1 !important;
+  border-right: 1px solid #cbd5e1 !important;
+  box-shadow: none !important;
+}
+
+/* SAP UI5 Select 테마 기본 하단 액센트 바만 정확히 제거 (아이콘 ::before는 보존) */
+.filterSelect.sapMSlt::after,
+.filterSelect.sapMSlt::before,
+.filterSelect.sapMSltHoverable::after,
+.filterSelect.sapMSltHoverable::before,
+.filterSelect.sapMSltFocused::after,
+.filterSelect.sapMSltFocused::before,
+.filterSelect.sapMSltPressed::after,
+.filterSelect.sapMSltPressed::before,
+.modalFilterBar .sapMSlt::after,
+.modalFilterBar .sapMSlt::before {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* 인풋창 내부 텍스트 수직 정중앙 */
@@ -289,18 +354,27 @@
   height: 34px !important;
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  padding-left: 10px !important;
   display: flex !important;
   align-items: center !important;
+  border: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: #1e293b !important;
+  font-size: 13px !important;
 }
 
-/* 모든 이모티콘/아이콘(검색도움, 달력, 드롭다운 화살표) 세로 정중앙 정렬 */
+/* 모든 이모티콘/아이콘(검색도움, 달력, 드롭다운 화살표) 세로 정중앙 정렬 및 선명한 표시 */
 .filterInput .sapMInputBaseIcon,
 .filterInput .sapMInputValHelp,
 .filterInput .sapMInputValHelpIcon,
 .filterDatePicker .sapMInputBaseIcon,
 .filterDatePicker .sapUiIcon,
 .filterSelect .sapMSltArrow,
-.filterSelect .sapMSltArrow .sapUiIcon {
+.filterSelect .sapMSltArrow .sapUiIcon,
+.modalFilterBar .sapMSlt .sapMSltArrow,
+.modalFilterBar .sapMSlt .sapUiIcon {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -309,10 +383,12 @@
   top: 0 !important;
   bottom: 0 !important;
   margin: 0 !important;
-  padding: 0 4px !important;
+  padding: 0 8px !important;
   vertical-align: middle !important;
   font-size: 13px !important;
-  color: #64748b !important;
+  color: #2563eb !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* 달력 클릭 시 네모난 포커스 잔상/틀 완전 제거 */
@@ -637,17 +713,33 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* 10. Calendar & DatePicker Popup Clean Style (이중 사각틀/포커스 테두리 완전 박멸) */
+/* 10. Calendar & DatePicker Popup Clean Style (최외곽 단일 테두리 및 내부 이중틀 완전 박멸) */
+.sapMDatePickerPop,
+.sapMDatePickerPop.sapMPopover,
+.sapMDatePickerPop.sapMDialog {
+  outline: none !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 12px !important;
+  border: 1px solid #cbd5e1 !important;
+  background-color: #ffffff !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+/* 달력 팝업 내부 캘린더 컴포넌트의 중복 테두리/아웃라인 완전 제거 */
+.sapMDatePickerPop .sapMPopoverCont,
+.sapMDatePickerPop .sapMPopoverScroll,
+.sapMDatePickerPop .sapMDialogSection,
+.sapMDatePickerPop .sapMDialogScroll,
 .sapUiCal,
 .sapUiCalMonthView,
 .sapUiCalYearView,
 .sapUiCalMonthPicker,
 .sapUiCalYearPicker {
   outline: none !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
-  border-radius: 12px !important;
-  border: 1px solid #e2e8f0 !important;
-  background-color: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
 }
 
 /* 캘린더 날짜 셀 및 내부 텍스트의 모든 이중선/포커스링/박스섀도우 완전 리셋 */
@@ -748,4 +840,120 @@
 .stepItem:hover .stepName {
   color: #0a2560 !important;
   font-weight: 700 !important;
+}
+
+/* ==========================================================================
+   11. Select Dropdown Popover (드롭다운 목록 선택 시 이중 테두리/포커스 사각틀 완전 박멸)
+   ========================================================================== */
+/* 최외곽 팝오버에만 유일한 1px 단일 테두리 적용 */
+.sapMSltPicker,
+.sapMSltPicker.sapMPopover,
+.sapMSltPicker.sapMDialog {
+  outline: none !important;
+  border-radius: 8px !important;
+  border: 1px solid #cbd5e1 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12) !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+/* 팝오버 내부 모든 자식 컨테이너의 중복 테두리 제거 */
+.sapMSltPicker .sapMPopover,
+.sapMSltPicker .sapMPopoverCont,
+.sapMSltPicker .sapMPopoverScroll,
+.sapMSltPicker .sapMDialogSection,
+.sapMSltPicker .sapMDialogScroll,
+.sapMSltPicker .sapMDialogScrollCont,
+.sapMSltPicker .sapMSelectList,
+.sapMSltPicker .sapMListUl,
+.sapMSelectList {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.sapMSltPicker .sapMSelectListItem,
+.sapMSltPicker .sapMLIB,
+.sapMSelectList .sapMSelectListItem,
+.sapMSelectList .sapMLIB {
+  outline: none !important;
+  outline-color: transparent !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
+  border: none !important;
+  border-top: none !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  font-size: 13px !important;
+  height: 38px !important;
+  line-height: 38px !important;
+  padding: 0 14px !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.sapMSltPicker .sapMSelectListItem:last-child,
+.sapMSelectList .sapMSelectListItem:last-child {
+  border-bottom: none !important;
+}
+
+/* 포커스 및 선택 시 발생하는 이중 사각 테두리(포커스 링 / Outline) 완전 제거 */
+.sapMSltPicker .sapMSelectListItem:focus,
+.sapMSltPicker .sapMSelectListItem:focus-visible,
+.sapMSltPicker .sapMSelectListItem.sapMLIBFocused,
+.sapMSltPicker .sapMSelectListItem.sapMLIBSelected,
+.sapMSltPicker .sapMSelectListItem.sapMSelectListItemFocused,
+.sapMSelectList .sapMSelectListItem:focus,
+.sapMSelectList .sapMSelectListItem:focus-visible,
+.sapMSelectList .sapMSelectListItem.sapMLIBFocused,
+.sapMSelectList .sapMSelectListItem.sapMLIBSelected {
+  outline: none !important;
+  outline-color: transparent !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 가상 요소(::before / ::after)로 그려지는 이중 테두리 완전 박멸 */
+.sapMSltPicker .sapMSelectListItem::before,
+.sapMSltPicker .sapMSelectListItem::after,
+.sapMSltPicker .sapMLIBFocused::before,
+.sapMSltPicker .sapMLIBFocused::after,
+.sapMSltPicker .sapMLIBSelected::before,
+.sapMSltPicker .sapMLIBSelected::after,
+.sapMSelectList .sapMSelectListItem::before,
+.sapMSelectList .sapMSelectListItem::after,
+.sapMSelectList .sapMLIBFocused::before,
+.sapMSelectList .sapMLIBFocused::after,
+.sapMSelectList .sapMLIBSelected::before,
+.sapMSelectList .sapMLIBSelected::after {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* 선택된 항목 스타일 (단일 연한 파란색 배경) */
+.sapMSltPicker .sapMSelectListItem.sapMLIBSelected,
+.sapMSelectList .sapMSelectListItem.sapMLIBSelected {
+  background-color: #eff6ff !important;
+  color: #2563eb !important;
+  font-weight: 600 !important;
+}
+
+.sapMSltPicker .sapMSelectListItem:hover,
+.sapMSelectList .sapMSelectListItem:hover {
+  background-color: #f1f5f9 !important;
+}
+
+.sapMSltPicker .sapMSelectListItem.sapMLIBSelected:hover,
+.sapMSelectList .sapMSelectListItem.sapMLIBSelected:hover {
+  background-color: #dbeafe !important;
 }

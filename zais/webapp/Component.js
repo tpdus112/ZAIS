@@ -34,19 +34,36 @@ sap.ui.define(
           // FLP 로그아웃 시 ZAIS 로그인 세션 삭제
           sap.ushell.Container.attachLogoutEvent(() => {
             sessionStorage.removeItem("zaisLoggedIn");
+            sessionStorage.removeItem("zaisUserId");
+            sessionStorage.removeItem("zaisUserName");
+            sessionStorage.removeItem("zaisUser");
+            localStorage.removeItem("zaisLoggedIn");
+            localStorage.removeItem("zaisUserId");
+            localStorage.removeItem("zaisUserName");
+            localStorage.removeItem("zaisUser");
           });
         }
 
         const oRouter = this.getRouter();
 
-        // 1. 라우팅 가드: 로그인이 안 되어 있는데 메인 화면(RouteMain)으로 직접 접근한 경우 -> RouteLogin으로 리다이렉트
+        // 1. 라우팅 가드
         oRouter.attachBeforeRouteMatched((oEvent) => {
           const sRouteName = oEvent.getParameter("name");
-          const bIsLoggedIn = sessionStorage.getItem("zaisLoggedIn") === "true";
+          const bIsLoggedIn =
+            sessionStorage.getItem("zaisLoggedIn") === "true" ||
+            localStorage.getItem("zaisLoggedIn") === "true";
 
+          // 비로그인 상태에서 보호된 화면(RouteMain 등) 접근 시 -> 로그인 화면으로 리다이렉트
           if (sRouteName === "RouteMain" && !bIsLoggedIn) {
             oEvent.preventDefault();
             oRouter.navTo("RouteLogin", {}, true);
+            return;
+          }
+
+          // 이미 로그인된 상태에서 로그인 화면(RouteLogin) 접근 시 -> 메인 화면으로 자동 이동
+          if (sRouteName === "RouteLogin" && bIsLoggedIn) {
+            oEvent.preventDefault();
+            oRouter.navTo("RouteMain", {}, true);
             return;
           }
         });
