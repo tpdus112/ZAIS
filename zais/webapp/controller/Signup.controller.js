@@ -154,75 +154,86 @@ sap.ui.define(
         // OData 모델 가져오기
         const oLoginService = this.getOwnerComponent().getModel("loginService");
 
-        // OData 서비스가 있고 create 기능이 있는 경우
-        if (oLoginService && typeof oLoginService.create === "function") {
-          const oRegisterData = {
-            UserId: sUserId,
-            Password: sPassword,
-            UserName: sName,
-            Success: false,
-            Message: "",
-          };
-
-          oLoginService.create("/RegisterSet", oRegisterData, {
-            success: (oData) => {
-              if (oSignupButton) oSignupButton.setEnabled(true);
-
-              if (oData && oData.Success === false) {
-                MessageBox.warning(oData.Message || "회원가입에 실패했습니다.");
-                return;
-              }
-
-              MessageToast.show(
-                oData?.Message || "회원가입이 완료되었습니다. 로그인해 주세요.",
-              );
-
-              // 입력값 초기화
-              oSignupModel.setData({
-                name: "",
-                userId: "",
-                password: "",
-                isPasswordVisible: false,
-              });
-
-              // 로그인 화면으로 복귀
-              this.getOwnerComponent().getRouter().navTo("RouteLogin");
-            },
-            error: (oError) => {
-              if (oSignupButton) oSignupButton.setEnabled(true);
-              console.warn(
-                "Signup OData service error (fallback to local success):",
-                oError,
-              );
-
-              // 백엔드 미연결/오류 시에도 사용자 경험을 위해 성공 토스트 후 로그인 이동
-              MessageToast.show("회원가입이 완료되었습니다. 로그인해 주세요.");
-
-              oSignupModel.setData({
-                name: "",
-                userId: "",
-                password: "",
-                isPasswordVisible: false,
-              });
-
-              this.getOwnerComponent().getRouter().navTo("RouteLogin");
-            },
-          });
-        } else {
-          // Mock 환경인 경우 즉시 성공 메시지와 함께 로그인 화면 이동
+        if (!oLoginService) {
           if (oSignupButton) oSignupButton.setEnabled(true);
-
-          MessageToast.show("회원가입이 완료되었습니다. 로그인해 주세요.");
-
-          oSignupModel.setData({
-            name: "",
-            userId: "",
-            password: "",
-            isPasswordVisible: false,
-          });
-
-          this.getOwnerComponent().getRouter().navTo("RouteLogin");
+          MessageBox.error("SAP 로그인/회원가입 서비스를 찾을 수 없습니다.");
+          return;
         }
+
+        const oRegisterData = {
+          UserId: sUserId,
+          Password: sPassword,
+          UserName: sName,
+          Success: false,
+          Message: "",
+        };
+
+        oLoginService.create("/RegisterSet", oRegisterData, {
+          success: (oData) => {
+            if (oSignupButton) oSignupButton.setEnabled(true);
+
+            // SAP 백엔드에서 명시적으로 실패 메시지를 보낸 경우 (ID 중복 등)
+            const bExplicitFailure =
+              oData &&
+              (oData.Success === false || oData.Success === "false") &&
+              oData.Message &&
+              (oData.Message.includes("실패") ||
+                oData.Message.includes("존재") ||
+                oData.Message.includes("중복") ||
+                oData.Message.includes("오류"));
+
+            if (bExplicitFailure) {
+              MessageBox.warning(oData.Message);
+              return;
+            }
+
+            // 회원가입 성공: 토스트 표시 및 로그인 화면으로 즉시 이동
+            MessageToast.show(
+              oData?.Message || "회원가입이 완료되었습니다. 로그인해 주세요.",
+            );
+
+            // 입력값 초기화
+            oSignupModel.setData({
+              name: "",
+              userId: "",
+              password: "",
+              isPasswordVisible: false,
+            });
+
+            // 로그인 화면으로 복귀
+            this.getOwnerComponent().getRouter().navTo("RouteLogin");
+          },
+          error: (oError) => {
+            if (oSignupButton) oSignupButton.setEnabled(true);
+            console.error("Signup OData service error:", oError);
+
+            // SAP OData 에러 메시지 추출
+            let sErrorMessage = "회원가입 처리 중 SAP 서버 오류가 발생했습니다.";
+            if (oError && oError.responseText) {
+              try {
+                const oParsed = JSON.parse(oError.responseText);
+                if (
+                  oParsed.error &&
+                  oParsed.error.message &&
+                  oParsed.error.message.value
+                ) {
+                  sErrorMessage = oParsed.error.message.value;
+                }
+              } catch (e) {
+                const aMatch = oError.responseText.match(
+                  /<message[^>]*>([^<]+)<\/message>/i,
+                );
+                if (aMatch && aMatch[1]) {
+                  sErrorMessage = aMatch[1];
+                }
+              }
+            } else if (oError && oError.message) {
+              sErrorMessage = oError.message;
+            }
+
+            MessageBox.error(sErrorMessage);
+          },
+        });
       },
     });
   },
