@@ -1,0 +1,177 @@
+/* ==========================================================================
+   processSteps.css - 프로세스 단계 원형 아이콘, 애니메이션, 상태 링 및 화살표
+   ========================================================================== */
+
+/* 프로세스 단계 플로우 공통 */
+.flowStepsContainer {
+  width: 100% !important;
+  padding: 4px 6px 14px 6px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+  box-sizing: border-box !important;
+  background-color: #ffffff !important;
+}
+
+.stepItem {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+}
+
+/* 원형 아이콘 프레임 공통 */
+.stepCircle {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 6px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  position: relative !important;
+  transition: all 0.3s ease !important;
+}
+
+.stepCircle .sapUiIcon,
+.stepCircle .sapUiHtml {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 17px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 회전하는 외곽 궤도 띠 애니메이션 */
+@keyframes spinRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.stepCircle.stepActive::before {
+  content: "" !important;
+  position: absolute !important;
+  top: -5px !important;
+  left: -5px !important;
+  right: -5px !important;
+  bottom: -5px !important;
+  border-radius: 50% !important;
+  border: 2px dashed transparent !important;
+  animation: spinRing 2.4s linear infinite !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+
+/* 텍스트 및 상태 인디케이터 */
+.stepName {
+  font-size: 10.5px !important;
+  color: #334155 !important;
+  font-weight: 700 !important;
+  margin-bottom: 2px !important;
+  white-space: nowrap !important;
+}
+
+.stepCount {
+  font-size: 10px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+  margin-bottom: 3px !important;
+  white-space: nowrap !important;
+}
+
+.stepRateText {
+  font-size: 10px !important;
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+}
+
+.stepStatusDot {
+  width: 6px !important;
+  height: 6px !important;
+  min-width: 6px !important;
+  min-height: 6px !important;
+  border-radius: 50% !important;
+}
+
+/* 하단 단계 상태 링 */
+.stepStatusRing {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  min-height: 8px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid !important;
+  background-color: #ffffff !important;
+  box-sizing: border-box !important;
+}
+
+.ringBlue {
+  border-color: #0284c7 !important;
+  animation: pulseRing 1.8s ease-in-out infinite !important;
+}
+
+.ringGreen {
+  border-color: #16a34a !important;
+  animation: pulseRing 1.8s ease-in-out infinite !important;
+}
+
+.ringPurple {
+  border-color: #9333ea !important;
+  animation: pulseRing 1.8s ease-in-out infinite !important;
+}
+
+@keyframes pulseRing {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.6;
+  }
+}
+
+.ringGray {
+  border-color: #cbd5e1 !important;
+}
+
+.stepArrow {
+  color: #cbd5e1 !important;
+  font-size: 11px !important;
+  margin-top: -16px;
+}
+
+/* 컬럼 간 연결 화살표 */
+.columnArrowBox {
+  width: 24px !important;
+  min-width: 24px !important;
+  max-width: 24px !important;
+  flex: 0 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+.processBigArrow {
+  color: #94a3b8 !important;
+  font-size: 16px !important;
+}

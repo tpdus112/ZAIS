@@ -1,6 +1,10 @@
 sap.ui.define(
-  ["sap/ui/core/UIComponent", "zais/scm/zais/model/models"],
-  (UIComponent, models) => {
+  [
+    "sap/ui/core/UIComponent",
+    "zais/scm/zais/model/models",
+    "sap/ui/core/routing/HashChanger"
+  ],
+  (UIComponent, models, HashChanger) => {
     "use strict";
 
     return UIComponent.extend("zais.scm.zais.Component", {
@@ -30,28 +34,55 @@ sap.ui.define(
           } catch (e) {
             // ignore
           }
-
-          // FLP 로그아웃 시 ZAIS 로그인 세션 삭제
-          sap.ushell.Container.attachLogoutEvent(() => {
-            sessionStorage.removeItem("zaisLoggedIn");
-          });
         }
 
         const oRouter = this.getRouter();
 
-        // 1. 라우팅 가드: 로그인이 안 되어 있는데 메인 화면(RouteMain)으로 직접 접근한 경우 -> RouteLogin으로 리다이렉트
+        const bIsLoggedIn =
+          (typeof window !== "undefined" &&
+            window.sessionStorage &&
+            sessionStorage.getItem("zais_is_logged_in") === "true") ||
+          (typeof window !== "undefined" &&
+            window.localStorage &&
+            localStorage.getItem("zais_is_logged_in") === "true");
+
+        // Fiori Launchpad 타일 클릭 및 초기 진입 시 해시 검사 및 자동 분기
+        const oHashChanger = HashChanger.getInstance();
+        const sCurrentHash = oHashChanger.getHash();
+
+        if (bIsLoggedIn) {
+          // 이미 로그인된 경우 초기 빈 해시("") 또는 로그인 화면일 때 즉시 'main'으로 해시 교체
+          if (!sCurrentHash || sCurrentHash === "" || sCurrentHash === "login") {
+            oHashChanger.replaceHash("main");
+          }
+        } else {
+          // 로그인되지 않은 상태에서 메인 접근 시 로그인 화면으로 교체
+          if (sCurrentHash === "main") {
+            oHashChanger.replaceHash("");
+          }
+        }
+
+        // 로그인 세션 상태에 따른 라우팅 가드 (Route Guard)
         oRouter.attachBeforeRouteMatched((oEvent) => {
           const sRouteName = oEvent.getParameter("name");
-          const bIsLoggedIn = sessionStorage.getItem("zaisLoggedIn") === "true";
+          const bCurrentLoggedIn =
+            (typeof window !== "undefined" &&
+              window.sessionStorage &&
+              sessionStorage.getItem("zais_is_logged_in") === "true") ||
+            (typeof window !== "undefined" &&
+              window.localStorage &&
+              localStorage.getItem("zais_is_logged_in") === "true");
 
-          if (sRouteName === "RouteMain" && !bIsLoggedIn) {
-            oEvent.preventDefault();
+          // 이미 로그인된 상태에서 로그인 화면에 접근 시 메인으로 자동 이동
+          if (sRouteName === "RouteLogin" && bCurrentLoggedIn) {
+            oRouter.navTo("RouteMain", {}, true);
+          } else if (sRouteName === "RouteMain" && !bCurrentLoggedIn) {
+            // 로그인되지 않은 상태에서 메인 화면 접근 시 로그인 화면으로 이동
             oRouter.navTo("RouteLogin", {}, true);
-            return;
           }
         });
 
-        // 2. 라우팅 변경 시 런치패드 헤더 제어 및 레터박스 비활성화
+        // 라우팅 변경 시 런치패드 헤더 제어 및 레터박스 비활성화
         oRouter.attachRouteMatched((oEvent) => {
           const sRouteName = oEvent.getParameter("name");
           const bIsAuthScreen =
@@ -80,6 +111,20 @@ sap.ui.define(
                   }
                   if (oRenderer.setLetterboxMode) {
                     oRenderer.setLetterboxMode(false);
+                  }
+                  if (oRenderer.hideHeaderItem) {
+                    try {
+                      oRenderer.hideHeaderItem(
+                        [
+                          "userActionsMenuHeaderButton",
+                          "meAreaHeaderButton",
+                          "meAreaButton"
+                        ],
+                        false
+                      );
+                    } catch (err) {
+                      // ignore
+                    }
                   }
                 }
               } catch (e) {

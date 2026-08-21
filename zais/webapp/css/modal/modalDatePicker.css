@@ -1,0 +1,122 @@
+/* ==========================================================================
+   modalDatePicker.css - Calendar & DatePicker 팝업 클린 스타일
+   ========================================================================== */
+
+.sapMDatePickerPop,
+.sapMDatePickerPop.sapMPopover,
+.sapMDatePickerPop.sapMDialog {
+  outline: none !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  border-radius: 12px !important;
+  border: 1px solid #cbd5e1 !important;
+  background-color: #ffffff !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+/* 달력 팝업 내부 캘린더 컴포넌트의 중복 테두리/아웃라인 제거 */
+.sapMDatePickerPop .sapMPopoverCont,
+.sapMDatePickerPop .sapMPopoverScroll,
+.sapMDatePickerPop .sapMDialogSection,
+.sapMDatePickerPop .sapMDialogScroll,
+.sapUiCal,
+.sapUiCalMonthView,
+.sapUiCalYearView,
+.sapUiCalMonthPicker,
+.sapUiCalYearPicker {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+/* 캘린더 날짜 셀 및 내부 텍스트의 모든 이중선/포커스링/박스섀도우 리셋 */
+.sapUiCalMonthView .sapUiCalItem,
+.sapUiCalMonthView .sapUiCalItem:focus,
+.sapUiCalMonthView .sapUiCalItem.sapUiCalItemFocus,
+.sapUiCalMonthView .sapUiCalItem.sapMFocus,
+.sapUiCalMonthView .sapUiCalItemSel,
+.sapUiCalMonthView .sapUiCalItemSel:focus,
+.sapUiCalMonthView .sapUiCalItemNow,
+.sapUiCalMonthView .sapUiCalItemNow:focus,
+.sapUiCalMonthView .sapUiCalItem *,
+.sapUiCalMonthView .sapUiCalItem span,
+.sapUiCalMonthView .sapUiCalItemText,
+.sapUiCalHead .sapUiCalHeadBVal:focus,
+.sapUiCalHead .sapMBtn:focus,
+.sapUiCalHead .sapMBtnInner:focus {
+  outline: none !important;
+  outline-color: transparent !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* 모든 날짜 셀의 가상 테두리(::before / ::after) 및 내부 요소 가상선 제거 */
+.sapUiCalMonthView .sapUiCalItem::after,
+.sapUiCalMonthView .sapUiCalItem::before,
+.sapUiCalMonthView .sapUiCalItem *::after,
+.sapUiCalMonthView .sapUiCalItem *::before,
+.sapUiCalMonthView .sapUiCalItemNow::after,
+.sapUiCalMonthView .sapUiCalItemNow::before,
+.sapUiCalMonthView .sapUiCalItemSel::after,
+.sapUiCalMonthView .sapUiCalItemSel::before {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 기본 날짜 셀 (모서리 8px) */
+.sapUiCalMonthView .sapUiCalItem {
+  border: 1.5px solid transparent !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
+  transition: background-color 0.15s ease !important;
+}
+
+.sapUiCalMonthView .sapUiCalItem:hover:not(.sapUiCalItemSel) {
+  background-color: #f1f5f9 !important;
+}
+
+/* 오늘 날짜 (단일 1.5px 파란 테두리) */
+.sapUiCalMonthView .sapUiCalItem.sapUiCalItemNow,
+.sapUiCalMonthView .sapUiCalItemNow {
+  border: 1.5px solid #2563eb !important;
+  border-radius: 8px !important;
+  background-color: #eff6ff !important;
+  font-weight: 700 !important;
+}
+
+/* 선택된 날짜 (단일 파란색 배경) */
+.sapUiCalMonthView .sapUiCalItem.sapUiCalItemSel,
+.sapUiCalMonthView .sapUiCalItemSel {
+  background-color: #2563eb !important;
+  border: 1.5px solid #2563eb !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+}
+
+.sapUiCalMonthView .sapUiCalItem.sapUiCalItemSel *,
+.sapUiCalMonthView .sapUiCalItemSel *,
+.sapUiCalMonthView .sapUiCalItem.sapUiCalItemSel .sapUiCalItemText,
+.sapUiCalMonthView .sapUiCalItemSel .sapUiCalItemText {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #ffffff !important;
+}
+
+/* 오늘 날짜이면서 선택된 경우 (단일 파란 배경 유지) */
+.sapUiCalMonthView .sapUiCalItem.sapUiCalItemNow.sapUiCalItemSel,
+.sapUiCalMonthView .sapUiCalItemNow.sapUiCalItemSel {
+  background-color: #2563eb !important;
+  border: 1.5px solid #2563eb !important;
+}
+
+.sapUiCalMonthView .sapUiCalItem.sapUiCalItemNow.sapUiCalItemSel * {
+  color: #ffffff !important;
+}

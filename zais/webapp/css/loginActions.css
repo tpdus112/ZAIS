@@ -1,0 +1,241 @@
+/* ==========================================================================
+   loginActions.css - 비밀번호 토글 버튼, 로그인/회원가입 버튼, 푸터 링크, 반응형
+   ========================================================================== */
+
+/* 9. Password Header & Input */
+.passwordHeader {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 5px !important;
+}
+
+.passwordHeader .loginLabel {
+  margin-bottom: 0 !important;
+}
+
+.forgotPasswordLink {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #0a2560 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+.forgotPasswordLink:hover {
+  text-decoration: underline !important;
+}
+
+/* Password Input Container */
+.passwordInputContainer {
+  position: relative !important;
+  width: 100% !important;
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+.passwordInputContainer > .sapMFlexItem:first-child,
+.passwordInputContainer .passwordInput {
+  width: 100% !important;
+  height: 48px !important;
+  display: block !important;
+  flex: 1 1 100% !important;
+}
+
+/* 10. 비밀번호 눈 토글 버튼 */
+.passwordInputContainer > .sapMFlexItem:last-child {
+  position: absolute !important;
+  right: 6px !important;
+  top: 50% !important;
+  transform: translateY(-48%) !important;
+  z-index: 10 !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.passwordInputContainer .passwordToggleButton {
+  position: static !important;
+  transform: none !important;
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  max-width: 36px !important;
+  max-height: 36px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.passwordToggleButton .sapMBtnInner {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: 36px !important;
+}
+
+.passwordToggleButton .sapMBtnIcon,
+.passwordToggleButton .sapUiIcon {
+  font-size: 16px !important;
+  color: #94a3b8 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  line-height: normal !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 0 !important;
+  vertical-align: middle !important;
+}
+
+.passwordToggleButton:hover .sapUiIcon,
+.passwordToggleButton:hover .sapMBtnIcon {
+  color: #475569 !important;
+}
+
+/* 11. 로그인 및 회원가입 버튼 */
+.loginButton,
+.signupButton {
+  width: 100% !important;
+  margin-top: 10px !important;
+  margin-bottom: 22px !important;
+  display: block !important;
+}
+
+.loginButton .sapMBtnInner,
+.signupButton .sapMBtnInner {
+  height: 48px !important;
+  min-height: 48px !important;
+  background-color: #0a2560 !important;
+  border: 1px solid #0a2560 !important;
+  border-radius: 10px !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(10, 37, 96, 0.18) !important;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.loginButton .sapMBtnContent,
+.signupButton .sapMBtnContent {
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 48px !important;
+}
+
+.loginButton:hover .sapMBtnInner,
+.signupButton:hover .sapMBtnInner {
+  background-color: #071d4d !important;
+  border-color: #071d4d !important;
+  box-shadow: 0 6px 18px rgba(10, 37, 96, 0.28) !important;
+  transform: translateY(-1px) !important;
+}
+
+.loginButton:active .sapMBtnInner,
+.signupButton:active .sapMBtnInner {
+  background-color: #051538 !important;
+  border-color: #051538 !important;
+  box-shadow: 0 2px 6px rgba(10, 37, 96, 0.2) !important;
+  transform: translateY(0) !important;
+}
+
+/* 12. 하단 네비게이션 & 푸터 */
+.signupBottomNav {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  margin-top: 0 !important;
+}
+
+.hasAccountText {
+  font-size: 12.5px !important;
+  color: #64748b !important;
+  font-weight: 500 !important;
+}
+
+.navToLoginLink {
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: #0a2560 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+.navToLoginLink:hover {
+  text-decoration: underline !important;
+}
+
+.loginFooter,
+.signupFooter {
+  display: block !important;
+  margin-top: 36px !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
+  color: #b0b8c1 !important;
+  letter-spacing: 0.3px !important;
+  text-align: center !important;
+}
+
+/* 13. 반응형 */
+@media (max-width: 600px) {
+  .loginModal {
+    width: calc(100% - 32px) !important;
+    padding: 36px 24px 30px 24px !important;
+    border-radius: 20px !important;
+  }
+
+  .loginLogoContainer {
+    margin-bottom: 30px !important;
+  }
+
+  .loginTitleContainer {
+    margin-bottom: 24px !important;
+  }
+
+  .loginFormGroup,
+  .signupFormGroup {
+    margin-bottom: 18px !important;
+  }
+
+  .loginButton,
+  .signupButton {
+    margin-bottom: 18px !important;
+  }
+
+  .loginFooter,
+  .signupFooter {
+    margin-top: 28px !important;
+  }
+}

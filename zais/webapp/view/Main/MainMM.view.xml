@@ -12,78 +12,255 @@
         </HBox>
 
         <!-- 프로세스 단계 플로우 -->
-        <HBox alignItems="Center" justifyContent="SpaceAround" class="flowStepsContainer">
-            <VBox id="stepPR" alignItems="Center" class="stepItem">
-                <VBox alignItems="Center" justifyContent="Center" class="stepCircle mmStepCircle stepDone">
-                    <core:Icon src="sap-icon://request" class="stepIconDone" />
-                </VBox>
-                <Text text="구매요청" class="stepName" />
-                <Text text="12 / 12" class="stepCount" />
-                <VBox class="stepStatusDot dotBlue" />
-            </VBox>
+<HBox
+    alignItems="Center"
+    justifyContent="SpaceAround"
+    class="flowStepsContainer">
 
-            <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
+    <!-- 구매요청 -->
+    <VBox
+        id="stepPR"
+        alignItems="Center"
+        class="stepItem">
 
-            <VBox id="stepPO" alignItems="Center" class="stepItem">
-                <VBox alignItems="Center" justifyContent="Center" class="stepCircle mmStepCircle stepDone">
-                    <core:Icon src="sap-icon://cart" class="stepIconDone" />
-                </VBox>
-                <Text text="구매오더" class="stepName" />
-                <Text text="12 / 12" class="stepCount" />
-                <VBox class="stepStatusDot dotBlue" />
-            </VBox>
+        <customData>
+            <core:CustomData
+                key="status"
+                value="{dashboard>/mmProcessSummary/prStatus}"
+                writeToDom="true" />
+        </customData>
 
-            <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
+        <VBox
+            alignItems="Center"
+            justifyContent="Center"
+            class="stepCircle mmStepCircle">
+            <core:Icon
+                src="sap-icon://request"
+                class="stepDynamicIcon" />
+        </VBox>
 
-            <VBox id="stepGR" alignItems="Center" class="stepItem">
-                <VBox alignItems="Center" justifyContent="Center" class="stepCircle mmStepCircle stepActive">
-                    <core:Icon src="sap-icon://inventory" class="stepIconActive" />
-                </VBox>
-                <Text text="자재 입고" class="stepName" />
-                <Text text="9 / 12" class="stepCount" />
-                <VBox class="stepStatusRing ringBlue" />
-            </VBox>
+        <Text
+            text="구매요청"
+            class="stepName" />
 
-            <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
+        <Text
+            text="{dashboard>/mmProcessSummary/prCountText}"
+            class="stepCount" />
 
-            <VBox id="stepGRComplete" alignItems="Center" class="stepItem">
-                <VBox alignItems="Center" justifyContent="Center" class="stepCircle mmStepCircle stepActive">
-                    <core:Icon src="sap-icon://building" class="stepIconActive" />
-                </VBox>
-                <Text text="입고 완료" class="stepName" />
-                <Text text="9 / 12" class="stepCount" />
-                <VBox class="stepStatusRing ringBlue" />
-            </VBox>
-        </HBox>
+        <Text
+            text="{dashboard>/mmProcessSummary/prStatusText}"
+            class="stepProcessStatus" />
+    </VBox>
 
-        <!-- 하단 상세 테이블 (모든 열 가운데 정렬) -->
-        <Table
-            items="{dashboard>/process/mm/materials}"
-            class="processMiniTable"
-            inset="false"
-            showNoData="false">
-            <columns>
-                <Column width="30%" hAlign="Center"><Text text="주요 자재" class="tableColHeader" /></Column>
-                <Column width="18%" hAlign="Center"><Text text="PO 수량" class="tableColHeader" /></Column>
-                <Column width="18%" hAlign="Center"><Text text="입고 수량" class="tableColHeader" /></Column>
-                <Column width="18%" hAlign="Center"><Text text="진행률" class="tableColHeader" /></Column>
-                <Column width="16%" hAlign="Center"><Text text="상태" class="tableColHeader" /></Column>
-            </columns>
-            <items>
-                <ColumnListItem class="tableRowItem">
-                    <cells>
-                        <Text text="{dashboard>name}" class="cellTextPrimary" />
-                        <Text text="{dashboard>poQty}" class="cellTextMuted" />
-                        <Text text="{dashboard>grQty}" class="cellTextMuted" />
-                        <Text text="{dashboard>rate}" class="cellTextBold" />
-                        <ObjectStatus
-                            text="{dashboard>status}"
-                            state="{dashboard>statusState}"
-                            class="statusBadge" />
-                    </cells>
-                </ColumnListItem>
-            </items>
-        </Table>
+
+    <core:Icon
+        src="sap-icon://slim-arrow-right"
+        class="stepArrow" />
+
+
+    <!-- 구매오더 -->
+    <VBox
+        id="stepPO"
+        alignItems="Center"
+        class="stepItem">
+
+        <customData>
+            <core:CustomData
+                key="status"
+                value="{dashboard>/mmProcessSummary/poStatus}"
+                writeToDom="true" />
+        </customData>
+
+        <VBox
+            alignItems="Center"
+            justifyContent="Center"
+            class="stepCircle mmStepCircle">
+            <core:Icon
+                src="sap-icon://cart"
+                class="stepDynamicIcon" />
+        </VBox>
+
+        <Text
+            text="구매오더"
+            class="stepName" />
+
+        <Text
+            text="{dashboard>/mmProcessSummary/poCountText}"
+            class="stepCount" />
+
+        <Text
+            text="{dashboard>/mmProcessSummary/poStatusText}"
+            class="stepProcessStatus" />
+    </VBox>
+
+
+    <core:Icon
+        src="sap-icon://slim-arrow-right"
+        class="stepArrow" />
+
+
+    <!-- 자재 입고 -->
+    <VBox
+        id="stepGR"
+        alignItems="Center"
+        class="stepItem">
+
+        <customData>
+            <core:CustomData
+                key="status"
+                value="{dashboard>/mmProcessSummary/grStatus}"
+                writeToDom="true" />
+        </customData>
+
+        <VBox
+            alignItems="Center"
+            justifyContent="Center"
+            class="stepCircle mmStepCircle">
+            <core:Icon
+                src="sap-icon://inventory"
+                class="stepDynamicIcon" />
+        </VBox>
+
+        <Text
+            text="자재 입고"
+            class="stepName" />
+
+        <Text
+            text="{dashboard>/mmProcessSummary/grCountText}"
+            class="stepCount" />
+
+        <Text
+            text="{dashboard>/mmProcessSummary/grStatusText}"
+            class="stepProcessStatus" />
+    </VBox>
+
+
+    <core:Icon
+        src="sap-icon://slim-arrow-right"
+        class="stepArrow" />
+
+
+    <!-- 입고 완료 -->
+    <VBox
+        id="stepGRComplete"
+        alignItems="Center"
+        class="stepItem">
+
+        <customData>
+            <core:CustomData
+                key="status"
+                value="{dashboard>/mmProcessSummary/grCompleteStatus}"
+                writeToDom="true" />
+        </customData>
+
+        <VBox
+            alignItems="Center"
+            justifyContent="Center"
+            class="stepCircle mmStepCircle">
+            <core:Icon
+                src="sap-icon://building"
+                class="stepDynamicIcon" />
+        </VBox>
+
+        <Text
+            text="입고 완료"
+            class="stepName" />
+
+        <Text
+            text="{dashboard>/mmProcessSummary/grCompleteCountText}"
+            class="stepCount" />
+
+        <Text
+            text="{dashboard>/mmProcessSummary/grCompleteStatusText}"
+            class="stepProcessStatus" />
+    </VBox>
+
+</HBox>
+
+        <!-- 하단 상세 테이블 - 실제 SAP PO / 입고 데이터 -->
+        <ScrollContainer
+    width="100%"
+    height="260px"
+    vertical="true"
+    horizontal="false"
+    class="materialProgressScroll">
+<Table
+    id="materialReceiptProgressTable"
+    items="{dashboard>/materialReceiptProgress}"
+    class="processMiniTable"
+    inset="false"
+    showNoData="true"
+    noDataText="조회된 자재 입고 현황이 없습니다.">
+
+    <columns>
+        <Column width="30%" hAlign="Center">
+            <Text
+                text="주요 자재"
+                class="tableColHeader" />
+        </Column>
+
+        <Column width="18%" hAlign="Center">
+            <Text
+                text="PO 수량"
+                class="tableColHeader" />
+        </Column>
+
+        <Column width="18%" hAlign="Center">
+            <Text
+                text="입고 수량"
+                class="tableColHeader" />
+        </Column>
+
+        <Column width="18%" hAlign="Center">
+            <Text
+                text="진행률"
+                class="tableColHeader" />
+        </Column>
+
+        <Column width="16%" hAlign="Center">
+            <Text
+                text="상태"
+                class="tableColHeader" />
+        </Column>
+    </columns>
+
+    <items>
+        <ColumnListItem class="tableRowItem">
+            <cells>
+
+                <!-- 주요 자재 -->
+                <Text
+                    text="{dashboard>materialName}"
+                    tooltip="{dashboard>materialName}"
+    wrapping="false"
+    class="cellTextPrimary" />
+
+                <!-- PO 수량 -->
+                <Text
+                    text="{= ${dashboard>poQty} + ' ' + ${dashboard>unit} }"
+                    class="cellTextMuted" />
+
+                <!-- 입고 수량 -->
+                <Text
+                    text="{= ${dashboard>grQty} + ' ' + ${dashboard>unit} }"
+                    class="cellTextMuted" />
+
+                <!-- 진행률 -->
+                <Text
+                    text="{dashboard>progressText}"
+                    class="cellTextBold" />
+
+                <!-- 상태 -->
+                <ObjectStatus
+                    text="{dashboard>status}"
+                    state="{dashboard>statusState}"
+                    class="statusBadge" />
+
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+</ScrollContainer>
     </VBox>
 
 </mvc:View>

@@ -29,6 +29,10 @@ server:
       afterMiddleware: compression
       configuration:
         ignoreCertErrors: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        backend:
+          - path: /sap
+            url: http://saphspap.hansung.ac.kr:8001
+            client: "100"
 builder:
   resources:
     excludes:

@@ -1,0 +1,94 @@
+/* ==========================================================================
+   processMiniTable.css - 프로세스 하단 미니 테이블 및 상태 뱃지 (Pill/Badge)
+   ========================================================================== */
+
+/* 프로세스 하단 미니 테이블 공통 */
+.processMiniTable {
+  width: 100% !important;
+  background-color: #ffffff !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+.processMiniTable .sapMListTblHeader {
+  background-color: #f8fafc !important;
+  height: 28px !important;
+}
+
+.processMiniTable .sapMListTblCell {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  background-color: #ffffff !important;
+  text-align: center !important;
+}
+
+.tableColHeader {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  color: #64748b !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.cellTextPrimary {
+  font-size: 10.5px !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.cellTextMuted {
+  font-size: 10.5px !important;
+  color: #64748b !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.cellTextBold {
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* 상태 뱃지 (Pill/Badge) */
+.statusBadge .sapMObjStatusText {
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  padding: 1px 6px !important;
+  border-radius: 4px !important;
+  white-space: nowrap !important;
+}
+
+.statusBadge.sapMObjStatusSuccess .sapMObjStatusText {
+  background-color: #ecfdf5 !important;
+  color: #059669 !important;
+}
+
+.statusBadge.sapMObjStatusInformation .sapMObjStatusText {
+  background-color: #eff6ff !important;
+  color: #2563eb !important;
+}
+
+.statusBadge.sapMObjStatusNone .sapMObjStatusText {
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+}
+
+.statusBadge.sapMObjStatusWarning .sapMObjStatusText {
+  background-color: #fff7ed !important;
+  color: #ea580c !important;
+}
+
+.statusBadge.sapMObjStatusError .sapMObjStatusText {
+  background-color: #fff1f2 !important;
+  color: #e11d48 !important;
+}

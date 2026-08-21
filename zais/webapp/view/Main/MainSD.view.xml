@@ -4,86 +4,329 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
 
-    <VBox class="moduleProcessCard sdProcessCard" width="100%">
-        <!-- 모듈 헤더 바 -->
-        <HBox alignItems="Center" justifyContent="Center" class="moduleHeaderBar sdHeaderBar">
-            <core:Icon src="sap-icon://shipping-status" class="moduleIcon sdIcon" />
-            <Text text="SD 판매/출하" class="moduleTitle sdTitleText" />
+    <VBox
+        class="moduleProcessCard sdProcessCard"
+        width="100%">
+
+        <!-- =====================================================
+             SD 모듈 헤더
+             ===================================================== -->
+        <HBox
+            alignItems="Center"
+            justifyContent="Center"
+            class="moduleHeaderBar sdHeaderBar">
+
+            <core:Icon
+                src="sap-icon://shipping-status"
+                class="moduleIcon sdIcon" />
+
+            <Text
+                text="SD 판매/출하"
+                class="moduleTitle sdTitleText" />
+
         </HBox>
 
-        <!-- 프로세스 단계 플로우 -->
-        <HBox alignItems="Center" justifyContent="SpaceAround" class="flowStepsContainer">
-            <VBox id="stepSO" alignItems="Center" class="stepItem">
-                <VBox alignItems="Center" justifyContent="Center" class="stepCircle sdStepCircle stepDone">
-                    <core:Icon src="sap-icon://sales-order" class="stepIconDone" />
+
+        <!-- =====================================================
+             SD 상단 프로세스
+             건수 기준
+             ===================================================== -->
+        <HBox
+            alignItems="Center"
+            justifyContent="SpaceAround"
+            class="flowStepsContainer">
+
+            <!-- Sales Order -->
+            <VBox
+                id="stepSO"
+                alignItems="Center"
+                class="stepItem">
+
+                <customData>
+                    <core:CustomData
+                        key="status"
+                        value="{dashboard>/process/sd/steps/0/status}"
+                        writeToDom="true" />
+                </customData>
+
+                <VBox
+                    id="circleSO"
+                    alignItems="Center"
+                    justifyContent="Center"
+                    class="stepCircle sdStepCircle">
+
+                    <core:Icon
+                        src="sap-icon://sales-order"
+                        class="stepDynamicIcon" />
+
                 </VBox>
-                <Text text="Sales Order" class="stepName" />
-                <Text text="10 / 10" class="stepCount" />
-                <VBox class="stepStatusDot dotPurple" />
+
+                <Text
+                    text="Sales Order"
+                    class="stepName" />
+
+                <Text
+                    text="{dashboard>/process/sd/steps/0/count}"
+                    class="stepCount" />
+
+                <Text
+                    text="{dashboard>/process/sd/steps/0/statusText}"
+                    class="stepProcessStatus" />
+
             </VBox>
 
-            <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox id="stepDelivery" alignItems="Center" class="stepItem">
-                <VBox alignItems="Center" justifyContent="Center" class="stepCircle sdStepCircle stepActive">
-                    <core:Icon src="sap-icon://shipping-status" class="stepIconActive" />
+            <core:Icon
+                src="sap-icon://slim-arrow-right"
+                class="stepArrow" />
+
+
+            <!-- Delivery -->
+            <VBox
+                id="stepDelivery"
+                alignItems="Center"
+                class="stepItem">
+
+                <customData>
+                    <core:CustomData
+                        key="status"
+                        value="{dashboard>/process/sd/steps/1/status}"
+                        writeToDom="true" />
+                </customData>
+
+                <VBox
+                    id="circleDelivery"
+                    alignItems="Center"
+                    justifyContent="Center"
+                    class="stepCircle sdStepCircle">
+
+                    <core:Icon
+                        src="sap-icon://shipping-status"
+                        class="stepDynamicIcon" />
+
                 </VBox>
-                <Text text="Delivery" class="stepName" />
-                <Text text="5 / 10" class="stepCount" />
-                <VBox class="stepStatusRing ringPurple" />
+
+                <Text
+                    text="Delivery"
+                    class="stepName" />
+
+                <Text
+                    text="{dashboard>/process/sd/steps/1/count}"
+                    class="stepCount" />
+
+                <Text
+                    text="{dashboard>/process/sd/steps/1/statusText}"
+                    class="stepProcessStatus" />
+
             </VBox>
 
-            <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox id="stepPGI" alignItems="Center" class="stepItem">
-                <VBox alignItems="Center" justifyContent="Center" class="stepCircle sdStepCircle stepActive">
-                    <core:Icon src="sap-icon://receipt" class="stepIconActive" />
+            <core:Icon
+                src="sap-icon://slim-arrow-right"
+                class="stepArrow" />
+
+
+            <!-- PGI -->
+            <VBox
+                id="stepPGI"
+                alignItems="Center"
+                class="stepItem">
+
+                <customData>
+                    <core:CustomData
+                        key="status"
+                        value="{dashboard>/process/sd/steps/2/status}"
+                        writeToDom="true" />
+                </customData>
+
+                <VBox
+                    id="circlePGI"
+                    alignItems="Center"
+                    justifyContent="Center"
+                    class="stepCircle sdStepCircle">
+
+                    <core:Icon
+                        src="sap-icon://receipt"
+                        class="stepDynamicIcon" />
+
                 </VBox>
-                <Text text="PGI" class="stepName" />
-                <Text text="4 / 10" class="stepCount" />
-                <VBox class="stepStatusRing ringPurple" />
+
+                <Text
+                    text="PGI"
+                    class="stepName" />
+
+                <Text
+                    text="{dashboard>/process/sd/steps/2/count}"
+                    class="stepCount" />
+
+                <Text
+                    text="{dashboard>/process/sd/steps/2/statusText}"
+                    class="stepProcessStatus" />
+
             </VBox>
 
-            <core:Icon src="sap-icon://slim-arrow-right" class="stepArrow" />
 
-            <VBox id="stepDeliveryComplete" alignItems="Center" class="stepItem">
-                <VBox alignItems="Center" justifyContent="Center" class="stepCircle sdStepCircle stepWaiting">
-                    <core:Icon src="sap-icon://collaborate" class="stepIconWaiting" />
+            <core:Icon
+                src="sap-icon://slim-arrow-right"
+                class="stepArrow" />
+
+
+            <!-- 납품 완료 -->
+            <VBox
+                id="stepDeliveryComplete"
+                alignItems="Center"
+                class="stepItem">
+
+                <customData>
+                    <core:CustomData
+                        key="status"
+                        value="{dashboard>/process/sd/steps/3/status}"
+                        writeToDom="true" />
+                </customData>
+
+                <VBox
+                    id="circleDeliveryComplete"
+                    alignItems="Center"
+                    justifyContent="Center"
+                    class="stepCircle sdStepCircle">
+
+                    <core:Icon
+                        src="sap-icon://collaborate"
+                        class="stepDynamicIcon" />
+
                 </VBox>
-                <Text text="납품 완료" class="stepName" />
-                <Text text="0 / 10" class="stepCount" />
-                <VBox class="stepStatusRing ringGray" />
+
+                <Text
+                    text="납품 완료"
+                    class="stepName" />
+
+                <Text
+                    text="{dashboard>/process/sd/steps/3/count}"
+                    class="stepCount" />
+
+                <Text
+                    text="{dashboard>/process/sd/steps/3/statusText}"
+                    class="stepProcessStatus" />
+
             </VBox>
+
         </HBox>
 
-        <!-- 하단 상세 테이블 (모든 열 가운데 정렬) -->
+
+        <!-- =====================================================
+             SD 하단 자재별 납품 현황
+             ===================================================== -->
         <Table
             items="{dashboard>/process/sd/materials}"
             class="processMiniTable"
             inset="false"
             showNoData="false">
+
             <columns>
-                <Column width="28%" hAlign="Center"><Text text="항목" class="tableColHeader" /></Column>
-                <Column width="20%" hAlign="Center"><Text text="주문 수량" class="tableColHeader" /></Column>
-                <Column width="20%" hAlign="Center"><Text text="완료 수량" class="tableColHeader" /></Column>
-                <Column width="16%" hAlign="Center"><Text text="진행률" class="tableColHeader" /></Column>
-                <Column width="16%" hAlign="Center"><Text text="상태" class="tableColHeader" /></Column>
+
+                <!-- 자재 -->
+                <Column
+                    width="24%"
+                    hAlign="Center">
+
+                    <Text
+                        text="자재"
+                        class="tableColHeader" />
+
+                </Column>
+
+
+                <!-- SO 수량 -->
+                <Column
+                    width="20%"
+                    hAlign="Center">
+
+                    <Text
+                        text="SO 수량"
+                        class="tableColHeader" />
+
+                </Column>
+
+
+                <!-- 납품 수량 -->
+                <Column
+                    width="20%"
+                    hAlign="Center">
+
+                    <Text
+                        text="납품 수량"
+                        class="tableColHeader" />
+
+                </Column>
+
+
+                <!-- 진행률 -->
+                <Column
+                    width="16%"
+                    hAlign="Center">
+
+                    <Text
+                        text="진행률"
+                        class="tableColHeader" />
+
+                </Column>
+
+
+                <!-- 상태 -->
+                <Column
+                    width="20%"
+                    hAlign="Center">
+
+                    <Text
+                        text="상태"
+                        class="tableColHeader" />
+
+                </Column>
+
             </columns>
+
+
             <items>
-                <ColumnListItem class="tableRowItem">
+
+                <ColumnListItem
+                    class="tableRowItem">
+
                     <cells>
-                        <Text text="{dashboard>name}" class="cellTextPrimary" />
-                        <Text text="{dashboard>orderQty}" class="cellTextMuted" />
-                        <Text text="{dashboard>doneQty}" class="cellTextMuted" />
-                        <Text text="{dashboard>rate}" class="cellTextBold" />
+
+                        <!-- 자재 -->
+                        <Text
+                            text="{dashboard>name}"
+                            class="cellTextPrimary" />
+
+                        <!-- SO 수량 -->
+                        <Text
+                            text="{dashboard>soQtyText}"
+                            class="cellTextMuted" />
+
+                        <!-- 납품 완료 수량 -->
+                        <Text
+                            text="{dashboard>deliveryQtyText}"
+                            class="cellTextMuted" />
+
+                        <!-- 진행률 -->
+                        <Text
+                            text="{dashboard>rate}"
+                            class="cellTextBold" />
+
+                        <!-- 상태 -->
                         <ObjectStatus
                             text="{dashboard>status}"
                             state="{dashboard>statusState}"
                             class="statusBadge" />
+
                     </cells>
+
                 </ColumnListItem>
+
             </items>
+
         </Table>
+
     </VBox>
 
 </mvc:View>

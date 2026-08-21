@@ -4,40 +4,141 @@
 
     <Dialog
         id="materialDialog"
-        title="주요 자재 현황"
+        title="자재 재고 충족 현황"
         icon="sap-icon://product"
-        contentWidth="680px"
+        contentWidth="950px"
         class="sapUiResponsiveContentPadding materialModalDialog">
 
         <content>
-            <Table
-                id="modalMaterialTable"
-                items="{dashboard>/materials}"
-                class="processMiniTable modalTable"
-                inset="false"
-                showNoData="false">
-                <columns>
-                    <Column width="22%" hAlign="Center"><Text text="자재 코드" class="tableColHeader" /></Column>
-                    <Column width="38%" hAlign="Center"><Text text="자재명" class="tableColHeader" /></Column>
-                    <Column width="12%" hAlign="Center"><Text text="단위" class="tableColHeader" /></Column>
-                    <Column width="14%" hAlign="Center"><Text text="가용 수량" class="tableColHeader" /></Column>
-                    <Column width="14%" hAlign="Center"><Text text="상태" class="tableColHeader" /></Column>
-                </columns>
-                <items>
-                    <ColumnListItem class="tableRowItem">
-                        <cells>
-                            <Text text="{dashboard>code}" class="cellTextBold" />
-                            <Text text="{dashboard>name}" class="cellTextPrimary" />
-                            <Text text="{dashboard>unit}" class="cellTextMuted" />
-                            <Text text="{dashboard>stock}" class="cellTextBold" />
-                            <ObjectStatus
-                                text="{dashboard>status}"
-                                state="{dashboard>statusState}"
-                                class="statusBadge" />
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
+
+            <VBox width="100%">
+
+                <!-- 설명 -->
+                <Text
+                    text="잔여 AIS 판매 수량 생산에 필요한 BOM 자재와 현재 재고를 비교한 결과입니다."
+                    class="sapUiSmallMarginBottom" />
+
+                <!-- 자재 테이블 -->
+                <Table
+                    id="modalMaterialTable"
+                    items="{dashboard>/materials}"
+                    class="processMiniTable modalTable"
+                    inset="false"
+                    showNoData="true"
+                    noDataText="조회된 자재가 없습니다.">
+
+                    <columns>
+
+                        <Column
+                            width="16%"
+                            hAlign="Center">
+                            <Text
+                                text="자재 코드"
+                                class="tableColHeader" />
+                        </Column>
+
+                        <Column
+                            width="28%"
+                            hAlign="Begin">
+                            <Text
+                                text="자재명"
+                                class="tableColHeader" />
+                        </Column>
+
+                        <Column
+                            width="7%"
+                            hAlign="Center">
+                            <Text
+                                text="단위"
+                                class="tableColHeader" />
+                        </Column>
+
+                        <Column
+                            width="13%"
+                            hAlign="End">
+                            <Text
+                                text="필요 수량"
+                                class="tableColHeader" />
+                        </Column>
+
+                        <Column
+                            width="13%"
+                            hAlign="End">
+                            <Text
+                                text="현재 재고"
+                                class="tableColHeader" />
+                        </Column>
+
+                        <Column
+                            width="13%"
+                            hAlign="End">
+                            <Text
+                                text="부족 수량"
+                                class="tableColHeader" />
+                        </Column>
+
+                        <Column
+                            width="10%"
+                            hAlign="Center">
+                            <Text
+                                text="상태"
+                                class="tableColHeader" />
+                        </Column>
+
+                    </columns>
+
+                    <items>
+
+                        <ColumnListItem
+                            class="tableRowItem"
+                            vAlign="Middle">
+
+                            <cells>
+
+                                <Text
+                                    text="{dashboard>code}"
+                                    class="cellTextBold" />
+
+                                <Text
+                                    text="{dashboard>name}"
+                                    class="cellTextPrimary" />
+
+                                <Text
+                                    text="{dashboard>unit}"
+                                    class="cellTextMuted" />
+
+                                <ObjectNumber
+                                    number="{dashboard>requiredQtyText}"
+                                    unit="{dashboard>unit}" />
+
+                                <ObjectNumber
+                                    number="{dashboard>stockQtyText}"
+                                    unit="{dashboard>unit}" />
+
+                                <ObjectNumber
+                                    number="{dashboard>shortageQtyText}"
+                                    unit="{dashboard>unit}"
+                                    state="{
+                                        = ${dashboard>shortageQty} > 0
+                                        ? 'Error'
+                                        : 'None'
+                                    }" />
+
+                                <ObjectStatus
+                                    text="{dashboard>status}"
+                                    state="{dashboard>statusState}"
+                                    class="statusBadge" />
+
+                            </cells>
+
+                        </ColumnListItem>
+
+                    </items>
+
+                </Table>
+
+            </VBox>
+
         </content>
 
         <endButton>

@@ -1,0 +1,215 @@
+/* ==========================================================================
+   modalBase.css - 모달 다이얼로그 껍데기, 헤더, 푸터, SAP GUI 버튼
+   ========================================================================== */
+
+/* 1. 모달 다이얼로그 전체 */
+.processStepModalDialog {
+  width: 1280px !important;
+  max-width: 96vw !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14) !important;
+  border: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+/* 1-1. 모달 포커스 사각 틀(Outline/Focus Ring) 제거 */
+.processStepModalDialog,
+.processStepModalDialog:focus,
+.processStepModalDialog *:focus,
+.processStepModalDialog *:focus-visible,
+.processStepModalDialog .sapMFocus,
+.processStepModalDialog .sapUiFocus,
+.processStepModalDialog .sapMLIBFocused,
+.processStepModalDialog .sapMListTblRow.sapMLIBFocused,
+.processStepModalDialog .sapMListTblCell:focus,
+.processStepModalDialog .sapMDialogSection:focus,
+.processStepModalDialog .sapMDialogScroll:focus,
+.processStepModalDialog .sapMBar:focus,
+.processStepModalDialog .sapMBarLeft:focus,
+.processStepModalDialog .sapMBarMiddle:focus,
+.processStepModalDialog .sapMBarRight:focus,
+.processStepModalDialog .sapMTitle:focus,
+.processStepModalDialog .modalHeaderTitle:focus,
+.processStepModalDialog .modalHeaderTitle.sapMFocus,
+.processStepModalDialog .sapMBtn:focus,
+.processStepModalDialog .sapMBtn.sapMFocus,
+.processStepModalDialog .sapMBtnInner:focus,
+.processStepModalDialog .sapMFocus .sapMBtnInner,
+.processStepModalDialog .sapMInputBaseInner:focus,
+.processStepModalDialog .sapMInputBaseContentWrapper:focus,
+.processStepModalDialog .sapMSlt:focus,
+.processStepModalDialog .sapMSlt.sapMFocus,
+.processStepModalDialog .sapMSltLabel:focus {
+  outline: none !important;
+  outline-color: transparent !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* 포커스 시 나타나는 가상 포커스 링(::before / ::after) 및 점선 틀 제거 */
+.processStepModalDialog .sapMLIBFocused::before,
+.processStepModalDialog .sapMLIBFocused::after,
+.processStepModalDialog .sapMBtnFocusFilter,
+.processStepModalDialog .sapMBtnInner.sapMFocus::before,
+.processStepModalDialog .sapMBtnInner.sapMFocus::after,
+.processStepModalDialog .sapMBtn::before,
+.processStepModalDialog .sapMBtn::after,
+.processStepModalDialog .sapMBtnInner::before,
+.processStepModalDialog .sapMBtnInner::after,
+.sapGuiOpenBtn::before,
+.sapGuiOpenBtn::after,
+.sapGuiOpenBtn .sapMBtnInner::before,
+.sapGuiOpenBtn .sapMBtnInner::after,
+.modalHeaderCloseBtn::before,
+.modalHeaderCloseBtn::after,
+.modalHeaderCloseBtn .sapMBtnInner::before,
+.modalHeaderCloseBtn .sapMBtnInner::after {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.processStepModalDialog .sapMDialogSection,
+.processStepModalDialog .sapMDialogScroll,
+.processStepModalDialog .sapMDialogScrollCont,
+.modalRootWrapper {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  background-color: #ffffff !important;
+}
+
+/* 상단 일체형 헤더 (타이틀 정중앙 + 우측 SAP GUI 버튼) */
+.modalInlineHeader {
+  width: 100% !important;
+  max-width: 100% !important;
+  position: relative !important;
+  height: 40px !important;
+  padding: 18px 24px 0 24px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  margin-bottom: 6px !important;
+}
+
+.modalHeaderTitle {
+  position: absolute !important;
+  left: 50% !important;
+  top: calc(50% + 9px) !important;
+  transform: translate(-50%, -50%) !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  letter-spacing: -0.3px !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  outline: none !important;
+  pointer-events: none !important;
+}
+
+.modalHeaderActions {
+  display: flex !important;
+  align-items: center !important;
+  z-index: 2 !important;
+  outline: none !important;
+  margin-right: 0 !important;
+}
+
+/* 모달 하단 푸터 영역 */
+.processStepModalDialog .sapMDialogFooter,
+.processStepModalDialog .sapMIBar.sapMFooter-CTX,
+.processStepModalDialog > footer {
+  border-top: none !important;
+  border: none !important;
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* 우측 상단 SAP GUI 열기 버튼 */
+.sapGuiOpenBtn {
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  height: 32px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.sapGuiOpenBtn:focus,
+.sapGuiOpenBtn.sapMFocus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.sapGuiOpenBtn .sapMBtnInner {
+  border: 1.5px solid #2563eb !important;
+  background-color: #ffffff !important;
+  border-radius: 6px !important;
+  height: 32px !important;
+  padding: 0 10px !important;
+  box-sizing: border-box !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: all 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: normal !important;
+}
+
+.sapGuiOpenBtn:hover .sapMBtnInner,
+.sapGuiOpenBtn .sapMBtnInner:hover,
+.sapGuiOpenBtn.sapMBtn:hover .sapMBtnInner {
+  background-color: #eff6ff !important;
+  border: 1.5px solid #1d4ed8 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.sapGuiOpenBtn .sapMBtnContent {
+  color: #2563eb !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: normal !important;
+}
+
+.sapGuiOpenBtn .sapUiIcon {
+  color: #2563eb !important;
+  font-size: 13px !important;
+  margin-right: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  line-height: normal !important;
+}
+
+.sapGuiOpenBtn:hover .sapMBtnContent,
+.sapGuiOpenBtn:hover .sapUiIcon {
+  color: #1d4ed8 !important;
+}
+
+/* 모달 본문 영역 */
+.processStepModalDialog .sapMDialogSection,
+.processStepModalDialog .sapMDialogScroll,
+.processStepModalDialog .sapMDialogScrollCont {
+  padding: 0 !important;
+  padding-top: 0 !important;
+  margin: 0 !important;
+  margin-top: 0 !important;
+}
+
+.modalBodyContainer {
+  padding: 0 24px 16px 24px !important;
+  margin-top: 0 !important;
+  background-color: #ffffff !important;
+}

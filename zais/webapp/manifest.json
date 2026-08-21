@@ -22,7 +22,14 @@
         "settings": {
           "odataVersion": "2.0"
         }
-      }
+      },
+      "ZAIS_SCM_SRV": {
+        "uri": "/sap/opu/odata/sap/ZAIS_SCM_SRV/",
+        "type": "OData",
+        "settings": {
+            "odataVersion": "2.0"
+        }
+    }
     }
   },
   "sap.ui": {
@@ -58,13 +65,6 @@
       "cozy": true
     },
     "models": {
-      "": {
-        "dataSource": "ZAIS_LOGIN_SRV",
-        "preload": true,
-        "settings": {
-          "defaultBindingMode": "TwoWay"
-        }
-      },
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
@@ -77,7 +77,14 @@
         "settings": {
           "useBatch": false
         }
-      }
+      },
+      "scmService": {
+    "dataSource": "ZAIS_SCM_SRV",
+    "preload": true,
+    "settings": {
+        "useBatch": false
+    }
+}
     },
     "resources": {
       "css": [

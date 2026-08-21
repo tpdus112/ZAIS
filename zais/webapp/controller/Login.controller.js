@@ -29,14 +29,28 @@ sap.ui.define(
         // 라우터가 RouteLogin으로 이동할 때마다 체크
         const oRouter = this.getOwnerComponent().getRouter();
         if (oRouter) {
-          const oRoute = oRouter.getRoute("RouteLogin");
-          if (oRoute) {
-            oRoute.attachPatternMatched(this._onRouteMatched, this);
+          const oRouteLogin = oRouter.getRoute("RouteLogin");
+          if (oRouteLogin) {
+            oRouteLogin.attachPatternMatched(this._onRouteMatched, this);
           }
         }
       },
 
       _onRouteMatched() {
+        // 이미 로그인된 세션이 있는 경우 즉시 메인 화면으로 이동
+        const bIsLoggedIn =
+          (typeof window !== "undefined" &&
+            window.sessionStorage &&
+            sessionStorage.getItem("zais_is_logged_in") === "true") ||
+          (typeof window !== "undefined" &&
+            window.localStorage &&
+            localStorage.getItem("zais_is_logged_in") === "true");
+
+        if (bIsLoggedIn) {
+          this.getOwnerComponent().getRouter().navTo("RouteMain", {}, true);
+          return;
+        }
+
         // 폼 입력 필드 및 에러 상태 초기화
         const oLoginModel = this.getView().getModel("login");
         if (oLoginModel) {
@@ -145,18 +159,32 @@ sap.ui.define(
           success: function (oData) {
             console.log("SAP 로그인 응답:", oData);
 
-            // 로그인 성공
-            if (oData.Success === true) {
-              MessageToast.show(
-                `${oData.UserName || sUserId}님 로그인되었습니다.`,
-              );
+            // 로그인 성공 (boolean true, 문자열 'true', 'X', '1' 등 ABAP OData 응답 지원)
+            const bSuccess =
+              oData &&
+              (oData.Success === true ||
+                oData.Success === "true" ||
+                oData.Success === "X" ||
+                oData.Success === "x" ||
+                oData.Success === 1);
 
-              // 세션 저장
-              sessionStorage.setItem("zaisLoggedIn", "true");
+            if (bSuccess) {
+              const sUserName = oData.UserName || sUserId;
+              MessageToast.show(`${sUserName}님 로그인되었습니다.`);
 
-              sessionStorage.setItem("zaisUserId", sUserId);
-
-              sessionStorage.setItem("zaisUserName", oData.UserName || "");
+              // 브라우저 세션 및 로컬 스토리지에 로그인 상태 저장
+              if (typeof window !== "undefined") {
+                if (window.sessionStorage) {
+                  sessionStorage.setItem("zais_is_logged_in", "true");
+                  sessionStorage.setItem("zais_user_id", sUserId);
+                  sessionStorage.setItem("zais_user_name", sUserName);
+                }
+                if (window.localStorage) {
+                  localStorage.setItem("zais_is_logged_in", "true");
+                  localStorage.setItem("zais_user_id", sUserId);
+                  localStorage.setItem("zais_user_name", sUserName);
+                }
+              }
 
               // 비밀번호 초기화
               oLoginModel.setProperty("/password", "");
@@ -164,19 +192,7 @@ sap.ui.define(
               // Launchpad Header 복구
               document.body.classList.remove("login-active");
 
-              if (window.sap && sap.ushell && sap.ushell.Container) {
-                try {
-                  const oRenderer = sap.ushell.Container.getRenderer("fiori2");
-
-                  if (oRenderer && oRenderer.setHeaderVisibility) {
-                    oRenderer.setHeaderVisibility(true, false, ["app"]);
-                  }
-                } catch (e) {
-                  console.warn("Header 복구 실패:", e);
-                }
-              }
-
-              // 메인 화면 이동
+              // 메인 화면으로 이동
               this.getOwnerComponent().getRouter().navTo("RouteMain", {}, true);
             } else {
               // 로그인 실패

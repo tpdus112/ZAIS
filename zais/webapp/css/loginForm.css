@@ -1,0 +1,181 @@
+/* ==========================================================================
+   loginForm.css - 로그인/회원가입 폼 그룹, 라벨, 인풋, 에러/포커스 테두리
+   ========================================================================== */
+
+/* 7. 입력 폼 공통 */
+.loginFormGroup,
+.signupFormGroup {
+  width: 100% !important;
+  margin-bottom: 26px !important;
+}
+
+#userIdContainer {
+  margin-bottom: 32px !important;
+}
+
+.loginLabel {
+  display: block !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin-bottom: 2px !important;
+}
+
+/* 8. 입력창 공통 */
+.loginInput,
+.signupInput,
+.passwordInput {
+  width: 100% !important;
+  display: block !important;
+}
+
+.loginInput .sapMInputBaseContentWrapper,
+.signupInput .sapMInputBaseContentWrapper,
+.passwordInput .sapMInputBaseContentWrapper,
+.loginModal .sapMInputBaseContentWrapper,
+.signupModal .sapMInputBaseContentWrapper {
+  width: 100% !important;
+  height: 48px !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  border: 1px solid #dfe3e8 !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  position: relative !important;
+}
+
+/* SAP UI5 Input 기본 하단 액센트 밑줄 및 가상요소 제거 */
+.loginInput .sapMInputBaseContentWrapper::after,
+.loginInput .sapMInputBaseContentWrapper::before,
+.signupInput .sapMInputBaseContentWrapper::after,
+.signupInput .sapMInputBaseContentWrapper::before,
+.passwordInput .sapMInputBaseContentWrapper::after,
+.passwordInput .sapMInputBaseContentWrapper::before,
+.loginModal .sapMInputBaseContentWrapper::after,
+.loginModal .sapMInputBaseContentWrapper::before,
+.signupModal .sapMInputBaseContentWrapper::after,
+.signupModal .sapMInputBaseContentWrapper::before,
+.loginModal .sapMInputBase::after,
+.loginModal .sapMInputBase::before,
+.signupModal .sapMInputBase::after,
+.signupModal .sapMInputBase::before {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.loginInput .sapMInputBaseInner,
+.signupInput .sapMInputBaseInner,
+.passwordInput .sapMInputBaseInner {
+  height: 46px !important;
+  line-height: 46px !important;
+  padding: 0 16px !important;
+  font-size: 13.5px !important;
+  font-style: normal !important;
+  color: #1e293b !important;
+  background: transparent !important;
+  border: none !important;
+  box-sizing: border-box !important;
+  display: inline-block !important;
+  width: 100% !important;
+  pointer-events: auto !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.passwordInput .sapMInputBaseInner {
+  padding-right: 48px !important;
+}
+
+/* 플레이스홀더 */
+.loginInput .sapMInputBasePlaceholder,
+.signupInput .sapMInputBasePlaceholder,
+.passwordInput .sapMInputBasePlaceholder,
+.loginInput .sapMInputBaseInner::placeholder,
+.signupInput .sapMInputBaseInner::placeholder,
+.passwordInput .sapMInputBaseInner::placeholder,
+.loginInput .sapMInputBaseInner::-webkit-input-placeholder,
+.signupInput .sapMInputBaseInner::-webkit-input-placeholder,
+.passwordInput .sapMInputBaseInner::-webkit-input-placeholder {
+  font-size: 13.5px !important;
+  font-style: normal !important;
+  color: #94a3b8 !important;
+  padding: 0 16px !important;
+  line-height: 46px !important;
+}
+
+/* 호버 상태 */
+.loginInput:hover .sapMInputBaseContentWrapper,
+.signupInput:hover .sapMInputBaseContentWrapper,
+.passwordInput:hover .sapMInputBaseContentWrapper,
+.loginModal .sapMInputBaseContentWrapper:hover,
+.signupModal .sapMInputBaseContentWrapper:hover {
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* 포커스 상태 */
+.loginInput.sapMFocus .sapMInputBaseContentWrapper,
+.loginInput .sapMInputBaseContentWrapper.sapMFocus,
+.signupInput.sapMFocus .sapMInputBaseContentWrapper,
+.signupInput .sapMInputBaseContentWrapper.sapMFocus,
+.passwordInput.sapMFocus .sapMInputBaseContentWrapper,
+.passwordInput .sapMInputBaseContentWrapper.sapMFocus,
+#userIdInput.sapMFocus .sapMInputBaseContentWrapper,
+#userIdInput .sapMInputBaseContentWrapper.sapMFocus,
+#passwordInput.sapMFocus .sapMInputBaseContentWrapper,
+#passwordInput .sapMInputBaseContentWrapper.sapMFocus,
+.loginModal .sapMInputBaseContentWrapper.sapMFocus {
+  border: 1.5px solid #0a2560 !important;
+  box-shadow: 0 0 0 3px rgba(10, 37, 96, 0.1) !important;
+  outline: none !important;
+}
+
+/* 8-1. 에러(ValueState="Error") 시 테두리 */
+.loginModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState,
+.loginModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperError,
+.loginModal .sapMInputBaseContentWrapperError,
+.signupModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState,
+.signupModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperError,
+.signupModal .sapMInputBaseContentWrapperError,
+.loginInput .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState,
+.signupInput .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState,
+.passwordInput .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState {
+  border: 1px solid #e11d48 !important;
+  border-radius: 10px !important;
+  box-shadow:
+    0 0 0 2px rgba(225, 29, 72, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  outline: none !important;
+}
+
+.loginModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState::after,
+.loginModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState::before,
+.signupModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState::after,
+.signupModal .sapMInputBaseContentWrapper.sapMInputBaseContentWrapperState::before,
+.loginModal .sapMInputBaseContentWrapperError::after,
+.loginModal .sapMInputBaseContentWrapperError::before,
+.signupModal .sapMInputBaseContentWrapperError::after,
+.signupModal .sapMInputBaseContentWrapperError::before,
+.loginModal .sapMInputBase::after,
+.loginModal .sapMInputBase::before,
+.signupModal .sapMInputBase::after,
+.signupModal .sapMInputBase::before {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  height: 0 !important;
+  background: transparent !important;
+}

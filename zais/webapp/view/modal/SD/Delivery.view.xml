@@ -1,0 +1,330 @@
+<mvc:View
+    controllerName="zais.scm.zais.controller.modal.SD.Delivery"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <VBox width="100%">
+
+        <!-- =====================================================
+             1. 상단 검색 필터
+             ===================================================== -->
+        <HBox
+            alignItems="Center"
+            justifyContent="SpaceBetween"
+            class="modalFilterBar">
+
+            <HBox alignItems="Center">
+
+                <!-- 통합 검색 -->
+                <Input
+                    id="searchKeyword"
+                    placeholder="납품 번호 / 고객사 / 자재명 / SO번호"
+                    width="280px"
+                    class="filterFieldItem filterInput" />
+
+                <!-- 상태 -->
+                <Select
+                    id="searchStatus"
+                    selectedKey="ALL"
+                    width="125px"
+                    class="filterFieldItem filterSelect">
+
+                    <items>
+
+                        <core:Item
+                            key="ALL"
+                            text="상태 전체" />
+
+                        <core:Item
+                            key="IN_PROGRESS"
+                            text="출하 진행" />
+
+                        <core:Item
+                            key="PGI_COMPLETED"
+                            text="PGI 완료" />
+
+                    </items>
+
+                </Select>
+
+                <!-- 납품일 From -->
+                <DatePicker
+                    id="searchDateFrom"
+                    placeholder="납품일 (From)"
+                    displayFormat="yyyy-MM-dd"
+                    valueFormat="yyyy-MM-dd"
+                    width="140px"
+                    class="filterDatePicker" />
+
+                <Text
+                    text="~"
+                    class="filterTildeText" />
+
+                <!-- 납품일 To -->
+                <DatePicker
+                    id="searchDateTo"
+                    placeholder="납품일 (To)"
+                    displayFormat="yyyy-MM-dd"
+                    valueFormat="yyyy-MM-dd"
+                    width="140px"
+                    class="filterFieldItem filterDatePicker" />
+
+                <Button
+                    text="검색"
+                    type="Emphasized"
+                    class="filterSearchBtn"
+                    press=".onSearch" />
+
+                <Button
+                    text="초기화"
+                    type="Transparent"
+                    class="filterResetBtn"
+                    press=".onReset" />
+
+            </HBox>
+
+        </HBox>
+
+
+        <!-- =====================================================
+             2. Delivery 목록
+             ===================================================== -->
+        <Table
+            id="deliveryTable"
+            items="{pagination>/displayList}"
+            class="modalDetailTable"
+            inset="false"
+            showNoData="true"
+            noDataText="조회된 납품 내역이 없습니다.">
+
+            <columns>
+
+                <!-- Delivery 번호 -->
+                <Column
+                    width="12%"
+                    hAlign="Center">
+
+                    <Text
+                        text="납품문서"
+                        class="tableColHeader" />
+
+                </Column>
+
+                <!-- 품목 -->
+                <Column
+                    width="7%"
+                    hAlign="Center">
+
+                    <Text
+                        text="품목"
+                        class="tableColHeader" />
+
+                </Column>
+
+                <!-- Sales Order -->
+                <Column
+                    width="12%"
+                    hAlign="Center">
+
+                    <Text
+                        text="Sales Order"
+                        class="tableColHeader" />
+
+                </Column>
+
+                <!-- 고객사 -->
+                <Column
+                    width="14%"
+                    hAlign="Center">
+
+                    <Text
+                        text="고객사"
+                        class="tableColHeader" />
+
+                </Column>
+
+                <!-- 자재코드 -->
+                <Column
+                    width="12%"
+                    hAlign="Center">
+
+                    <Text
+                        text="자재코드"
+                        class="tableColHeader" />
+
+                </Column>
+
+                <!-- 자재명 -->
+                <Column
+                    width="17%"
+                    hAlign="Center">
+
+                    <Text
+                        text="자재명"
+                        class="tableColHeader" />
+
+                </Column>
+
+                <!-- 납품수량 -->
+                <Column
+                    width="9%"
+                    hAlign="Center">
+
+                    <Text
+                        text="납품수량"
+                        class="tableColHeader" />
+
+                </Column>
+
+                <!-- 납품일 -->
+                <Column
+                    width="10%"
+                    hAlign="Center">
+
+                    <Text
+                        text="납품일"
+                        class="tableColHeader" />
+
+                </Column>
+
+                <!-- PGI 일자 -->
+                <Column
+                    width="10%"
+                    hAlign="Center">
+
+                    <Text
+                        text="PGI 일자"
+                        class="tableColHeader" />
+
+                </Column>
+
+                <!-- 상태 -->
+                <Column
+                    width="10%"
+                    hAlign="Center">
+
+                    <Text
+                        text="상태"
+                        class="tableColHeader" />
+
+                </Column>
+
+            </columns>
+
+
+            <items>
+
+                <ColumnListItem class="tableRowItem">
+
+                    <cells>
+
+                        <!-- Delivery 번호 -->
+                        <Text
+                            text="{pagination>deliveryNo}"
+                            class="modalCellTextBold" />
+
+                        <!-- 품목 -->
+                        <Text
+                            text="{pagination>itemNo}"
+                            class="modalCellText" />
+
+                        <!-- 연결된 Sales Order -->
+                        <Text
+                            text="{pagination>soNo}"
+                            class="modalCellTextBold" />
+
+                        <!-- 고객사 -->
+                        <Text
+                            text="{pagination>customer}"
+                            class="modalCellText" />
+
+                        <!-- 자재코드 -->
+                        <Text
+                            text="{pagination>matCode}"
+                            class="modalCellTextBold" />
+
+                        <!-- 자재명 -->
+                        <Text
+                            text="{pagination>matName}"
+                            class="modalCellText" />
+
+                        <!-- 납품수량 -->
+                        <Text
+                            text="{= ${pagination>deliveryQty} + ' ' + ${pagination>unit} }"
+                            class="modalCellText" />
+
+                        <!-- 납품일 -->
+                        <Text
+                            text="{pagination>deliveryDate}"
+                            class="modalCellText" />
+
+                        <!-- PGI 일자 -->
+                        <Text
+                            text="{pagination>pgiDate}"
+                            class="modalCellText" />
+
+                        <!-- 상태 -->
+                        <ObjectStatus
+                            text="{pagination>status}"
+                            state="{pagination>statusState}"
+                            class="statusBadge" />
+
+                    </cells>
+
+                </ColumnListItem>
+
+            </items>
+
+        </Table>
+
+
+        <!-- =====================================================
+             3. 페이지네이션
+             ===================================================== -->
+        <HBox
+            alignItems="Center"
+            justifyContent="End"
+            class="modalPaginationBar">
+
+            <Text
+                text="{= '전체 ' + (${pagination>/totalCount} || 0) + ' 건' }"
+                class="paginationTotalText sapUiSmallMarginEnd" />
+
+            <Button
+                icon="sap-icon://media-rewind"
+                type="Transparent"
+                class="paginationBtn"
+                tooltip="첫 페이지"
+                press=".onPaginationFirst" />
+
+            <Button
+                icon="sap-icon://navigation-left-arrow"
+                type="Transparent"
+                class="paginationBtn"
+                tooltip="이전 페이지"
+                press=".onPaginationPrev" />
+
+            <Text
+                text="{= (${pagination>/currentPage} || 1) + '  /  ' + (${pagination>/totalPages} || 1) }"
+                class="paginationPageText" />
+
+            <Button
+                icon="sap-icon://navigation-right-arrow"
+                type="Transparent"
+                class="paginationBtn"
+                tooltip="다음 페이지"
+                press=".onPaginationNext" />
+
+            <Button
+                icon="sap-icon://media-forward"
+                type="Transparent"
+                class="paginationBtn"
+                tooltip="마지막 페이지"
+                press=".onPaginationLast" />
+
+        </HBox>
+
+    </VBox>
+
+</mvc:View>
