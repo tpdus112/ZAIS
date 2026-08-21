@@ -31,6 +31,43 @@
   max-width: none !important;
 }
 
+/* ==========================================================================
+   Fiori Launchpad 헤더 우측 사용자 계정 / 프로필(Me Area / User Actions) 숨김
+   ========================================================================== */
+#userActionsMenuHeaderButton,
+#meAreaHeaderButton,
+#userActionsMenuButton,
+#meAreaButton,
+#shell-header-userActionsMenuHeaderButton,
+#shell-header-meAreaHeaderButton,
+.sapUshellMeAreaHeaderButton,
+.sapUshellUserActionsMenuHeaderButton,
+.sapUshellShellHeadItmUser,
+.sapUshellShellHeadItm.sapUshellShellHeadItmUser,
+.sapUshellShellHeadItm:has(#userActionsMenuHeaderButton),
+.sapUshellShellHeadItm:has(#meAreaHeaderButton),
+.sapUshellShellHeadItm:has(#userActionsMenuButton),
+.sapUshellShellHeadItm:has([id*="userActionsMenuHeaderButton"]),
+.sapUshellShellHeadItm:has([id*="meAreaHeaderButton"]),
+[id*="userActionsMenuHeaderButton"],
+[id*="meAreaHeaderButton"],
+[id*="userActionsMenuButton"],
+.sapUshellShellHeadItm:has(button[aria-label*="User"]),
+.sapUshellShellHeadItm:has(button[aria-label*="사용자"]),
+.sapUshellShellHeadItm:has(button[aria-label*="계정"]),
+.sapUshellShellHeadItm:has(button[title*="User"]),
+.sapUshellShellHeadItm:has(button[title*="사용자"]),
+.sapUshellShellHeadItm:has(button[title*="계정"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 /* 주요 자재 현황 모달 다이얼로그 */
 .materialModalDialog .sapMDialogHeader {
   background-color: #f8fafc !important;

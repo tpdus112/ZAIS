@@ -11,8 +11,22 @@ sap.ui.define(
       },
 
       createDashboardModel: function () {
+        var oNow = new Date();
+        var sFormattedDate =
+          oNow.getFullYear() +
+          "." +
+          String(oNow.getMonth() + 1).padStart(2, "0") +
+          "." +
+          String(oNow.getDate()).padStart(2, "0") +
+          " " +
+          String(oNow.getHours()).padStart(2, "0") +
+          ":" +
+          String(oNow.getMinutes()).padStart(2, "0") +
+          ":" +
+          String(oNow.getSeconds()).padStart(2, "0");
+
         var oData = {
-          lastUpdated: "2024.05.20 10:30",
+          lastUpdated: sFormattedDate,
           header: {
             mm: {
               title: "구매 진행 (MM)",
@@ -43,7 +57,7 @@ sap.ui.define(
             },
             stock: {
               title: "재고 현황",
-              amount: "1,248",
+              amount: "1,248 PC",
               subText: "주요 자재 가용 수량",
               icon: "sap-icon://product",
               colorClass: "headerCardOrange"

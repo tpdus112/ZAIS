@@ -101,6 +101,25 @@ sap.ui.define(
                     false
                   );
                 }
+
+                // 런치패드 헤더 계정 / 프로필 버튼 숨김
+                if (
+                  typeof oRenderer.hideHeaderItem ===
+                  "function"
+                ) {
+                  try {
+                    oRenderer.hideHeaderItem(
+                      [
+                        "userActionsMenuHeaderButton",
+                        "meAreaHeaderButton",
+                        "meAreaButton"
+                      ],
+                      false
+                    );
+                  } catch (err) {
+                    // ignore
+                  }
+                }
               }
             } catch (e) {
               console.log(
@@ -112,15 +131,19 @@ sap.ui.define(
         },
 
         onLogout() {
-          sessionStorage.removeItem("zaisLoggedIn");
-          sessionStorage.removeItem("zaisUserId");
-          sessionStorage.removeItem("zaisUserName");
-          sessionStorage.removeItem("zaisUser");
-
-          localStorage.removeItem("zaisLoggedIn");
-          localStorage.removeItem("zaisUserId");
-          localStorage.removeItem("zaisUserName");
-          localStorage.removeItem("zaisUser");
+          // 브라우저 세션 및 로컬 스토리지 로그인 상태 삭제
+          if (typeof window !== "undefined") {
+            if (window.sessionStorage) {
+              sessionStorage.removeItem("zais_is_logged_in");
+              sessionStorage.removeItem("zais_user_id");
+              sessionStorage.removeItem("zais_user_name");
+            }
+            if (window.localStorage) {
+              localStorage.removeItem("zais_is_logged_in");
+              localStorage.removeItem("zais_user_id");
+              localStorage.removeItem("zais_user_name");
+            }
+          }
 
           document.body.classList.add(
             "login-active"

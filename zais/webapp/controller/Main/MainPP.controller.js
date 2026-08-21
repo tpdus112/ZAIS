@@ -19,6 +19,27 @@ sap.ui.define(
 
         // PP 공정 아이콘 클릭 이벤트 연결
         this._bindStepEvents();
+
+        // 전체 새로고침 이벤트 구독
+        const oComponent = this.getOwnerComponent();
+        const oEventBus =
+          (oComponent && oComponent.getEventBus && oComponent.getEventBus()) ||
+          sap.ui.getCore().getEventBus();
+
+        if (oEventBus) {
+          oEventBus.subscribe("Dashboard", "RefreshAll", this._loadPpSummary, this);
+        }
+      },
+
+      onExit() {
+        const oComponent = this.getOwnerComponent();
+        const oEventBus =
+          (oComponent && oComponent.getEventBus && oComponent.getEventBus()) ||
+          sap.ui.getCore().getEventBus();
+
+        if (oEventBus) {
+          oEventBus.unsubscribe("Dashboard", "RefreshAll", this._loadPpSummary, this);
+        }
       },
 
       /* =========================================================
@@ -363,7 +384,7 @@ sap.ui.define(
             {
               summary: aResults,
               dram: aDramResults,
-              orders: aOrderResults,
+              orders: aAllPpOrders,
               materials: aMaterials,
               steps: aUpdatedSteps,
             },

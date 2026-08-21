@@ -40,15 +40,43 @@ sap.ui.define(
 
           // 실제 SAP PO + GR 데이터 조회 후
           // 주요 자재 입고 진행현황 계산
-          if (oDashboardModel) {
-            MMDataService
-              .loadMaterialReceiptProgress(
-                oComponent,
-                oDashboardModel
-              );
-          }
+          this._loadMmData();
 
           this._bindStepEvents();
+
+          // 전체 새로고침 이벤트 구독
+          const oEventBus =
+            (oComponent && oComponent.getEventBus && oComponent.getEventBus()) ||
+            sap.ui.getCore().getEventBus();
+
+          if (oEventBus) {
+            oEventBus.subscribe("Dashboard", "RefreshAll", this._loadMmData, this);
+          }
+        },
+
+        _loadMmData() {
+          const oComponent = this.getOwnerComponent();
+          const oDashboardModel =
+            this.getView().getModel("dashboard") ||
+            (oComponent && oComponent.getModel("dashboard"));
+
+          if (oDashboardModel && oComponent) {
+            MMDataService.loadMaterialReceiptProgress(
+              oComponent,
+              oDashboardModel
+            );
+          }
+        },
+
+        onExit() {
+          const oComponent = this.getOwnerComponent();
+          const oEventBus =
+            (oComponent && oComponent.getEventBus && oComponent.getEventBus()) ||
+            sap.ui.getCore().getEventBus();
+
+          if (oEventBus) {
+            oEventBus.unsubscribe("Dashboard", "RefreshAll", this._loadMmData, this);
+          }
         },
 
         onAfterRendering() {

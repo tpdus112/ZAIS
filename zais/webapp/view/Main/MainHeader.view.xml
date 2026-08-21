@@ -96,20 +96,35 @@
                 class="headerCard headerCardOrange headerCardCentered headerCardClickable"
                 alignItems="Center"
                 justifyContent="Center"
-                tooltip="클릭하여 주요 자재 현황 보기">
-                <HBox alignItems="Center" justifyContent="Center" class="cardTopRow cardTopRowCentered">
-                    <VBox alignItems="Center" justifyContent="Center" class="cardIconWrapper cardIconOrange">
-                        <core:Icon src="sap-icon://product" class="headerIconOrange" />
+                tooltip="클릭하여 자재 재고 충족 현황 보기">
+                <HBox
+                    alignItems="Center"
+                    justifyContent="Center"
+                    class="cardTopRow cardTopRowCentered">
+                    <VBox
+                        alignItems="Center"
+                        justifyContent="Center"
+                        class="cardIconWrapper cardIconOrange">
+                        <core:Icon
+                            src="sap-icon://product"
+                            class="headerIconOrange" />
                     </VBox>
                     <VBox class="cardTitleBox">
-                        <Text text="재고 현황" class="cardTitle" />
-                        <Text text="{dashboard>/header/stock/amount}" class="cardNumber cardNumberOrange" />
-                        <Text text="{dashboard>/header/stock/subText}" class="cardSubText" />
+                        <Text
+                            text="재고 현황"
+                            class="cardTitle" />
+                        <Text
+                            text="{dashboard>/header/stock/amount}"
+                            class="cardNumber cardNumberOrange" />
+                        <Text
+                            text="{dashboard>/header/stock/subText}"
+                            class="cardSubText" />
                     </VBox>
                 </HBox>
             </VBox>
 
         </HBox>
+
     </VBox>
 
 </mvc:View>
