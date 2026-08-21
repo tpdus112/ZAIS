@@ -6,7 +6,6 @@ sap.ui.define(
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
-    "sap/base/Log"
   ],
   function (
     Controller,
@@ -14,8 +13,7 @@ sap.ui.define(
     ODataModel,
     Filter,
     FilterOperator,
-    MessageToast,
-    Log
+    MessageToast
   ) {
     "use strict";
 
@@ -29,8 +27,8 @@ sap.ui.define(
           // 검색 적용 후 데이터
           this._aFilteredData = [];
 
-          // 한 페이지당 10개
-          this._iPageSize = 10;
+          // 한 페이지당 5개
+          this._iPageSize = 5;
 
           // 현재 조회 중인 자재
           this._sCurrentMatnr = "";
@@ -39,9 +37,8 @@ sap.ui.define(
           var oPaginationModel = new JSONModel({
             displayList: [],
             totalCount: 0,
-            pageSize: 10,
             currentPage: 1,
-            totalPages: 1
+            totalPages: 1,
           });
 
           this.getView().setModel(
@@ -153,7 +150,7 @@ sap.ui.define(
             new ODataModel(
               "/sap/opu/odata/sap/ZAIS_SCM_SRV/",
               {
-                useBatch: false
+                useBatch: false,
               }
             );
 
@@ -163,7 +160,7 @@ sap.ui.define(
               "Matnr",
               FilterOperator.EQ,
               this._sCurrentMatnr
-            )
+            ),
           ];
 
 
@@ -173,7 +170,7 @@ sap.ui.define(
               filters: aFilters,
 
               urlParameters: {
-                "$format": "json"
+                "$format": "json",
               },
 
 
@@ -215,9 +212,7 @@ sap.ui.define(
                           ),
 
                         unit:
-                          !oItem.Meins || oItem.Meins === "ST" || oItem.Meins === "EA"
-                            ? "PC"
-                            : oItem.Meins,
+                          oItem.Meins || "",
 
                         rate:
                           iProgress + "%",
@@ -228,7 +223,7 @@ sap.ui.define(
                         statusState:
                           that._getStatusState(
                             oItem.Status
-                          )
+                          ),
                       };
                     }
                   );
@@ -287,7 +282,7 @@ sap.ui.define(
 
 
               error: function (oError) {
-                Log.error(
+                console.error(
                   "PP 생산오더 조회 실패",
                   oError
                 );
@@ -300,7 +295,7 @@ sap.ui.define(
                 MessageToast.show(
                   "생산오더 조회에 실패했습니다."
                 );
-              }
+              },
             }
           );
         },
@@ -317,7 +312,7 @@ sap.ui.define(
             return vQty || "0";
           }
 
-          return Math.round(nQty).toLocaleString();
+          return nQty.toLocaleString();
         },
 
 
@@ -665,7 +660,7 @@ sap.ui.define(
 
 
             this._updatePagination();
-          }
+          },
       }
     );
   }
