@@ -65,13 +65,6 @@
       "cozy": true
     },
     "models": {
-      "": {
-        "dataSource": "ZAIS_LOGIN_SRV",
-        "preload": true,
-        "settings": {
-          "defaultBindingMode": "TwoWay"
-        }
-      },
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {

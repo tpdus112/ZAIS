@@ -1,0 +1,169 @@
+/* ==========================================================================
+   modalTable.css - 모달 테이블, 상태 배지, 페이지네이션 바
+   ========================================================================== */
+
+/* 1. 모달 테이블 스타일 */
+.modalDetailTable {
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  margin-bottom: 14px !important;
+}
+
+.modalDetailTable .sapMListHdr,
+.modalDetailTable .sapMListTblHeader {
+  background-color: #f8fafc !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+}
+
+.modalDetailTable .tableColHeader {
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: #334155 !important;
+}
+
+.modalDetailTable .sapMListTblRow {
+  height: 42px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.modalDetailTable .sapMListTblRow:hover {
+  background-color: #f8fafc !important;
+}
+
+.modalCellText {
+  font-size: 12.5px !important;
+  color: #334155 !important;
+}
+
+.modalCellTextBold {
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+}
+
+/* 2. 상태 뱃지 */
+.statusBadge .sapMObjStatusText,
+.processStepModalDialog .statusBadge .sapMObjStatusText,
+.processStepModalDialog .sapMObjStatus .sapMObjStatusText {
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  padding: 3px 12px !important;
+  border-radius: 8px !important;
+  display: inline-block !important;
+  letter-spacing: 0.2px !important;
+  text-align: center !important;
+  min-width: 54px !important;
+  box-sizing: border-box !important;
+}
+
+.statusBadge.sapMObjStatusSuccess .sapMObjStatusText,
+.processStepModalDialog .sapMObjStatusSuccess .sapMObjStatusText,
+.statusBadgeSuccess .sapMObjStatusText {
+  background-color: #e6f9f0 !important;
+  color: #047857 !important;
+}
+
+.statusBadge.sapMObjStatusInformation .sapMObjStatusText,
+.processStepModalDialog .sapMObjStatusInformation .sapMObjStatusText,
+.statusBadgeInfo .sapMObjStatusText {
+  background-color: #ebf3ff !important;
+  color: #1d4ed8 !important;
+}
+
+.statusBadge.sapMObjStatusNone .sapMObjStatusText,
+.processStepModalDialog .sapMObjStatusNone .sapMObjStatusText,
+.statusBadgeNone .sapMObjStatusText {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+}
+
+.statusBadge.sapMObjStatusWarning .sapMObjStatusText,
+.processStepModalDialog .sapMObjStatusWarning .sapMObjStatusText,
+.statusBadgeWarning .sapMObjStatusText {
+  background-color: #fff4e5 !important;
+  color: #ea580c !important;
+}
+
+.statusBadge.sapMObjStatusError .sapMObjStatusText,
+.processStepModalDialog .sapMObjStatusError .sapMObjStatusText,
+.statusBadgeError .sapMObjStatusText {
+  background-color: #ffeef0 !important;
+  color: #e11d48 !important;
+}
+
+/* 3. 페이지네이션 바 */
+.modalPaginationBar {
+  width: 100% !important;
+  padding: 6px 0 !important;
+  margin-bottom: 4px !important;
+}
+
+.paginationTotalText {
+  font-size: 12px !important;
+  color: #64748b !important;
+}
+
+.paginationPageText {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  padding: 4px 8px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 4px !important;
+  margin: 0 4px !important;
+}
+
+.paginationBtn {
+  min-width: 28px !important;
+  height: 28px !important;
+}
+
+.paginationBtn .sapUiIcon {
+  font-size: 11px !important;
+  color: #64748b !important;
+}
+
+/* 4. 빈 뷰 플레이스홀더 */
+.emptyModalPlaceholder {
+  padding: 60px 20px !important;
+  text-align: center !important;
+}
+
+.emptyModalIcon {
+  font-size: 48px !important;
+  color: #94a3b8 !important;
+  margin-bottom: 12px !important;
+}
+
+.emptyModalTitle {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: #475569 !important;
+  margin-bottom: 6px !important;
+}
+
+.emptyModalSubtext {
+  font-size: 13px !important;
+  color: #94a3b8 !important;
+}
+
+/* 5. 메인 프로세스 스텝 효과 */
+.stepCircle {
+  cursor: pointer !important;
+  transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+.stepCircle:hover {
+  transform: translateY(-3px) scale(1.08) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12) !important;
+}
+
+.stepItem {
+  cursor: pointer !important;
+}
+
+.stepItem:hover .stepName {
+  color: #0a2560 !important;
+  font-weight: 700 !important;
+}

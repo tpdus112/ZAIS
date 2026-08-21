@@ -48,6 +48,13 @@ sap.ui.define(
             totalCount: 0
           };
 
+        const MATNR_MAP = {
+          HBMProd: "AI-H-HBM3E",
+          BGPProd: "AI-H-BGP",
+          GPUProd: "AI-H-GPU",
+          AISAssembly: "AI-F-AIS"
+        };
+
         // 먼저 currentModal 생성
         if (oDashboardModel) {
           oDashboardModel.setProperty(
@@ -55,6 +62,7 @@ sap.ui.define(
             {
               stepKey: sStepKey,
               title: oModalConfig.title,
+              matnr: MATNR_MAP[sStepKey] || "",
               sapGuiName:
                 oModalConfig.sapGuiName ||
                 "SAP GUI 열기",
@@ -99,7 +107,8 @@ sap.ui.define(
           PPDataService.loadProdOrderData(
             oComponent,
             oDashboardModel,
-            sStepKey
+            sStepKey,
+            MATNR_MAP[sStepKey]
           );
         }
         // SD

@@ -30,34 +30,34 @@ sap.ui.define(
           header: {
             mm: {
               title: "구매 진행 (MM)",
-              rate: 82,
-              rateText: "82%",
+              rate: 0,
+              rateText: "0%",
               subText: "입고 완료 기준",
-              countText: "132 / 161 건",
+              countText: "0 / 0 건",
               icon: "sap-icon://cart",
               colorClass: "headerCardBlue"
             },
             pp: {
               title: "생산 진행 (PP)",
-              rate: 72,
-              rateText: "72%",
+              rate: 0,
+              rateText: "0%",
               subText: "생산 완료 기준",
-              countText: "9 / 12 건",
+              countText: "0 / 0 건",
               icon: "sap-icon://factory",
               colorClass: "headerCardGreen"
             },
             sd: {
               title: "출하 진행 (SD)",
-              rate: 45,
-              rateText: "45%",
+              rate: 0,
+              rateText: "0%",
               subText: "출하 완료 기준",
-              countText: "5 / 11 건",
+              countText: "0 / 0 건",
               icon: "sap-icon://shipping-status",
               colorClass: "headerCardPurple"
             },
             stock: {
               title: "재고 현황",
-              amount: "1,248 PC",
+              amount: "0 PC",
               subText: "주요 자재 가용 수량",
               icon: "sap-icon://product",
               colorClass: "headerCardOrange"
@@ -69,346 +69,123 @@ sap.ui.define(
               steps: [
                 {
                   name: "구매요청",
-                  count: "12 / 12",
-                  status: "completed",
-                  statusText: "완료",
+                  count: "0 / 0",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://request"
                 },
                 {
                   name: "구매오더",
-                  count: "12 / 12",
-                  status: "completed",
-                  statusText: "완료",
+                  count: "0 / 0",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://cart"
                 },
                 {
                   name: "자재 입고",
-                  count: "9 / 12",
-                  status: "inProgress",
-                  statusText: "진행 중",
+                  count: "0 / 0",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://inventory"
                 },
                 {
                   name: "입고 완료",
-                  count: "9 / 12",
-                  status: "inProgress",
-                  statusText: "진행 중",
+                  count: "0 / 0",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://building"
                 }
               ],
-              materials: [
-                {
-                  name: "WFR (DWFR)",
-                  poQty: "44 PC",
-                  grQty: "44 PC",
-                  rate: "100%",
-                  status: "완료",
-                  statusState: "Success"
-                },
-                {
-                  name: "POCO",
-                  poQty: "20 PC",
-                  grQty: "20 PC",
-                  rate: "100%",
-                  status: "완료",
-                  statusState: "Success"
-                },
-                {
-                  name: "PCB",
-                  poQty: "10 PC",
-                  grQty: "10 PC",
-                  rate: "100%",
-                  status: "완료",
-                  statusState: "Success"
-                },
-                {
-                  name: "CPU",
-                  poQty: "20 PC",
-                  grQty: "18 PC",
-                  rate: "90%",
-                  status: "진행 중",
-                  statusState: "Information"
-                },
-                {
-                  name: "RAM (64GB RDIMM)",
-                  poQty: "640 PC",
-                  grQty: "448 PC",
-                  rate: "70%",
-                  status: "진행 중",
-                  statusState: "Information"
-                },
-                {
-                  name: "NIC (InfiniBand)",
-                  poQty: "4 PC",
-                  grQty: "0 PC",
-                  rate: "0%",
-                  status: "대기",
-                  statusState: "None"
-                }
-              ]
+              materials: []
             },
             pp: {
               title: "PP 생산",
               steps: [
                 {
                   name: "DRAM 생산",
-                  count: "10 / 10",
-                  countText: "10 / 10",
-                  rate: "완료",
-                  status: "completed",
-                  statusText: "완료",
+                  count: "0 / 0",
+                  countText: "0 / 0",
+                  rate: "진행 예정",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://developer-settings"
                 },
                 {
                   name: "HBM3E 생산",
-                  count: "10 / 10",
-                  countText: "10 / 10",
-                  rate: "완료",
-                  status: "completed",
-                  statusText: "완료",
+                  count: "0 / 0",
+                  countText: "0 / 0",
+                  rate: "진행 예정",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://database"
                 },
                 {
                   name: "BGP 생산",
-                  count: "10 / 10",
-                  countText: "10 / 10",
-                  rate: "완료",
-                  status: "completed",
-                  statusText: "완료",
+                  count: "0 / 0",
+                  countText: "0 / 0",
+                  rate: "진행 예정",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://grid"
                 },
                 {
                   name: "GPU 생산",
-                  count: "10 / 10",
-                  countText: "10 / 10",
-                  rate: "완료",
-                  status: "completed",
-                  statusText: "완료",
+                  count: "0 / 0",
+                  countText: "0 / 0",
+                  rate: "진행 예정",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://it-instance"
                 },
                 {
                   name: "AIS 조립",
-                  count: "7 / 10",
-                  countText: "7 / 10",
-                  rate: "진행 중",
-                  status: "inProgress",
-                  statusText: "진행 중",
+                  count: "0 / 0",
+                  countText: "0 / 0",
+                  rate: "진행 예정",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://brain"
                 }
               ],
-              materials: [
-                {
-                  name: "DRAM (REM)",
-                  planQty: "12,000 PC",
-                  actQty: "12,000 PC",
-                  rate: "100%",
-                  status: "완료",
-                  statusState: "Success"
-                },
-                {
-                  name: "HBM3E",
-                  planQty: "640 PC",
-                  actQty: "384 PC",
-                  rate: "60%",
-                  status: "진행 중",
-                  statusState: "Information"
-                },
-                {
-                  name: "BGP",
-                  planQty: "80 PC",
-                  actQty: "25 PC",
-                  rate: "31%",
-                  status: "진행 중",
-                  statusState: "Information"
-                },
-                {
-                  name: "GPU",
-                  planQty: "10 PC",
-                  actQty: "0 PC",
-                  rate: "0%",
-                  status: "대기",
-                  statusState: "None"
-                },
-                {
-                  name: "AIS SERVER",
-                  planQty: "10 PC",
-                  actQty: "7 PC",
-                  rate: "70%",
-                  status: "진행 중",
-                  statusState: "Information"
-                }
-              ]
+              materials: []
             },
             sd: {
               title: "SD 판매/출하",
               steps: [
                 {
                   name: "Sales Order",
-                  count: "10 / 10",
-                  status: "completed",
-                  statusText: "완료",
+                  count: "0 / 0",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://sales-order"
                 },
                 {
                   name: "Delivery",
-                  count: "5 / 10",
-                  status: "inProgress",
-                  statusText: "진행 중",
+                  count: "0 / 0",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://shipping-status"
                 },
                 {
                   name: "PGI",
-                  count: "4 / 10",
-                  status: "inProgress",
-                  statusText: "진행 중",
+                  count: "0 / 0",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://receipt"
                 },
                 {
                   name: "납품 완료",
-                  count: "0 / 10",
-                  status: "waiting",
-                  statusText: "대기",
+                  count: "0 / 0",
+                  status: "planned",
+                  statusText: "진행 예정",
                   icon: "sap-icon://collaborate"
                 }
               ],
-              materials: [
-                {
-                  name: "Sales Order",
-                  orderQty: "10 EA",
-                  doneQty: "10 EA",
-                  rate: "100%",
-                  status: "완료",
-                  statusState: "Success"
-                },
-                {
-                  name: "Delivery",
-                  orderQty: "10 EA",
-                  doneQty: "5 EA",
-                  rate: "50%",
-                  status: "진행 중",
-                  statusState: "Information"
-                },
-                {
-                  name: "PGI",
-                  orderQty: "10 EA",
-                  doneQty: "4 EA",
-                  rate: "40%",
-                  status: "진행 중",
-                  statusState: "Information"
-                },
-                {
-                  name: "납품 완료",
-                  orderQty: "10 EA",
-                  doneQty: "0 EA",
-                  rate: "0%",
-                  status: "대기",
-                  statusState: "None"
-                }
-              ]
+              materials: []
             }
           },
-          aisProduction: [
-            {
-              code: "AI-F-AIS",
-              name: "AIS",
-              qty: "10 EA",
-              step: "AIS 조립",
-              rate: 70,
-              status: "진행 중",
-              statusState: "Information",
-              dueDate: "2024.05.25"
-            },
-            {
-              code: "AI-H-GPU",
-              name: "GPU",
-              qty: "10 EA",
-              step: "생산 완료",
-              rate: 100,
-              status: "완료",
-              statusState: "Success",
-              dueDate: "2024.05.15"
-            },
-            {
-              code: "AI-H-BGP",
-              name: "BGP",
-              qty: "80 EA",
-              step: "생산 완료",
-              rate: 100,
-              status: "완료",
-              statusState: "Success",
-              dueDate: "2024.05.14"
-            },
-            {
-              code: "AI-H-HBM3E",
-              name: "HBM3E",
-              qty: "640 EA",
-              step: "HBM3E 생산",
-              rate: 60,
-              status: "진행 중",
-              statusState: "Information",
-              dueDate: "2024.05.22"
-            },
-            {
-              code: "AI-H-DRAM",
-              name: "DRAM",
-              qty: "7,680 EA",
-              step: "생산 완료",
-              rate: 100,
-              status: "완료",
-              statusState: "Success",
-              dueDate: "2024.05.12"
-            }
-          ],
-          materials: [
-            {
-              code: "AI-R-DWFR",
-              name: "WFR (Raw Wafer)",
-              unit: "EA",
-              stock: 44,
-              status: "정상",
-              statusState: "Success"
-            },
-            {
-              code: "AI-R-GWFR",
-              name: "GWFR (Good Wafer)",
-              unit: "EA",
-              stock: 20,
-              status: "정상",
-              statusState: "Success"
-            },
-            {
-              code: "AI-R-POCO",
-              name: "POCO (Package Organic Substrate)",
-              unit: "EA",
-              stock: 10,
-              status: "정상",
-              statusState: "Success"
-            },
-            {
-              code: "AI-R-PCB",
-              name: "PCB (Board)",
-              unit: "EA",
-              stock: 10,
-              status: "정상",
-              statusState: "Success"
-            },
-            {
-              code: "AI-R-CPU",
-              name: "CPU (Processor)",
-              unit: "EA",
-              stock: 20,
-              status: "정상",
-              statusState: "Success"
-            },
-            {
-              code: "AI-R-RAM",
-              name: "DRAM (64GB RDIMM)",
-              unit: "EA",
-              stock: 320,
-              status: "부족",
-              statusState: "Warning"
-            }
-          ],
+          materialReceiptProgress: [],
+          materials: [],
           prList: [],
           poList: [],
           grList: [],
@@ -504,23 +281,23 @@ sap.ui.define(
             }
           },
           mmProcessSummary: {
-  prCountText: "0 / 0",
-  poCountText: "0 / 0",
-  grCountText: "0 / 0",
-  grCompleteCountText: "0 / 0",
+            prCountText: "0 / 0",
+            poCountText: "0 / 0",
+            grCountText: "0 / 0",
+            grCompleteCountText: "0 / 0",
 
-  prStatus: "planned",
-  prStatusText: "진행 예정",
+            prStatus: "planned",
+            prStatusText: "진행 예정",
 
-  poStatus: "planned",
-  poStatusText: "진행 예정",
+            poStatus: "planned",
+            poStatusText: "진행 예정",
 
-  grStatus: "planned",
-  grStatusText: "진행 예정",
+            grStatus: "planned",
+            grStatusText: "진행 예정",
 
-  grCompleteStatus: "planned",
-  grCompleteStatusText: "진행 예정"
-}
+            grCompleteStatus: "planned",
+            grCompleteStatusText: "진행 예정"
+          }
         };
 
         var oModel = new JSONModel(oData);

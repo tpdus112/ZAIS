@@ -1,13 +1,11 @@
 sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
-    "zais/scm/zais/controller/modal/MM/MMDataService"
+    "sap/m/MessageToast"
   ],
   (
     Controller,
-    MessageToast,
-    MMDataService
+    MessageToast
   ) => {
     "use strict";
 
@@ -36,16 +34,6 @@ sap.ui.define(
                 "dashboard"
               );
             }
-          }
-
-          // 실제 SAP PO + GR 데이터로
-          // 자재 입고 진행현황 계산
-          if (oDashboardModel) {
-            MMDataService
-              .loadMaterialReceiptProgress(
-                oComponent,
-                oDashboardModel
-              );
           }
 
           this._restoreLaunchpadHeader();
